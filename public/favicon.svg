@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Fundo azul arredondado -->
+  <rect width="512" height="512" rx="110" fill="#2B5BA8"/>
+
+  <g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Escudo -->
+    <path d="M256 95 L375 138 L375 295 Q375 378 256 415 Q137 378 137 295 L137 138 Z" stroke="white" stroke-width="9"/>
+    <!-- Cruz interna -->
+    <line x1="256" y1="110" x2="256" y2="400" stroke="white" stroke-width="7"/>
+    <line x1="143" y1="248" x2="369" y2="248" stroke="white" stroke-width="7"/>
+    <!-- Mitra/cúpula -->
+    <path d="M216 95 Q256 58 296 95" stroke="white" stroke-width="8" fill="none"/>
+    <path d="M233 75 Q256 52 279 75" stroke="white" stroke-width="7" fill="none"/>
+    <!-- Cruz do topo -->
+    <line x1="256" y1="52" x2="256" y2="34" stroke="white" stroke-width="7"/>
+    <line x1="247" y1="43" x2="265" y2="43" stroke="white" stroke-width="7"/>
+    <circle cx="256" cy="30" r="6" fill="white" stroke="none"/>
+    <!-- Chave esquerda -->
+    <path d="M137 158 L95 122" stroke="white" stroke-width="6"/>
+    <rect x="85" y="112" width="20" height="20" rx="3" fill="none" stroke="white" stroke-width="5"/>
+    <line x1="137" y1="185" x2="88" y2="185" stroke="white" stroke-width="5"/>
+    <!-- Chave direita -->
+    <path d="M375 158 L417 122" stroke="white" stroke-width="6"/>
+    <rect x="407" y="112" width="20" height="20" rx="3" fill="none" stroke="white" stroke-width="5"/>
+    <line x1="375" y1="185" x2="424" y2="185" stroke="white" stroke-width="5"/>
+    <!-- Estrela de 8 pontas -->
+    <polygon points="256,138 260,151 273,151 263,159 267,172 256,164 245,172 249,159 239,151 252,151" fill="white" stroke="none"/>
+    <!-- Pelicano (simplificado) -->
+    <ellipse cx="256" cy="278" rx="42" ry="30" stroke="white" stroke-width="6"/>
+    <path d="M228 262 Q256 240 284 262" stroke="white" stroke-width="6" fill="none"/>
+    <path d="M214 272 Q188 252 165 265" stroke="white" stroke-width="5" fill="none"/>
+    <path d="M298 272 Q324 252 347 265" stroke="white" stroke-width="5" fill="none"/>
+    <circle cx="256" cy="248" r="13" fill="white" stroke="none"/>
+    <!-- Faixa EX CORDE -->
+    <path d="M160 338 Q256 356 352 338 L352 362 Q256 380 160 362 Z" fill="white" stroke="none"/>
+    <path d="M160 338 Q256 356 352 338 L352 362 Q256 380 160 362 Z" fill="#2B5BA8" stroke="none" opacity="0.85"/>
+  </g>
+
+  <!-- Texto PUC Minas -->
+  <text x="256" y="468" text-anchor="middle" fill="white"
+    font-family="Arial, Helvetica, sans-serif"
+    font-weight="700" font-size="60" letter-spacing="2">PUC Minas</text>
+</svg>
