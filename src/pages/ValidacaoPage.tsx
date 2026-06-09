@@ -74,7 +74,7 @@ const ValidacaoPage: React.FC<ValidacaoPageProps> = ({ cardId }) => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ background: "#0B1120" }}>
+    <div className="min-h-[100dvh] overflow-y-auto px-4 py-8" style={{ background: "#0B1120" }}>
       <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Painel da esquerda - Validação */}
         <div className="rounded-3xl p-8" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>

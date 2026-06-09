@@ -229,7 +229,11 @@ const App: React.FC = () => {
     }
 
     if (validacaoId) {
-      return <ValidacaoPage cardId={validacaoId} />;
+      return (
+        <div className="pb-0">
+          <ValidacaoPage cardId={validacaoId} />
+        </div>
+      );
     }
 
     if (showMissaoValores) {
@@ -276,7 +280,7 @@ const App: React.FC = () => {
       >
         {renderPage()}
       </div>
-      {!loginProfile && !showCarteirinha && (
+      {!loginProfile && !showCarteirinha && !validacaoId && (
         <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
       )}
       {showCarteirinha && (
