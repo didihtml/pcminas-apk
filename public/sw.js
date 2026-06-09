@@ -1,5 +1,5 @@
 const CACHE = 'sga-puc-v3'
-const PRECACHE = ['/', '/index.html']
+const PRECACHE = ['/']
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)))
@@ -17,6 +17,22 @@ self.addEventListener('activate', (e) => {
 
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return
+
+  const url = new URL(e.request.url)
+
+  // Nunca cachear API, index.html, sw.js e bundles JS/CSS
+  const neverCache =
+    url.pathname.startsWith('/api/') ||
+    url.pathname === '/index.html' ||
+    url.pathname === '/sw.js' ||
+    url.pathname.startsWith('/assets/')
+
+  if (neverCache) {
+    e.respondWith(fetch(e.request))
+    return
+  }
+
+  // Cache first para imagens estaticas
   e.respondWith(
     caches.match(e.request).then((cached) => {
       const network = fetch(e.request).then((res) => {
