@@ -89,9 +89,25 @@ const ValidacaoPage: React.FC<ValidacaoPageProps> = ({ cardId }) => {
               <p className="text-white/40 text-xs font-medium uppercase tracking-wider mb-2">ID</p>
               <p className="text-white text-sm font-semibold break-all">{card.id}</p>
             </div>
-            <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.05)" }}>
-              <p className="text-white/40 text-xs font-medium uppercase tracking-wider mb-2">Status da consulta</p>
-              <p className="text-white text-sm font-semibold">Carteirinha encontrada</p>
+            <div
+              className="rounded-2xl p-5"
+              style={{
+                background: "rgba(34,197,94,0.12)",
+                border: "1px solid rgba(34,197,94,0.25)",
+              }}
+            >
+              <p className="text-xs font-medium uppercase tracking-wider mb-2" style={{ color: "rgba(74,222,128,0.7)" }}>
+                Status da consulta
+              </p>
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-2 h-2 rounded-full"
+                  style={{ background: "#22C55E", boxShadow: "0 0 8px rgba(34,197,94,0.5)" }}
+                />
+                <p className="text-sm font-semibold" style={{ color: "#4ADE80" }}>
+                  Validado
+                </p>
+              </div>
             </div>
           </div>
         </div>
