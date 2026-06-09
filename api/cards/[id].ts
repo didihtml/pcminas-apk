@@ -74,7 +74,14 @@ export default async function handler(req: { method?: string; query?: { id?: str
     const p = getPrisma()
 
     if (req.method === "GET") {
-      const card = await p.cards.findUnique({ where: { id: cardId } })
+      let card = await p.cards.findUnique({ where: { id: cardId } })
+
+      if (!card) {
+        card = await p.cards.findFirst({
+          where: { codigo: cardId },
+          orderBy: { createdAt: "desc" },
+        })
+      }
 
       if (!card) {
         return res.status(404).json({ message: "Cartão não encontrado." })
@@ -90,12 +97,25 @@ export default async function handler(req: { method?: string; query?: { id?: str
         return res.status(400).json({ message: "Informe o novo status." })
       }
 
-      const card = await p.cards.update({
-        where: { id: cardId },
+      let card = await p.cards.findUnique({ where: { id: cardId } })
+
+      if (!card) {
+        card = await p.cards.findFirst({
+          where: { codigo: cardId },
+          orderBy: { createdAt: "desc" },
+        })
+      }
+
+      if (!card) {
+        return res.status(404).json({ message: "Cartão não encontrado." })
+      }
+
+      const updatedCard = await p.cards.update({
+        where: { id: card.id },
         data: { status: status.trim() },
       })
 
-      return res.json({ card: await toCardDto(card) })
+      return res.json({ card: await toCardDto(updatedCard) })
     }
 
     return res.status(405).json({ message: "Method not allowed" })

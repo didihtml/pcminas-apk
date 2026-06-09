@@ -25,7 +25,7 @@ function formatDate(value: string | null | undefined) {
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
   const [imageError, setImageError] = useState(false);
 
-  const qrValue = `${typeof window !== "undefined" ? window.location.origin : ""}?validacao=${card.id}`;
+  const qrValue = `${typeof window !== "undefined" ? window.location.origin : ""}?validacao=${card.codigo ?? card.id}`;
 
   return (
     <div className="h-screen flex flex-col" style={{ background: "var(--bg-main)" }}>
