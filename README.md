@@ -1,5 +1,6 @@
-# React + TypeScript + Vite
-# 🎓 CollegePass
+
+
+# 🎓 PUC Minas
 
 Um portal desenvolvido para conectar universitários às melhores festas, baladas e eventos acadêmicos da região.
 
@@ -22,11 +23,11 @@ Acesso a festa universitárias e descontos.
 
 ## 🎯 Objetivo
 
-Oferecer uma plataforma prática e segura para que jovens encontrem eventos, organizem sua vida universitária e descubram novas experiências de entretenimento.
+Oferecer uma maneira de entrar em festas.
 
 ## 📸 Demonstração
 
-Adicione aqui imagens ou GIFs do projeto.
+🪫🪫
 
 ## 📄 Licença
 
