@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model cards {
+  id             String    @id
+  nome           String
+  cpf            String
+  curso          String
+  instituicao    String
+  validade       DateTime
+  fotoUrl        String
+  status         String
+  createdAt      DateTime  @default(now())
+  alunoSenhaHash String
+  alunoUsuario   String    @unique
+  origem         String    @default("SGA")
+  atribuicao     String?
+  campus         String?
+  nascimento     DateTime?
+  rg             String?
+  codigo         String?
+  codigoAcesso   String?
+}

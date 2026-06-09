@@ -1,13 +1,14 @@
 import React from "react";
 
 export const SGALogo: React.FC<{ size?: number }> = ({ size = 1 }) => (
-  <div style={{ display: "flex", alignItems: "center", gap: `${10 * size}px` }}>
+  <div style={{ display: "flex", alignItems: "center", gap: `${12 * size}px` }}>
     {/* Ícone */}
     <img
       src="/svga.ico"
       alt="SGA"
       style={{
-        height: `${62 * size}px`,
+        height: `${48 * size}px`,
+        width: `${48 * size}px`,
         objectFit: "contain",
         background: "#172037",
       }}
@@ -18,8 +19,7 @@ export const SGALogo: React.FC<{ size?: number }> = ({ size = 1 }) => (
       style={{
         display: "flex",
         alignItems: "center",
-        gap: `${6 * size}px`,
-        alignSelf: "center",
+        gap: `${8 * size}px`,
       }}
     >
       <span
@@ -39,9 +39,9 @@ export const SGALogo: React.FC<{ size?: number }> = ({ size = 1 }) => (
         style={{
           color: "rgba(255,255,255,0.75)",
           fontFamily: "Arial, sans-serif",
-          fontSize: `${8.5 * size}px`,
+          fontSize: `${7 * size}px`,
           letterSpacing: "0.1px",
-          lineHeight: 1.45,
+          lineHeight: 1.5,
           whiteSpace: "nowrap",
         }}
       >

@@ -16,9 +16,12 @@ const MENU_ITEMS: MenuItem[] = [
   { id: 'configuracoes',label: 'Configurações',      icon: <Settings2 size={22} strokeWidth={1.6} /> },
 ]
 
-interface APucPageProps { onBack: () => void }
+interface APucPageProps {
+  onBack: () => void;
+  onMissaoValores: () => void;
+}
 
-const APucPage: React.FC<APucPageProps> = ({ onBack }) => {
+const APucPage: React.FC<APucPageProps> = ({ onBack, onMissaoValores }) => {
   return (
     <div className="min-h-screen pb-32" style={{ background: 'var(--bg-main)' }}>
       <PageHeader title="A PUC" onBack={onBack} />
@@ -59,6 +62,9 @@ const APucPage: React.FC<APucPageProps> = ({ onBack }) => {
         {MENU_ITEMS.map((item) => (
           <button
             key={item.id}
+            onClick={() => {
+              if (item.id === 'missao') onMissaoValores();
+            }}
             className="flex items-center justify-between w-full px-4 py-4 rounded-2xl"
             style={{ background: 'var(--bg-card)' }}
           >
