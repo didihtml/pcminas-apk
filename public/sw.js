@@ -1,4 +1,4 @@
-const CACHE = 'sga-puc-v1'
+const CACHE = 'sga-puc-v2'
 const PRECACHE = ['/', '/index.html']
 
 self.addEventListener('install', (e) => {
