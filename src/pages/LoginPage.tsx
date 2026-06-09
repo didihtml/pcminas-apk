@@ -109,7 +109,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
       console.error("Falha ao conectar com a API", lastError);
       setError(
-        "Falha ao conectar com a API local. Confirme que `npm run dev:api` está rodando em http://localhost:3001.",
+        "Falha ao conectar com o servidor. Tente novamente mais tarde.",
       );
     } finally {
       setLoading(false);
