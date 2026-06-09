@@ -81,7 +81,7 @@ const ValidacaoPage: React.FC<ValidacaoPageProps> = ({ cardId }) => {
           <p className="text-white/50 text-sm font-medium mb-2">Carteirinha pública</p>
           <h1 className="text-white text-3xl font-bold mb-4">Validação da credencial</h1>
           <p className="text-white/50 text-sm mb-8 leading-relaxed">
-            Esta página pública exibe os dados oficiais da carteirinha encontrada no PostgreSQL.
+            Esta página pública exibe os dados oficiais do portal de nossos alunos.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
