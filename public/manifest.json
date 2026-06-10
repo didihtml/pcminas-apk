@@ -1,7 +1,7 @@
 {
   "name": "PUC Minas",
   "short_name": "PUC Minas",
-  "description": "Portal PUC Minas — Sistema de Gestão Acadêmica",
+  "description": "PUC Minas — Sistema de Gestão Acadêmica",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1E5FA8",
