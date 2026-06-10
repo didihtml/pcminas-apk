@@ -3,7 +3,7 @@
 ## Arquitetura na Vercel
 
 ```
-Projeto Vercel (puc-minas-app)
+Projeto Vercel (portalpuc-app)
 ├── Frontend estático (Vite → dist/)
 ├── API Serverless (/api/* → Vercel Functions)
 │   ├── /api/health          → api/health.ts

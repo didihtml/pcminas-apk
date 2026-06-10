@@ -1,6 +1,6 @@
 
 
-# 🎓 PUC Minas
+# 🎓 portalpuc
 
 Um portal desenvolvido para conectar universitários às melhores festas, baladas e eventos acadêmicos da região.
 
