@@ -1,58 +1,15 @@
 import React from "react";
 
 export const SGALogo: React.FC<{ size?: number }> = ({ size = 1 }) => (
-  <div style={{ display: "flex", alignItems: "center", gap: `${12 * size}px` }}>
-    {/* Ícone */}
-    <img
-      src="/svga.ico"
-      alt="SGA"
-      style={{
-        height: `${48 * size}px`,
-        width: `${48 * size}px`,
-        objectFit: "contain",
-        background: "#172037",
-      }}
-    />
-
-    {/* SGA + subtexto lado a lado */}
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: `${8 * size}px`,
-      }}
-    >
-      <span
-        style={{
-          color: "white",
-          fontFamily: "'Bebas Neue', sans-serif",
-          fontWeight: 400,
-          fontSize: `${48 * size}px`,
-          letterSpacing: "1px",
-          lineHeight: 1,
-        }}
-      >
-        SGA
-      </span>
-
-      <span
-        style={{
-          color: "rgba(255,255,255,0.75)",
-          fontFamily: "Arial, sans-serif",
-          fontSize: `${7 * size}px`,
-          letterSpacing: "0.1px",
-          lineHeight: 1.5,
-          whiteSpace: "nowrap",
-        }}
-      >
-        Sistema
-        <br />
-        de Gestão
-        <br />
-        Acadêmica
-      </span>
-    </div>
-  </div>
+  <img
+    src="/SGALOGO.png"
+    alt="SGA"
+    style={{
+      height: `${48 * size}px`,
+      width: "auto",
+      objectFit: "contain",
+    }}
+  />
 );
 
 export const IconProfessor: React.FC<{ size?: number }> = ({ size = 24 }) => (

@@ -108,9 +108,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
       }
 
       console.error("Falha ao conectar com a API", lastError);
-      setError(
-        "Falha ao conectar com o servidor. Tente novamente mais tarde.",
-      );
+      setError("Falha ao conectar com o servidor. Tente novamente mais tarde.");
     } finally {
       setLoading(false);
     }
@@ -127,7 +125,12 @@ const LoginPage: React.FC<LoginPageProps> = ({
       className="min-h-screen flex flex-col"
       style={{ background: "var(--bg-nav)" }}
     >
-      <div className="flex items-center justify-between px-5 pt-14 pb-5">
+      <div
+        className="flex items-center justify-between px-5 pt-14 pb-5"
+        style={{
+          background: "var(--bg-header)",
+        }}
+      >
         <button onClick={onBack} className="text-white p-1">
           <ArrowLeft size={22} strokeWidth={2} />
         </button>
@@ -137,10 +140,10 @@ const LoginPage: React.FC<LoginPageProps> = ({
         <div className="w-8" />
       </div>
 
-      <div className="flex-1 flex flex-col items-center px-6 pt-16 pb-32">
-        <SGALogo size={1.1} />
+      <div className="flex-1 flex flex-col items-center px-6 pt-24 pb-32">
+        <SGALogo size={2.0} />
 
-        <div className="mt-8 text-center">
+        <div className="mt-4 text-center">
           <h2
             className="text-xl font-bold mb-2"
             style={{ color: "var(--text-primary)" }}

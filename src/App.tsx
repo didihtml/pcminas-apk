@@ -174,7 +174,9 @@ const App: React.FC = () => {
   const [authenticatedCard, setAuthenticatedCard] = useState<AccessCard | null>(
     null,
   );
-  const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(null);
+  const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(
+    null,
+  );
   const [showMissaoValores, setShowMissaoValores] = useState(false);
   const prevTabRef = useRef<NavTab>("inicio");
 
@@ -191,6 +193,10 @@ const App: React.FC = () => {
     if (tab === "portal") {
       setSgaOpen(true);
       return;
+    }
+    // Se estiver na tela de login e clicar em outra aba, sai do login
+    if (loginProfile) {
+      setLoginProfile(null);
     }
     const prevIdx = getTabIndex(prevTabRef.current);
     const nextIdx = getTabIndex(tab);
@@ -275,12 +281,16 @@ const App: React.FC = () => {
       )}
       {checking && <CheckingUpdates onDone={() => setChecking(false)} />}
       <div
-        key={activeTab + (loginProfile ? "-login" : "") + (showCarteirinha ? "-card" : "")}
+        key={
+          activeTab +
+          (loginProfile ? "-login" : "") +
+          (showCarteirinha ? "-card" : "")
+        }
         className={slideDirection ? `page-enter-${slideDirection}` : undefined}
       >
         {renderPage()}
       </div>
-      {!loginProfile && !showCarteirinha && !validacaoId && (
+      {!showCarteirinha && !validacaoId && (
         <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
       )}
       {showCarteirinha && (
