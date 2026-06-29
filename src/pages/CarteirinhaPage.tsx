@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import type { AccessCard } from "../types";
 
@@ -24,66 +24,8 @@ function formatDate(value: string | null | undefined) {
 
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
   const [imageError, setImageError] = useState(false);
-  const [qrPos, setQrPos] = useState({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
-  const dragStart = useRef({ x: 0, y: 0, qrX: 0, qrY: 0 });
-  const qrWrapperRef = useRef<HTMLDivElement>(null);
 
   const qrValue = `${typeof window !== "undefined" ? window.location.origin : ""}?validacao=${card.id}`;
-
-  const startDrag = (clientX: number, clientY: number) => {
-    setIsDragging(true);
-    dragStart.current = {
-      x: clientX,
-      y: clientY,
-      qrX: qrPos.x,
-      qrY: qrPos.y,
-    };
-  };
-
-  const moveDrag = (clientX: number, clientY: number) => {
-    const deltaX = clientX - dragStart.current.x;
-    const deltaY = clientY - dragStart.current.y;
-    setQrPos({
-      x: dragStart.current.qrX + deltaX,
-      y: dragStart.current.qrY + deltaY,
-    });
-  };
-
-  const endDrag = () => {
-    setIsDragging(false);
-  };
-
-  useEffect(() => {
-    if (!isDragging) return;
-
-    const onPointerMove = (e: PointerEvent) => {
-      e.preventDefault();
-      moveDrag(e.clientX, e.clientY);
-    };
-    const onPointerUp = () => endDrag();
-    const onTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
-      moveDrag(e.touches[0].clientX, e.touches[0].clientY);
-    };
-    const onTouchEnd = () => endDrag();
-
-    window.addEventListener("pointermove", onPointerMove, { passive: false });
-    window.addEventListener("pointerup", onPointerUp);
-    window.addEventListener("pointercancel", onPointerUp);
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
-    window.addEventListener("touchend", onTouchEnd);
-    window.addEventListener("touchcancel", onTouchEnd);
-
-    return () => {
-      window.removeEventListener("pointermove", onPointerMove);
-      window.removeEventListener("pointerup", onPointerUp);
-      window.removeEventListener("pointercancel", onPointerUp);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
-      window.removeEventListener("touchcancel", onTouchEnd);
-    };
-  }, [isDragging]);
 
   return (
     <div
@@ -245,39 +187,8 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             </div>
 
             <div className="flex gap-4 items-center">
-              <div
-                ref={qrWrapperRef}
-                className={`relative bg-white rounded-xl p-1.5 flex-shrink-0 touch-none select-none transition-all duration-75 active:scale-105 ${
-                  isDragging
-                    ? "cursor-grabbing shadow-2xl ring-4 ring-white/40 scale-105 z-10"
-                    : "cursor-grab shadow-md hover:shadow-lg"
-                }`}
-                style={{
-                  transform: `translate(${qrPos.x}px, ${qrPos.y}px)`,
-                  willChange: "transform",
-                }}
-                onPointerDown={(e) => {
-                  e.preventDefault();
-                  startDrag(e.clientX, e.clientY);
-                }}
-                onMouseDown={(e) => {
-                  e.preventDefault();
-                  startDrag(e.clientX, e.clientY);
-                }}
-                onTouchStart={(e) => {
-                  e.preventDefault();
-                  startDrag(e.touches[0].clientX, e.touches[0].clientY);
-                }}
-                role="button"
-                aria-label="Segure e arraste o QR code para reposicioná-lo"
-                title="Segure e arraste o QR code para reposicioná-lo"
-              >
-                <QRCodeSVG
-                  value={qrValue}
-                  size={110}
-                  includeMargin
-                  style={{ pointerEvents: "none" }}
-                />
+              <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
+                <QRCodeSVG value={qrValue} size={110} includeMargin />
               </div>
 
               <div>
