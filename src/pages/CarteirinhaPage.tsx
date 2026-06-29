@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { QRCodeSVG } from "qrcode.react";
+import React, { useEffect, useRef, useState } from "react";
+import { QRCodeCanvas } from "qrcode.react";
 import type { AccessCard } from "../types";
 
 interface CarteirinhaPageProps {
@@ -24,8 +24,17 @@ function formatDate(value: string | null | undefined) {
 
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
   const [imageError, setImageError] = useState(false);
+  const [qrDataUrl, setQrDataUrl] = useState<string>("");
+  const qrCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const qrValue = `${typeof window !== "undefined" ? window.location.origin : ""}?validacao=${card.id}`;
+
+  useEffect(() => {
+    const canvas = qrCanvasRef.current;
+    if (!canvas) return;
+    const dataUrl = canvas.toDataURL("image/png");
+    setQrDataUrl(dataUrl);
+  }, [qrValue]);
 
   return (
     <div
@@ -188,7 +197,25 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
             <div className="flex gap-4 items-center">
               <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
-                <QRCodeSVG value={qrValue} size={110} includeMargin />
+                <QRCodeCanvas
+                  ref={qrCanvasRef}
+                  value={qrValue}
+                  size={110}
+                  includeMargin
+                  style={{ display: "none" }}
+                />
+                {qrDataUrl ? (
+                  <img
+                    src={qrDataUrl}
+                    alt="QR Code de acesso"
+                    draggable
+                    width={110}
+                    height={110}
+                    className="block rounded"
+                  />
+                ) : (
+                  <div style={{ width: 110, height: 110 }} />
+                )}
               </div>
 
               <div>
