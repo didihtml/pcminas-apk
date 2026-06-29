@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import type { AccessCard } from "../types";
 
@@ -24,8 +24,41 @@ function formatDate(value: string | null | undefined) {
 
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
   const [imageError, setImageError] = useState(false);
+  const [qrPos, setQrPos] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0, qrX: 0, qrY: 0 });
 
   const qrValue = `${typeof window !== "undefined" ? window.location.origin : ""}?validacao=${card.id}`;
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    target.setPointerCapture(e.pointerId);
+    setIsDragging(true);
+    dragStart.current = {
+      x: e.clientX,
+      y: e.clientY,
+      qrX: qrPos.x,
+      qrY: qrPos.y,
+    };
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - dragStart.current.x;
+    const deltaY = e.clientY - dragStart.current.y;
+    setQrPos({
+      x: dragStart.current.qrX + deltaX,
+      y: dragStart.current.qrY + deltaY,
+    });
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const target = e.currentTarget;
+    if (target.hasPointerCapture(e.pointerId)) {
+      target.releasePointerCapture(e.pointerId);
+    }
+    setIsDragging(false);
+  };
 
   return (
     <div
@@ -187,7 +220,19 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             </div>
 
             <div className="flex gap-4 items-center">
-              <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
+              <div
+                className={`bg-white rounded-xl p-1.5 flex-shrink-0 touch-none select-none transition-shadow ${
+                  isDragging ? "cursor-grabbing shadow-lg" : "cursor-grab"
+                }`}
+                style={{
+                  transform: `translate(${qrPos.x}px, ${qrPos.y}px)`,
+                }}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerLeave={handlePointerUp}
+                title="Arraste o QR code para reposicioná-lo"
+              >
                 <QRCodeSVG value={qrValue} size={110} includeMargin />
               </div>
 
