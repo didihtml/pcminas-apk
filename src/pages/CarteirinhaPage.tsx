@@ -292,7 +292,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
           </div>
 
           {/* Indicadores do carrossel */}
-          <div className="flex justify-center gap-2 mt-6 pb-2">
+          <div className="flex justify-center gap-2 mt-12 pb-2">
             {slides.map((_, index) => (
               <button
                 key={index}
