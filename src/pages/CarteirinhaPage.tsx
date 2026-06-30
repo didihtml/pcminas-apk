@@ -124,112 +124,117 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
         {/* Card principal */}
         <div
           className="flex flex-col overflow-hidden"
-          style={{ background: "#024D85", borderRadius: "10px" }}
+          style={{ background: "#02406D", borderRadius: "10px" }}
         >
-          {/* Topo: foto + nome/código */}
-          <div className="p-4 flex gap-4 items-start">
-            <div
-              className="flex-shrink-0 overflow-hidden flex items-center justify-center"
-              style={{
-                width: "110px",
-                height: "130px",
-                borderRadius: "14px",
-                border: "3px solid #7ECCEF",
-                background: "#01365C",
-              }}
-            >
-              {!imageError && card.fotoUrl ? (
-                <img
-                  src={card.fotoUrl}
-                  alt={card.nome}
-                  className="w-full h-full object-cover"
-                  onError={() => setImageError(true)}
-                />
-              ) : (
-                <span
-                  className="text-center text-xs px-3"
-                  style={{ color: "#C9E9F5" }}
+          {/* Topo + meio com fundo azul original */}
+          <div style={{ background: "#024D85" }}>
+            {/* Topo: foto + nome/código */}
+            <div className="p-4 flex gap-4 items-start">
+              <div
+                className="flex-shrink-0 overflow-hidden flex items-center justify-center"
+                style={{
+                  width: "110px",
+                  height: "130px",
+                  borderRadius: "14px",
+                  border: "3px solid #7ECCEF",
+                  background: "#01365C",
+                }}
+              >
+                {!imageError && card.fotoUrl ? (
+                  <img
+                    src={card.fotoUrl}
+                    alt={card.nome}
+                    className="w-full h-full object-cover"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <span
+                    className="text-center text-xs px-3"
+                    style={{ color: "#C9E9F5" }}
+                  >
+                    Foto indisponível
+                  </span>
+                )}
+              </div>
+
+              <div className="flex flex-col gap-2 pt-1">
+                <div>
+                  <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                    Nome
+                  </p>
+                  <p className="text-white text-sm font-bold leading-tight">
+                    {card.nome}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                    Código
+                  </p>
+                  <p className="text-white text-sm font-semibold">
+                    {card.codigo ?? card.id}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Meio: grid de informações */}
+            <div className="px-4 pb-4 grid grid-cols-2 gap-x-3 gap-y-3">
+              <div>
+                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                  Atribuição
+                </p>
+                <p className="text-white text-xs leading-snug font-bold">
+                  {card.atribuicao ?? card.status}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                  RG
+                </p>
+                <p className="text-white text-xs leading-snug font-bold">
+                  {card.rg ?? "-"}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                  CPF
+                </p>
+                <p className="text-white text-xs leading-snug font-bold">
+                  {card.cpf}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                  Nascimento
+                </p>
+                <p className="text-white text-xs leading-snug font-bold">
+                  {card.nascimento ? formatDate(card.nascimento) : "-"}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                  Campus
+                </p>
+                <p
+                  className="text-white text-xs leading-snug font-bold"
+                  style={{ whiteSpace: "pre-line" }}
                 >
-                  Foto indisponível
-                </span>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-2 pt-1">
-              <div>
-                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
-                  Nome
-                </p>
-                <p className="text-white text-sm font-bold leading-tight">
-                  {card.nome}
+                  {card.campus
+                    ? card.campus.replace("Caldas", "\nCaldas")
+                    : "-"}
                 </p>
               </div>
               <div>
                 <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
-                  Código
+                  Curso
                 </p>
-                <p className="text-white text-sm font-semibold">
-                  {card.codigo ?? card.id}
+                <p
+                  className="text-white text-xs leading-snug font-bold"
+                  style={{ whiteSpace: "pre-line" }}
+                >
+                  {card.curso.replace(/\s(Computação)/i, "\n$1")}
                 </p>
               </div>
-            </div>
-          </div>
-
-          {/* Meio: grid de informações */}
-          <div className="px-4 pb-4 grid grid-cols-2 gap-x-3 gap-y-3">
-            <div>
-              <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
-                Atribuição
-              </p>
-              <p className="text-white text-xs leading-snug font-bold">
-                {card.atribuicao ?? card.status}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
-                RG
-              </p>
-              <p className="text-white text-xs leading-snug font-bold">
-                {card.rg ?? "-"}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
-                CPF
-              </p>
-              <p className="text-white text-xs leading-snug font-bold">
-                {card.cpf}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
-                Nascimento
-              </p>
-              <p className="text-white text-xs leading-snug font-bold">
-                {card.nascimento ? formatDate(card.nascimento) : "-"}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
-                Campus
-              </p>
-              <p
-                className="text-white text-xs leading-snug font-bold"
-                style={{ whiteSpace: "pre-line" }}
-              >
-                {card.campus ? card.campus.replace("Caldas", "\nCaldas") : "-"}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
-                Curso
-              </p>
-              <p
-                className="text-white text-xs leading-snug font-bold"
-                style={{ whiteSpace: "pre-line" }}
-              >
-                {card.curso.replace(/\s(Computação)/i, "\n$1")}
-              </p>
             </div>
           </div>
 
@@ -238,7 +243,6 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             className="flex flex-col px-4 pt-3 pb-3"
             style={{
               background: "#02406D",
-              flex: 1,
             }}
           >
             <div
@@ -271,7 +275,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                       <div className="bg-white rounded-xl p-3 flex-shrink-0">
                         <QRCodeSVG
                           value={slide.qrValue}
-                          size={110}
+                          size={150}
                           includeMargin
                         />
                       </div>
