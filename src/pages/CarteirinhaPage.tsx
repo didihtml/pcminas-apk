@@ -218,7 +218,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                   style={{ whiteSpace: "pre-line" }}
                 >
                   {card.campus
-                    ? card.campus.replace("Caldas", "\nCaldas")
+                    ? card.campus.replace(/(Caldas|Ppc)/gi, "\n$1")
                     : "-"}
                 </p>
               </div>
