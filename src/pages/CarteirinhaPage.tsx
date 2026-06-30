@@ -240,7 +240,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
           {/* Baixo: credencial de acesso - carrossel */}
           <div
-            className="flex flex-col px-4 pt-3 pb-3"
+            className="flex flex-col px-4 pt-3 pb-2"
             style={{
               background: "#02406D",
             }}
@@ -272,10 +272,10 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                     </div>
 
                     <div className="flex gap-4 items-center">
-                      <div className="bg-white rounded-xl p-3 flex-shrink-0">
+                      <div className="bg-white rounded-xl p-2 flex-shrink-0">
                         <QRCodeSVG
                           value={slide.qrValue}
-                          size={150}
+                          size={160}
                           includeMargin
                         />
                       </div>
@@ -299,7 +299,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
           </div>
 
           {/* Indicadores do carrossel */}
-          <div className="flex justify-center gap-2 mt-12 pb-2">
+          <div className="flex justify-center gap-2 mt-4 pb-2">
             {slides.map((_, index) => (
               <button
                 key={index}
