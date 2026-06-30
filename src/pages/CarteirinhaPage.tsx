@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import type { AccessCard } from "../types";
 
@@ -24,8 +24,75 @@ function formatDate(value: string | null | undefined) {
 
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
   const [imageError, setImageError] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
+  const touchStartX = useRef(0);
+  const containerWidth = useRef(0);
 
   const qrValue = `${typeof window !== "undefined" ? window.location.origin : ""}?validacao=${card.id}`;
+  const qrVinculoValue = `${qrValue}&vinculo=1`;
+
+  const slides = [
+    {
+      title: "Credencial de acesso",
+      icon: (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="white"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M12,11A5,5,0,1,0,7,6,5.006,5.006,0,0,0,12,11Zm0-8A3,3,0,1,1,9,6,3,3,0,0,1,12,3ZM3,22V18a5.006,5.006,0,0,1,5-5h8a5.006,5.006,0,0,1,5,5v4a1,1,0,0,1-2,0V18a3,3,0,0,0-3-3H8a3,3,0,0,0-3,3v4a1,1,0,0,1-2,0Z" />
+        </svg>
+      ),
+      qrValue,
+      label: "Código",
+      value: card.codigoAcesso ?? card.id,
+    },
+    {
+      title: "Validar vínculo do aluno",
+      icon: (
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="white"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M12,11A5,5,0,1,0,7,6,5.006,5.006,0,0,0,12,11Zm0-8A3,3,0,1,1,9,6,3,3,0,0,1,12,3ZM3,22V18a5.006,5.006,0,0,1,5-5h8a5.006,5.006,0,0,1,5,5v4a1,1,0,0,1-2,0V18a3,3,0,0,0-3-3H8a3,3,0,0,0-3,3v4a1,1,0,0,1-2,0Z" />
+        </svg>
+      ),
+      qrValue: qrVinculoValue,
+      label: "Validade do QRCode",
+      value: card.validade
+        ? new Date(card.validade).toLocaleDateString("pt-BR", {
+            timeZone: "UTC",
+          })
+        : "-",
+    },
+  ];
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
+    const rect = e.currentTarget.getBoundingClientRect();
+    containerWidth.current = rect.width;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const deltaX = e.touches[0].clientX - touchStartX.current;
+    setDragOffset(deltaX);
+  };
+
+  const handleTouchEnd = () => {
+    const threshold = containerWidth.current * 0.2;
+    if (dragOffset < -threshold && currentSlide < slides.length - 1) {
+      setCurrentSlide((prev) => prev + 1);
+    } else if (dragOffset > threshold && currentSlide > 0) {
+      setCurrentSlide((prev) => prev - 1);
+    }
+    setDragOffset(0);
+  };
 
   return (
     <div
@@ -162,43 +229,75 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             </div>
           </div>
 
-          {/* Baixo: credencial de acesso */}
+          {/* Baixo: credencial de acesso - carrossel */}
           <div
-            className="flex flex-col px-4 pt-3"
+            className="flex flex-col px-4 pt-3 overflow-hidden"
             style={{
               background: "#02406D",
               paddingBottom: "16px",
               marginTop: "-12px",
             }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            <div className="flex items-center gap-2 mb-3">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="white"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M12,11A5,5,0,1,0,7,6,5.006,5.006,0,0,0,12,11Zm0-8A3,3,0,1,1,9,6,3,3,0,0,1,12,3ZM3,22V18a5.006,5.006,0,0,1,5-5h8a5.006,5.006,0,0,1,5,5v4a1,1,0,0,1-2,0V18a3,3,0,0,0-3-3H8a3,3,0,0,0-3,3v4a1,1,0,0,1-2,0Z" />
-              </svg>
-              <span className="text-white text-sm font-semibold">
-                Credencial de acesso
-              </span>
+            <div
+              className="flex transition-transform duration-300 ease-out"
+              style={{
+                transform: `translateX(calc(-${currentSlide * 100}% + ${dragOffset}px))`,
+                willChange: "transform",
+              }}
+            >
+              {slides.map((slide, index) => (
+                <div
+                  key={index}
+                  className="w-full flex-shrink-0"
+                  style={{ flex: "0 0 100%" }}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    {slide.icon}
+                    <span className="text-white text-sm font-semibold">
+                      {slide.title}
+                    </span>
+                  </div>
+
+                  <div className="flex gap-4 items-center">
+                    <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
+                      <QRCodeSVG
+                        value={slide.qrValue}
+                        size={110}
+                        includeMargin
+                      />
+                    </div>
+
+                    <div>
+                      <p className="text-xs mb-1" style={{ color: "#85AFBC" }}>
+                        {slide.label}
+                      </p>
+                      <p className="text-white text-sm font-bold">
+                        {slide.value}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <div className="flex gap-4 items-center">
-              <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
-                <QRCodeSVG value={qrValue} size={110} includeMargin />
-              </div>
-
-              <div>
-                <p className="text-xs mb-1" style={{ color: "#85AFBC" }}>
-                  Código
-                </p>
-                <p className="text-white text-sm font-bold">
-                  {card.codigoAcesso ?? card.id}
-                </p>
-              </div>
+            {/* Indicadores */}
+            <div className="flex justify-center gap-2 mt-4">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => setCurrentSlide(index)}
+                  className={`rounded-full transition-all ${
+                    index === currentSlide
+                      ? "bg-white w-4 h-2"
+                      : "bg-white/40 w-2 h-2"
+                  }`}
+                  aria-label={`Ir para slide ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
