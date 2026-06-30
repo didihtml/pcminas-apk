@@ -224,8 +224,11 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
               <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                 Curso
               </p>
-              <p className="text-white text-xs leading-snug font-bold">
-                {card.curso}
+              <p
+                className="text-white text-xs leading-snug font-bold"
+                style={{ whiteSpace: "pre-line" }}
+              >
+                {card.curso.replace(/\s(da|de)\s/i, "\n$1 ")}
               </p>
             </div>
           </div>
