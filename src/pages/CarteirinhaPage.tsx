@@ -50,8 +50,8 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
         </svg>
       ),
       qrValue: qrCredencialValue,
-      qrSize: 120,
-      qrPadding: "p-0.5",
+      qrSize: 110,
+      qrPadding: "p-2",
       label: "Código",
       value: telefone,
     },
@@ -69,8 +69,8 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
         </svg>
       ),
       qrValue: qrVinculoValue,
-      qrSize: 120,
-      qrPadding: "p-1",
+      qrSize: 110,
+      qrPadding: "p-2",
       label: "Validade do QRCode",
       value: dataHoje,
     },
@@ -275,7 +275,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
                     <div className="flex gap-4 items-center">
                       <div
-                        className={`bg-white rounded-xl flex-shrink-0 ${slide.qrPadding}`}
+                        className={`bg-white rounded-lg flex-shrink-0 ${slide.qrPadding}`}
                       >
                         <QRCodeSVG
                           value={slide.qrValue}
