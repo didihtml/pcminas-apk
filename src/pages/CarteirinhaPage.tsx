@@ -50,8 +50,8 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
         </svg>
       ),
       qrValue: qrCredencialValue,
-      qrSize: 110,
-      qrPadding: "p-2",
+      qrSize: 120,
+      qrPadding: "p-1",
       label: "Código",
       value: telefone,
     },
