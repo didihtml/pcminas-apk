@@ -297,10 +297,8 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                   key={index}
                   type="button"
                   onClick={() => setCurrentSlide(index)}
-                  className={`rounded-full transition-all ${
-                    index === currentSlide
-                      ? "bg-white w-4 h-2"
-                      : "bg-white/40 w-2 h-2"
+                  className={`rounded-full transition-all w-2 h-2 ${
+                    index === currentSlide ? "bg-white" : "bg-white/40"
                   }`}
                   aria-label={`Ir para slide ${index + 1}`}
                 />
