@@ -231,56 +231,63 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
           {/* Baixo: credencial de acesso - carrossel */}
           <div
-            className="flex flex-col px-4 pt-3 overflow-hidden"
+            className="flex flex-col px-4 pt-3"
             style={{
               background: "#02406D",
               paddingBottom: "16px",
               marginTop: "-12px",
             }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
           >
             <div
-              className="flex transition-transform duration-300 ease-out"
-              style={{
-                transform: `translateX(calc(-${currentSlide * 100}% + ${dragOffset}px))`,
-                willChange: "transform",
-              }}
+              className="relative overflow-hidden rounded-lg"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
-              {slides.map((slide, index) => (
-                <div
-                  key={index}
-                  className="w-full flex-shrink-0"
-                  style={{ flex: "0 0 100%" }}
-                >
-                  <div className="flex items-center gap-2 mb-3">
-                    {slide.icon}
-                    <span className="text-white text-sm font-semibold">
-                      {slide.title}
-                    </span>
-                  </div>
-
-                  <div className="flex gap-4 items-center">
-                    <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
-                      <QRCodeSVG
-                        value={slide.qrValue}
-                        size={110}
-                        includeMargin
-                      />
+              <div
+                className="flex transition-transform duration-300 ease-out"
+                style={{
+                  transform: `translateX(calc(-${currentSlide * 100}% + ${dragOffset}px))`,
+                  willChange: "transform",
+                }}
+              >
+                {slides.map((slide, index) => (
+                  <div
+                    key={index}
+                    className="min-w-full w-full flex-shrink-0 box-border"
+                    style={{ flex: "0 0 100%" }}
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      {slide.icon}
+                      <span className="text-white text-sm font-semibold">
+                        {slide.title}
+                      </span>
                     </div>
 
-                    <div>
-                      <p className="text-xs mb-1" style={{ color: "#85AFBC" }}>
-                        {slide.label}
-                      </p>
-                      <p className="text-white text-sm font-bold">
-                        {slide.value}
-                      </p>
+                    <div className="flex gap-4 items-center">
+                      <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
+                        <QRCodeSVG
+                          value={slide.qrValue}
+                          size={110}
+                          includeMargin
+                        />
+                      </div>
+
+                      <div>
+                        <p
+                          className="text-xs mb-1"
+                          style={{ color: "#85AFBC" }}
+                        >
+                          {slide.label}
+                        </p>
+                        <p className="text-white text-sm font-bold">
+                          {slide.value}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Indicadores */}
