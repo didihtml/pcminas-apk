@@ -297,21 +297,21 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Indicadores do carrossel */}
-          <div className="flex justify-center gap-2 mt-3 pb-2">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => setCurrentSlide(index)}
-                className={`rounded-full transition-all w-2 h-2 ${
-                  index === currentSlide ? "bg-[#024D85]" : "bg-[#024D85]/40"
-                }`}
-                aria-label={`Ir para slide ${index + 1}`}
-              />
-            ))}
-          </div>
+        {/* Indicadores do carrossel */}
+        <div className="flex justify-center gap-2 mt-3 pb-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => setCurrentSlide(index)}
+              className={`rounded-full transition-all w-2 h-2 ${
+                index === currentSlide ? "bg-[#024D85]" : "bg-[#024D85]/40"
+              }`}
+              aria-label={`Ir para slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>
