@@ -31,7 +31,9 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
   const telefone = card.codigoAcesso ?? card.id;
   const qrCredencialValue = `tel:${telefone}`;
-  const qrVinculoValue = `${typeof window !== "undefined" ? window.location.origin : ""}?validacao=${card.id}&vinculo=1`;
+  const hoje = new Date();
+  const dataHoje = hoje.toLocaleDateString("pt-BR");
+  const qrVinculoValue = `${typeof window !== "undefined" ? window.location.origin : ""}?validacao=${card.id}&vinculo=1&data=${hoje.toISOString().split("T")[0]}`;
 
   const slides = [
     {
@@ -66,11 +68,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
       ),
       qrValue: qrVinculoValue,
       label: "Validade do QRCode",
-      value: card.validade
-        ? new Date(card.validade).toLocaleDateString("pt-BR", {
-            timeZone: "UTC",
-          })
-        : "-",
+      value: dataHoje,
     },
   ];
 
@@ -272,10 +270,10 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                     </div>
 
                     <div className="flex gap-4 items-center">
-                      <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
+                      <div className="bg-white rounded-xl p-1 flex-shrink-0">
                         <QRCodeSVG
                           value={slide.qrValue}
-                          size={150}
+                          size={170}
                           includeMargin
                         />
                       </div>
