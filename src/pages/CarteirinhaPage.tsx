@@ -275,7 +275,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
                     <div className="flex gap-4 items-center">
                       <div
-                        className={`bg-white rounded-lg flex-shrink-0 ${slide.qrPadding}`}
+                        className={`bg-white rounded-sm flex-shrink-0 ${slide.qrPadding}`}
                       >
                         <QRCodeSVG
                           value={slide.qrValue}
