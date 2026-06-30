@@ -239,6 +239,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             style={{
               background: "#02406D",
               marginTop: "-12px",
+              flex: 1,
             }}
           >
             <div
