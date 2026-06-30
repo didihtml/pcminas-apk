@@ -238,7 +238,6 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             className="flex flex-col px-4 pt-3"
             style={{
               background: "#02406D",
-              paddingBottom: "16px",
               marginTop: "-12px",
             }}
           >
@@ -269,7 +268,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                     </div>
 
                     <div className="flex gap-4 items-center">
-                      <div className="bg-white rounded-xl p-1.5 flex-shrink-0">
+                      <div className="bg-white rounded-xl p-3 flex-shrink-0">
                         <QRCodeSVG
                           value={slide.qrValue}
                           size={110}
