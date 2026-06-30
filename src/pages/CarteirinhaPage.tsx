@@ -235,10 +235,9 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
           {/* Baixo: credencial de acesso - carrossel */}
           <div
-            className="flex flex-col px-4 pt-3"
+            className="flex flex-col px-4 pt-3 pb-3"
             style={{
               background: "#02406D",
-              marginTop: "-12px",
               flex: 1,
             }}
           >
