@@ -332,11 +332,12 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
       {modalOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center px-6 animate-qrModalFadeIn"
-          style={{ background: "#1A1F2A" }}
+          style={{ background: "rgba(0, 0, 0, 0.7)" }}
           onClick={() => setModalOpen(false)}
         >
           <div
-            className="relative flex flex-col items-center gap-6 animate-qrModalScaleIn"
+            className="relative flex flex-col items-center gap-6 animate-qrModalScaleIn rounded-2xl p-6"
+            style={{ background: "#1A1F2A" }}
             onClick={(e) => e.stopPropagation()}
           >
             <button
