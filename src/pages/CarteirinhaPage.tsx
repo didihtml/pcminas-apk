@@ -331,7 +331,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
       {/* Modal do QR code */}
       {modalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center px-6 animate-qrModalFadeIn"
+          className="fixed inset-0 z-50 flex items-start justify-center px-6 pt-16 animate-qrModalFadeIn"
           style={{ background: "rgba(0, 0, 0, 0.7)" }}
           onClick={() => setModalOpen(false)}
         >
