@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import type { AccessCard } from "../types";
 
@@ -26,8 +26,14 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
   const [imageError, setImageError] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
   const touchStartX = useRef(0);
   const containerWidth = useRef(0);
+  const currentSlideRef = useRef(0);
+
+  useEffect(() => {
+    currentSlideRef.current = currentSlide;
+  }, [currentSlide]);
 
   const telefone = card.codigoAcesso ?? card.id;
   const qrCredencialValue = `tel:${telefone}`;
@@ -274,15 +280,18 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                     </div>
 
                     <div className="flex gap-4 items-center">
-                      <div
-                        className={`bg-white rounded-lg flex-shrink-0 ${slide.qrPadding}`}
+                      <button
+                        type="button"
+                        onClick={() => setModalOpen(true)}
+                        className={`bg-white rounded-lg flex-shrink-0 ${slide.qrPadding} cursor-pointer transition-transform active:scale-95`}
+                        aria-label="Ampliar QR code"
                       >
                         <QRCodeSVG
                           value={slide.qrValue}
                           size={slide.qrSize}
                           includeMargin
                         />
-                      </div>
+                      </button>
 
                       <div>
                         <p
@@ -318,6 +327,41 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
           ))}
         </div>
       </div>
+
+      {/* Modal do QR code */}
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-6 animate-qrModalFadeIn"
+          style={{ background: "rgba(0, 0, 0, 0.85)" }}
+          onClick={() => setModalOpen(false)}
+        >
+          <div
+            className="relative flex flex-col items-center gap-6 animate-qrModalScaleIn"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setModalOpen(false)}
+              className="absolute -top-10 right-0 text-white/80 hover:text-white text-2xl font-light"
+              aria-label="Fechar"
+            >
+              ×
+            </button>
+
+            <div className="bg-white rounded-2xl p-4">
+              <QRCodeSVG
+                value={slides[currentSlideRef.current].qrValue}
+                size={280}
+                includeMargin
+              />
+            </div>
+
+            <p className="text-white text-base font-semibold">
+              {slides[currentSlideRef.current].title}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
