@@ -343,7 +343,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             <button
               type="button"
               onClick={() => setModalOpen(false)}
-              className="absolute -top-10 right-0 text-white/80 hover:text-white text-2xl font-light"
+              className="absolute top-2 right-2 text-white/80 hover:text-white text-2xl font-light z-10"
               aria-label="Fechar"
             >
               ×
