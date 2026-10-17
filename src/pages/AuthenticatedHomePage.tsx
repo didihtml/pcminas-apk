@@ -70,7 +70,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
 }) => (
   <div className="min-h-[100dvh] bg-[#0D111D] pb-28 text-white">
     <header
-      className="relative flex h-[300px] flex-col items-center rounded-b-[28px] px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
+      className="relative flex h-[280px] flex-col items-center rounded-b-[28px] px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
       style={{
         background: "#1E5FA8",
       }}
@@ -96,7 +96,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       somente o container completo é sobreposto à borda azul, nunca os cards
       individualmente sobre o logo.
     */}
-    <section className="relative z-10 -mt-[92px] px-3">
+    <section className="relative z-10 -mt-[72px] px-3">
       <div className="grid grid-cols-2 gap-3">
         {shortcuts.map((shortcut) => (
           <button
