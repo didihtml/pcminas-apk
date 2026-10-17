@@ -56,11 +56,11 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
   card,
   onNavigate,
 }) => (
-  <div className="min-h-[100dvh] bg-[#0D111D] pb-28 text-white">
+  <div className="min-h-[100dvh] bg-[#172037] pb-28 text-white">
     <header
       className="relative flex h-[300px] flex-col items-center px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
       style={{
-        background: "#1E5FA8",
+        background: "#172037",
       }}
     >
       <button
@@ -95,11 +95,11 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
             }
             className="flex h-[142px] flex-col items-center justify-center gap-3 bg-[#172037] px-4 text-center text-white"
             style={{
-              borderRight: index % 2 === 0 ? "1px solid rgba(255,255,255,0.08)" : undefined,
-              borderBottom: index < 2 ? "1px solid rgba(255,255,255,0.08)" : undefined,
+              borderRight: index % 2 === 0 ? "1px solid rgba(255,255,255,0.14)" : undefined,
+              borderBottom: index < 2 ? "1px solid rgba(255,255,255,0.14)" : undefined,
             }}
           >
-            <span className="text-[#B7C7E8]">{shortcut.icon}</span>
+            <span className="text-white">{shortcut.icon}</span>
             <span className="whitespace-pre-line text-[17px] font-medium leading-5">
               {shortcut.label}
             </span>
@@ -114,8 +114,8 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       </h1>
 
       <article>
-        <time className="text-[15px] text-white/50">27/02/2026</time>
-        <h2 className="mt-3 text-[17px] font-medium leading-6 text-[#A9C8FF]">
+        <time className="text-[15px] text-white">27/02/2026</time>
+        <h2 className="mt-3 text-[17px] font-medium leading-6 text-white">
           Formaturas PUC Minas - Cadastro Comissão | Representantes
         </h2>
       </article>
@@ -123,7 +123,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       <button
         type="button"
         className="mt-10 w-full rounded-xl py-4 text-base font-semibold text-white shadow-sm"
-        style={{ background: "#1B5DB5" }}
+        style={{ background: "#172037" }}
       >
         Ver mais
       </button>
