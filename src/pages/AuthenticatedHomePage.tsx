@@ -96,7 +96,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       somente o container completo é sobreposto à borda azul, nunca os cards
       individualmente sobre o logo.
     */}
-    <section className="relative z-10 -mt-[92px] px-4">
+    <section className="relative z-10 -mt-[92px] px-3">
       <div className="grid grid-cols-2 gap-3">
         {shortcuts.map((shortcut) => (
           <button
@@ -105,7 +105,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
             onClick={() =>
               shortcut.destination && onNavigate(shortcut.destination)
             }
-            className="flex h-[142px] flex-col items-center justify-center gap-3 rounded-[18px] bg-[#172037] px-4 text-center text-white shadow-[0_8px_28px_rgba(0,0,0,0.35)]"
+            className="flex h-[124px] flex-col items-center justify-center gap-3 rounded-[18px] bg-[#172037] px-4 text-center text-white shadow-[0_8px_28px_rgba(0,0,0,0.35)]"
           >
             <span className="text-[#B7C7E8]">{shortcut.icon}</span>
             <span className="whitespace-pre-line text-[17px] font-medium leading-5">
@@ -116,7 +116,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       </div>
     </section>
 
-    <main className="px-5 pt-7">
+    <main className="px-5 pt-[63px]">
       <h1 className="mb-8 text-[22px] font-semibold tracking-wide text-white">
         NOTÍCIAS
       </h1>
