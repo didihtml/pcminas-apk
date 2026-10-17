@@ -38,7 +38,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
   card,
   onNavigate,
 }) => (
-  <div className="min-h-[100dvh] bg-white pb-28 text-slate-900">
+  <div className="min-h-[100dvh] bg-[#0D111D] pb-28 text-white">
     <header
       className="relative flex h-[265px] flex-col items-center px-5 pt-11 text-white"
       style={{
@@ -63,7 +63,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
         Olá, {card.nome.split(" ")[0]}
       </p>
 
-      <div className="absolute -bottom-[166px] left-4 right-4 grid grid-cols-2 overflow-hidden rounded-[18px] bg-white shadow-[0_8px_28px_rgba(15,46,91,0.13)]">
+      <div className="absolute -bottom-[166px] left-4 right-4 grid grid-cols-2 overflow-hidden rounded-[18px] bg-[#172037] shadow-[0_8px_28px_rgba(0,0,0,0.35)]">
         {shortcuts.map((shortcut, index) => (
           <button
             key={shortcut.label}
@@ -71,13 +71,13 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
             onClick={() =>
               shortcut.destination && onNavigate(shortcut.destination)
             }
-            className="flex h-[166px] flex-col items-center justify-center gap-4 bg-white px-4 text-center text-[#333747]"
+            className="flex h-[166px] flex-col items-center justify-center gap-4 bg-[#172037] px-4 text-center text-white"
             style={{
-              borderRight: index % 2 === 0 ? "1px solid #ECEEF2" : undefined,
-              borderBottom: index < 2 ? "1px solid #ECEEF2" : undefined,
+              borderRight: index % 2 === 0 ? "1px solid rgba(255,255,255,0.08)" : undefined,
+              borderBottom: index < 2 ? "1px solid rgba(255,255,255,0.08)" : undefined,
             }}
           >
-            <span className="text-[#4C5264]">{shortcut.icon}</span>
+            <span className="text-[#B7C7E8]">{shortcut.icon}</span>
             <span className="whitespace-pre-line text-[17px] font-medium leading-5">
               {shortcut.label}
             </span>
@@ -87,13 +87,13 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
     </header>
 
     <main className="px-5 pt-[190px]">
-      <h1 className="mb-8 text-[22px] font-semibold tracking-wide text-[#30323A]">
+      <h1 className="mb-8 text-[22px] font-semibold tracking-wide text-white">
         NOTÍCIAS
       </h1>
 
       <article>
-        <time className="text-[15px] text-[#888B93]">27/02/2026</time>
-        <h2 className="mt-3 text-[17px] font-medium leading-6 text-[#304981]">
+        <time className="text-[15px] text-white/50">27/02/2026</time>
+        <h2 className="mt-3 text-[17px] font-medium leading-6 text-[#A9C8FF]">
           Formaturas PUC Minas - Cadastro Comissão | Representantes
         </h2>
       </article>
