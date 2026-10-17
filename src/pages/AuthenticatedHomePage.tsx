@@ -40,7 +40,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
 }) => (
   <div className="min-h-[100dvh] bg-white pb-28 text-[#172037]">
     <header
-      className="relative flex h-[265px] flex-col items-center px-5 pt-11 text-white"
+      className="relative flex h-[290px] flex-col items-center px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
       style={{
         background: "#1E5FA8",
       }}
@@ -54,15 +54,12 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       </button>
 
       <img
-        src="/logo-puc-white.png"
-        alt="PUC Minas"
-        className="h-[112px] w-[112px] object-contain"
+        src="/logo-splash.png"
+        alt={`PUC Minas - ${card.nome}`}
+        className="h-[122px] w-[122px] object-contain"
       />
-      <p className="mt-1 max-w-[260px] truncate text-sm font-medium text-white/85">
-        Olá, {card.nome.split(" ")[0]}
-      </p>
 
-      <div className="absolute -bottom-[190px] left-4 right-4 grid grid-cols-2 gap-3">
+      <div className="absolute -bottom-[210px] left-4 right-4 grid grid-cols-2 gap-3">
         {shortcuts.map((shortcut) => (
           <button
             key={shortcut.label}
@@ -70,7 +67,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
             onClick={() =>
               shortcut.destination && onNavigate(shortcut.destination)
             }
-            className="flex h-[166px] flex-col items-center justify-center gap-4 rounded-[18px] bg-white px-4 text-center text-[#333747] shadow-[0_8px_28px_rgba(15,46,91,0.13)]"
+            className="flex h-[142px] flex-col items-center justify-center gap-3 rounded-[18px] bg-white px-4 text-center text-[#333747] shadow-[0_8px_28px_rgba(15,46,91,0.13)]"
           >
             <span className="text-[#4C5264]">{shortcut.icon}</span>
             <span className="whitespace-pre-line text-[17px] font-medium leading-5">
@@ -81,7 +78,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       </div>
     </header>
 
-    <main className="px-5 pt-[190px]">
+    <main className="px-5 pt-[230px]">
       <h1 className="mb-8 text-[22px] font-semibold tracking-wide text-[#30323A]">
         NOTÍCIAS
       </h1>
