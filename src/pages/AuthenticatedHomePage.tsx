@@ -62,19 +62,15 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
         Olá, {card.nome.split(" ")[0]}
       </p>
 
-      <div className="absolute -bottom-[166px] left-4 right-4 grid grid-cols-2 overflow-hidden rounded-[18px] bg-white shadow-[0_8px_28px_rgba(15,46,91,0.13)]">
-        {shortcuts.map((shortcut, index) => (
+      <div className="absolute -bottom-[190px] left-4 right-4 grid grid-cols-2 gap-3">
+        {shortcuts.map((shortcut) => (
           <button
             key={shortcut.label}
             type="button"
             onClick={() =>
               shortcut.destination && onNavigate(shortcut.destination)
             }
-            className="flex h-[166px] flex-col items-center justify-center gap-4 bg-white px-4 text-center text-[#333747]"
-            style={{
-              borderRight: index % 2 === 0 ? "1px solid #ECEEF2" : undefined,
-              borderBottom: index < 2 ? "1px solid #ECEEF2" : undefined,
-            }}
+            className="flex h-[166px] flex-col items-center justify-center gap-4 rounded-[18px] bg-white px-4 text-center text-[#333747] shadow-[0_8px_28px_rgba(15,46,91,0.13)]"
           >
             <span className="text-[#4C5264]">{shortcut.icon}</span>
             <span className="whitespace-pre-line text-[17px] font-medium leading-5">
