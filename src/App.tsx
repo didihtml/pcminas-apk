@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import BottomNavigation from "./components/layout/BottomNavigation";
+import AuthenticatedBottomNavigation from "./components/layout/AuthenticatedBottomNavigation";
 import SGASheet from "./components/portal/SGASheet";
 import HomePage from "./pages/HomePage";
+import AuthenticatedHomePage from "./pages/AuthenticatedHomePage";
+import AuthenticatedPlaceholderPage from "./pages/AuthenticatedPlaceholderPage";
 import APucPage from "./pages/APucPage";
 import CampiPage from "./pages/CampiPage";
 import IngressarPage from "./pages/IngressarPage";
@@ -9,7 +12,12 @@ import LoginPage from "./pages/LoginPage";
 import CarteirinhaPage from "./pages/CarteirinhaPage";
 import MissaoValoresPage from "./pages/MissaoValoresPage";
 import ValidacaoPage from "./pages/ValidacaoPage";
-import type { AccessCard, LoginProfile, NavTab } from "./types";
+import type {
+  AccessCard,
+  AuthNavTab,
+  LoginProfile,
+  NavTab,
+} from "./types";
 
 const TAB_ORDER: NavTab[] = ["inicio", "ingressar", "campi", "a-puc"];
 
@@ -170,21 +178,16 @@ const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<NavTab>("inicio");
   const [sgaOpen, setSgaOpen] = useState(false);
   const [loginProfile, setLoginProfile] = useState<LoginProfile | null>(null);
-  const [showCarteirinha, setShowCarteirinha] = useState(false);
   const [authenticatedCard, setAuthenticatedCard] = useState<AccessCard | null>(
     null,
   );
+  const [authenticatedTab, setAuthenticatedTab] =
+    useState<AuthNavTab>("credencial");
   const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(
     null,
   );
   const [showMissaoValores, setShowMissaoValores] = useState(false);
   const prevTabRef = useRef<NavTab>("inicio");
-
-  const resetPortalState = () => {
-    setShowCarteirinha(false);
-    setLoginProfile(null);
-    setAuthenticatedCard(null);
-  };
 
   const openMissaoValores = () => setShowMissaoValores(true);
   const closeMissaoValores = () => setShowMissaoValores(false);
@@ -216,12 +219,28 @@ const App: React.FC = () => {
 
   const handleLoginSuccess = (card: AccessCard) => {
     setAuthenticatedCard(card);
-    setShowCarteirinha(true);
+    setAuthenticatedTab("credencial");
   };
 
   const renderPage = () => {
-    if (showCarteirinha && authenticatedCard) {
-      return <CarteirinhaPage card={authenticatedCard} />;
+    if (authenticatedCard) {
+      switch (authenticatedTab) {
+        case "inicio":
+          return (
+            <AuthenticatedHomePage
+              card={authenticatedCard}
+              onNavigate={setAuthenticatedTab}
+            />
+          );
+        case "credencial":
+          return <CarteirinhaPage card={authenticatedCard} />;
+        case "disciplinas":
+          return <AuthenticatedPlaceholderPage title="Disciplinas" />;
+        case "avaliacoes":
+          return <AuthenticatedPlaceholderPage title="Avaliações" />;
+        case "menu":
+          return <AuthenticatedPlaceholderPage title="Menu" />;
+      }
     }
 
     if (loginProfile) {
@@ -284,24 +303,19 @@ const App: React.FC = () => {
         key={
           activeTab +
           (loginProfile ? "-login" : "") +
-          (showCarteirinha ? "-card" : "")
+          (authenticatedCard ? `-${authenticatedTab}` : "")
         }
         className={slideDirection ? `page-enter-${slideDirection}` : undefined}
       >
         {renderPage()}
       </div>
-      {!showCarteirinha && !validacaoId && (
+      {!authenticatedCard && !validacaoId && (
         <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
       )}
-      {showCarteirinha && (
-        <BottomNavigation
-          activeTab={"portal" as NavTab}
-          onTabChange={(tab) => {
-            if (tab !== "portal") {
-              resetPortalState();
-              setActiveTab(tab);
-            }
-          }}
+      {authenticatedCard && !validacaoId && (
+        <AuthenticatedBottomNavigation
+          activeTab={authenticatedTab}
+          onTabChange={setAuthenticatedTab}
         />
       )}
       {sgaOpen && (

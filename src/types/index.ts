@@ -1,4 +1,10 @@
 export type NavTab = "inicio" | "ingressar" | "portal" | "campi" | "a-puc";
+export type AuthNavTab =
+  | "inicio"
+  | "disciplinas"
+  | "credencial"
+  | "avaliacoes"
+  | "menu";
 export type LoginProfile = "aluno" | "professor";
 
 export interface CourseCard {
