@@ -68,7 +68,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
   card,
   onNavigate,
 }) => (
-  <div className="min-h-[100dvh] bg-[#0D111D] pb-28 text-white">
+  <div className="flex min-h-[100dvh] flex-col bg-[#0D111D] pb-28 text-white">
     <header
       className="relative flex h-[280px] flex-col items-center rounded-b-[28px] px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
       style={{
@@ -116,7 +116,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       </div>
     </section>
 
-    <main className="px-5 pt-[63px]">
+    <main className="flex flex-1 flex-col px-5 pt-[63px]">
       <h1 className="mb-8 text-[22px] font-semibold tracking-wide text-white">
         NOTÍCIAS
       </h1>
@@ -135,6 +135,8 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       >
         Ver mais
       </button>
+
+      <div className="flex-1" aria-hidden="true" />
     </main>
   </div>
 );
