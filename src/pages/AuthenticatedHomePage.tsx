@@ -96,7 +96,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       somente o container completo é sobreposto à borda azul, nunca os cards
       individualmente sobre o logo.
     */}
-    <section className="relative z-10 -mt-[72px] px-4">
+    <section className="relative z-10 -mt-[92px] px-4">
       <div className="grid grid-cols-2 overflow-hidden rounded-[18px] bg-[#172037] shadow-[0_8px_28px_rgba(0,0,0,0.35)]">
         {shortcuts.map((shortcut, index) => (
           <button
