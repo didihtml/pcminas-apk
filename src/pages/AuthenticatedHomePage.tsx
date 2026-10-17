@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Bell,
   CalendarDays,
   Landmark,
   Timer,
@@ -28,6 +27,19 @@ const AccessCredentialIcon = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
+  </svg>
+);
+
+const NotificationIcon = () => (
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 16 16"
+    fill="white"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path d="m13.58 11.6-1.33-2.18V6.33A4.36 4.36 0 0 0 10 2.26a2.45 2.45 0 0 0 0-.38A1.94 1.94 0 0 0 8 0a1.94 1.94 0 0 0-2 1.88 1.64 1.64 0 0 0 0 .38 4.36 4.36 0 0 0-2.25 4.07v3.09L2.42 11.6a1.25 1.25 0 0 0 1.06 1.9h1.77A2.68 2.68 0 0 0 8 16a2.68 2.68 0 0 0 2.75-2.5h1.77a1.25 1.25 0 0 0 1.06-1.9zM7.25 1.88A.7.7 0 0 1 8 1.25a.7.7 0 0 1 .75.63 6 6 0 0 0-.75 0 5.9 5.9 0 0 0-.75 0zM8 14.75a1.44 1.44 0 0 1-1.5-1.25h3A1.44 1.44 0 0 1 8 14.75zm-4.52-2.5 1.34-2.17.18-.31V6.33a4 4 0 0 1 .6-2.12A2.68 2.68 0 0 1 8 3.12a2.68 2.68 0 0 1 2.4 1.09 4 4 0 0 1 .6 2.12v3.44l.18.31 1.34 2.17z" />
   </svg>
 );
 
@@ -68,7 +80,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
         className="absolute right-5 top-12 rounded-full p-2 text-white"
         aria-label="Notificações"
       >
-        <Bell size={22} strokeWidth={1.8} />
+        <NotificationIcon />
       </button>
 
       <img
