@@ -40,7 +40,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
 }) => (
   <div className="min-h-[100dvh] bg-white pb-28 text-[#172037]">
     <header
-      className="relative flex h-[290px] flex-col items-center px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
+      className="relative flex h-[300px] flex-col items-center px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
       style={{
         background: "#1E5FA8",
       }}
@@ -59,15 +59,27 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
         className="h-[122px] w-[122px] object-contain"
       />
 
-      <div className="absolute -bottom-[210px] left-4 right-4 grid grid-cols-2 gap-3">
-        {shortcuts.map((shortcut) => (
+    </header>
+
+    {/*
+      O bloco fica fora do header. O header reserva toda a altura do logo;
+      somente o container completo é sobreposto à borda azul, nunca os cards
+      individualmente sobre o logo.
+    */}
+    <section className="relative z-10 -mt-[72px] px-4">
+      <div className="grid grid-cols-2 overflow-hidden rounded-[18px] bg-white shadow-[0_8px_28px_rgba(15,46,91,0.13)]">
+        {shortcuts.map((shortcut, index) => (
           <button
             key={shortcut.label}
             type="button"
             onClick={() =>
               shortcut.destination && onNavigate(shortcut.destination)
             }
-            className="flex h-[142px] flex-col items-center justify-center gap-3 rounded-[18px] bg-white px-4 text-center text-[#333747] shadow-[0_8px_28px_rgba(15,46,91,0.13)]"
+            className="flex h-[142px] flex-col items-center justify-center gap-3 bg-white px-4 text-center text-[#333747]"
+            style={{
+              borderRight: index % 2 === 0 ? "1px solid #ECEEF2" : undefined,
+              borderBottom: index < 2 ? "1px solid #ECEEF2" : undefined,
+            }}
           >
             <span className="text-[#4C5264]">{shortcut.icon}</span>
             <span className="whitespace-pre-line text-[17px] font-medium leading-5">
@@ -76,9 +88,9 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
           </button>
         ))}
       </div>
-    </header>
+    </section>
 
-    <main className="px-5 pt-[230px]">
+    <main className="px-5 pt-7">
       <h1 className="mb-8 text-[22px] font-semibold tracking-wide text-[#30323A]">
         NOTÍCIAS
       </h1>
