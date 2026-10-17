@@ -70,7 +70,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
 }) => (
   <div className="min-h-[100dvh] bg-[#0D111D] pb-28 text-white">
     <header
-      className="relative flex h-[300px] flex-col items-center px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
+      className="relative flex h-[300px] flex-col items-center rounded-b-[28px] px-5 pt-[max(42px,env(safe-area-inset-top))] text-white"
       style={{
         background: "#1E5FA8",
       }}
