@@ -44,7 +44,7 @@ const AuthenticatedBottomNavigation: React.FC<
 
   return (
     <nav
-      className="fixed bottom-0 left-1/2 z-50 w-full max-w-[430px] -translate-x-1/2 border-t border-white/10 bg-[#172037]"
+      className="fixed bottom-0 left-1/2 z-50 w-full max-w-[430px] -translate-x-1/2 border-t border-white/10 bg-[#0D111D]"
       aria-label="Navegação do perfil"
     >
       <div className="relative flex items-end justify-around px-1 pb-[max(18px,env(safe-area-inset-bottom))] pt-3">
@@ -62,7 +62,7 @@ const AuthenticatedBottomNavigation: React.FC<
               >
               <span
                   className="flex h-16 w-16 items-center justify-center rounded-full text-white shadow-lg shadow-black/40"
-                  style={{ background: "#172037", border: "1px solid rgba(255,255,255,0.2)" }}
+                  style={{ background: "#1762B7" }}
                 >
                   {item.icon}
                 </span>
@@ -76,12 +76,12 @@ const AuthenticatedBottomNavigation: React.FC<
               type="button"
               onClick={() => onTabChange(item.id)}
               className="relative flex min-w-[62px] flex-col items-center gap-1.5"
-              style={{ color: "#FFFFFF" }}
+              style={{ color: isActive ? "#63A4FF" : "#687184" }}
             >
               {isActive && (
                 <span
                   className="absolute -top-3 h-0.5 w-10 rounded-full"
-                  style={{ background: "#FFFFFF" }}
+                  style={{ background: "#1762B7" }}
                 />
               )}
               {item.icon}
