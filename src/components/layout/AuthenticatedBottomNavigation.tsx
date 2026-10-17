@@ -44,7 +44,7 @@ const AuthenticatedBottomNavigation: React.FC<
 
   return (
     <nav
-      className="fixed bottom-0 left-1/2 z-50 w-full max-w-[430px] -translate-x-1/2 border-t border-white/10 bg-[#172037] shadow-[0_-5px_18px_rgba(0,0,0,0.35)]"
+      className="fixed bottom-0 left-1/2 z-50 w-full max-w-[430px] -translate-x-1/2 border-t border-white/10 bg-[#172037]"
       aria-label="Navegação do perfil"
     >
       <div className="relative flex items-end justify-around px-1 pb-[max(18px,env(safe-area-inset-bottom))] pt-3">
