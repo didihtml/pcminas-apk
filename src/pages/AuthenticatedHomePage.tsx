@@ -97,19 +97,15 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({
       individualmente sobre o logo.
     */}
     <section className="relative z-10 -mt-[92px] px-4">
-      <div className="grid grid-cols-2 overflow-hidden rounded-[18px] bg-[#172037] shadow-[0_8px_28px_rgba(0,0,0,0.35)]">
-        {shortcuts.map((shortcut, index) => (
+      <div className="grid grid-cols-2 gap-3">
+        {shortcuts.map((shortcut) => (
           <button
             key={shortcut.label}
             type="button"
             onClick={() =>
               shortcut.destination && onNavigate(shortcut.destination)
             }
-            className="flex h-[142px] flex-col items-center justify-center gap-3 bg-[#172037] px-4 text-center text-white"
-            style={{
-              borderRight: index % 2 === 0 ? "1px solid rgba(255,255,255,0.14)" : undefined,
-              borderBottom: index < 2 ? "1px solid rgba(255,255,255,0.14)" : undefined,
-            }}
+            className="flex h-[142px] flex-col items-center justify-center gap-3 rounded-[18px] bg-[#172037] px-4 text-center text-white shadow-[0_8px_28px_rgba(0,0,0,0.35)]"
           >
             <span className="text-[#B7C7E8]">{shortcut.icon}</span>
             <span className="whitespace-pre-line text-[17px] font-medium leading-5">
