@@ -56,13 +56,15 @@ function normalize(value: string): string {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
-const Progress: React.FC<{ label: string; value: string }> = ({ label, value }) => (
+const Progress: React.FC<{ label: string; value: string; percentage: number }> = ({ label, value, percentage }) => (
   <div className="min-w-0 flex-1">
     <div className="mb-1 flex items-baseline justify-between gap-2 text-[17px] leading-5">
       <span className="font-semibold text-[#f4f4f7]">{label}</span>
       <span className="whitespace-nowrap text-[#85858e]">{value}</span>
     </div>
-    <div className="h-[9px] overflow-hidden rounded-full bg-[#25273a]" aria-hidden="true" />
+    <div className="h-[9px] overflow-hidden rounded-full bg-[#25273a]" aria-hidden="true">
+      <div className="h-full rounded-full bg-[#00618b]" style={{ width: `${percentage}%` }} />
+    </div>
   </div>
 );
 
@@ -83,7 +85,13 @@ const DisciplinesPage: React.FC<{ card: AccessCard }> = ({ card }) => {
           <>
             <p className="mb-4 text-sm text-[#a4aab5]">Disciplinas ilustrativas para {card.curso}. Notas e faltas reais não estão disponíveis.</p>
             <div className="space-y-4">
-              {examples.disciplines.map((discipline) => (
+              {examples.disciplines.map((discipline, index) => {
+                // Valores variados apenas para demonstrar o layout até existir integração acadêmica.
+                const absences = (index * 5 + 2) % 12;
+                const absenceLimit = 36;
+                const grade = (6.4 + ((index * 1.1) % 3.2)).toFixed(1);
+
+                return (
                 <article key={discipline.name} className="rounded-[13px] border border-white/[0.025] bg-[#141720] px-[18px] pb-[18px] pt-5 shadow-[0_1px_4px_rgba(0,0,0,0.15)]">
                   <div className="flex items-start gap-3">
                     <h3 className="flex-1 text-[17px] font-bold leading-[1.2]">{discipline.code && `${discipline.code} - `}{discipline.name}</h3>
@@ -93,11 +101,12 @@ const DisciplinesPage: React.FC<{ card: AccessCard }> = ({ card }) => {
                   <div className="my-4 h-px bg-white/[0.025]" />
                   {campus && <p className="text-[17px] leading-[1.45] text-[#85858e]"><span className="font-semibold">Local</span> {campus}</p>}
                   <div className="mt-4 flex gap-5">
-                    <Progress label="Faltas" value="—" />
-                    <Progress label="Notas" value="—" />
+                    <Progress label="Faltas" value={`${absences} / ${absenceLimit}`} percentage={(absences / absenceLimit) * 100} />
+                    <Progress label="Notas" value={`${grade} / 10`} percentage={Number(grade) * 10} />
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           </>
         ) : (
