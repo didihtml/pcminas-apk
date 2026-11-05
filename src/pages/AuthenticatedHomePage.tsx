@@ -62,7 +62,6 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onN
       <article className="rounded-[10px] border border-white/[0.025] bg-[#141720] px-[15px] py-[14px]">
         <time className="text-[14px] text-[#85858e]" dateTime="2026-10-02">02/10/2026</time>
         <h2 className="mt-1.5 text-[14px] font-semibold leading-[17px]">Você foi inscrito(a) como ingressante para o ENADE 2026</h2>
-        <p className="mt-1 text-[11px] text-[#85858e]">Notícia de exemplo</p>
       </article>
       <button type="button" onClick={() => setShowNewsMessage(true)} className="mt-[11px] w-full rounded-[10px] bg-[#00527f] py-[14px] text-[13px] font-semibold text-white">
         Ver mais

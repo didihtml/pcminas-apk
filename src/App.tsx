@@ -116,7 +116,7 @@ const App: React.FC = () => {
         case "credencial":
           return <CarteirinhaPage card={authenticatedCard} />;
         case "disciplinas":
-          return <DisciplinesPage />;
+          return <DisciplinesPage card={authenticatedCard} />;
         case "avaliacoes":
           return <AcademicPage />;
         case "menu":
@@ -198,6 +198,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
 
 
