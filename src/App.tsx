@@ -5,6 +5,7 @@ import SGASheet from "./components/portal/SGASheet";
 import HomePage from "./pages/HomePage";
 import AuthenticatedHomePage from "./pages/AuthenticatedHomePage";
 import AuthenticatedPlaceholderPage from "./pages/AuthenticatedPlaceholderPage";
+import DisciplinesPage from "./pages/DisciplinesPage";
 import APucPage from "./pages/APucPage";
 import CampiPage from "./pages/CampiPage";
 import IngressarPage from "./pages/IngressarPage";
@@ -110,7 +111,7 @@ const App: React.FC = () => {
         case "credencial":
           return <CarteirinhaPage card={authenticatedCard} />;
         case "disciplinas":
-          return <AuthenticatedPlaceholderPage title="Disciplinas" />;
+          return <DisciplinesPage />;
         case "avaliacoes":
           return <AuthenticatedPlaceholderPage title="Avaliações" />;
         case "menu":
@@ -192,3 +193,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+

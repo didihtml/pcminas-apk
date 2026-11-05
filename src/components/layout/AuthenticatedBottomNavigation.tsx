@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  BookOpen,
-  ClipboardCheck,
+  ClipboardList,
+  GraduationCap,
   CreditCard,
   Grid3X3,
 } from "lucide-react";
@@ -47,7 +47,7 @@ const AuthenticatedBottomNavigation: React.FC<
     {
       id: "disciplinas",
       label: "Disciplinas",
-      icon: <BookOpen size={21} />,
+      icon: <ClipboardList size={21} />,
     },
     {
       id: "credencial",
@@ -57,8 +57,8 @@ const AuthenticatedBottomNavigation: React.FC<
     },
     {
       id: "avaliacoes",
-      label: "Avaliações",
-      icon: <ClipboardCheck size={21} />,
+      label: "Acadêmico",
+      icon: <GraduationCap size={21} />,
     },
     { id: "menu", label: "Menu", icon: <Grid3X3 size={21} /> },
   ];
@@ -83,7 +83,7 @@ const AuthenticatedBottomNavigation: React.FC<
               >
               <span
                   className="flex h-16 w-16 items-center justify-center rounded-full text-white shadow-lg shadow-black/40"
-                  style={{ background: "#1762B7" }}
+                  style={{ background: "#00577c" }}
                 >
                   {item.icon}
                 </span>
@@ -116,3 +116,4 @@ const AuthenticatedBottomNavigation: React.FC<
 };
 
 export default AuthenticatedBottomNavigation;
+
