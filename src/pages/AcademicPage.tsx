@@ -1,0 +1,66 @@
+import React, { useState } from "react";
+import {
+  AlarmClock,
+  ArrowLeft,
+  Bell,
+  CalendarDays,
+  ChevronRight,
+  GraduationCap,
+  Presentation,
+  Ruler,
+} from "lucide-react";
+
+const academicItems = [
+  { label: "Grade de horários", icon: AlarmClock },
+  { label: "Plano de ensino", icon: Presentation },
+  { label: "Guia do aluno", icon: Ruler },
+  { label: "Calendário Letivo", icon: GraduationCap },
+  { label: "Calendário Acadêmico", icon: CalendarDays },
+];
+
+const AcademicPage: React.FC = () => {
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+  return (
+    <div className="min-h-[100dvh] bg-[#0d1019] pb-32 text-white">
+      <header className="relative flex h-[118px] items-end justify-center bg-[#171b31] pb-6 pt-[env(safe-area-inset-top)]">
+        {selectedItem && (
+          <button
+            type="button"
+            onClick={() => setSelectedItem(null)}
+            className="absolute bottom-5 left-5 rounded-full p-1"
+            aria-label="Voltar para Acadêmico"
+          >
+            <ArrowLeft size={22} />
+          </button>
+        )}
+        <h1 className="text-[16px] font-semibold">ACADÊMICO</h1>
+        <Bell size={21} strokeWidth={1.8} className="absolute bottom-6 right-6" aria-label="Notificações" />
+      </header>
+
+      {selectedItem ? (
+        <main className="px-[18px] pt-7">
+          <h2 className="text-lg font-semibold">{selectedItem}</h2>
+          <p className="mt-4 text-sm text-white/50">Esta área está em desenvolvimento.</p>
+        </main>
+      ) : (
+        <main className="space-y-2 px-[17px] pt-[18px]">
+          {academicItems.map(({ label, icon: Icon }) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => setSelectedItem(label)}
+              className="flex min-h-[65px] w-full items-center gap-[15px] rounded-[9px] border border-white/[0.035] bg-[#141720] px-[18px] text-left shadow-[0_1px_4px_rgba(0,0,0,0.15)]"
+            >
+              <Icon size={24} strokeWidth={1.7} className="shrink-0" aria-hidden="true" />
+              <span className="min-w-0 flex-1 text-[17px] font-semibold leading-tight">{label}</span>
+              <ChevronRight size={24} strokeWidth={1.8} className="shrink-0" aria-hidden="true" />
+            </button>
+          ))}
+        </main>
+      )}
+    </div>
+  );
+};
+
+export default AcademicPage;

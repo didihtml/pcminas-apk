@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import AuthenticatedHomePage from "./pages/AuthenticatedHomePage";
 import AuthenticatedPlaceholderPage from "./pages/AuthenticatedPlaceholderPage";
 import DisciplinesPage from "./pages/DisciplinesPage";
+import AcademicPage from "./pages/AcademicPage";
 import APucPage from "./pages/APucPage";
 import CampiPage from "./pages/CampiPage";
 import IngressarPage from "./pages/IngressarPage";
@@ -113,7 +114,7 @@ const App: React.FC = () => {
         case "disciplinas":
           return <DisciplinesPage />;
         case "avaliacoes":
-          return <AuthenticatedPlaceholderPage title="Avaliações" />;
+          return <AcademicPage />;
         case "menu":
           return <AuthenticatedPlaceholderPage title="Menu" />;
       }
@@ -193,4 +194,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
