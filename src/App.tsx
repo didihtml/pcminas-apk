@@ -4,7 +4,7 @@ import AuthenticatedBottomNavigation from "./components/layout/AuthenticatedBott
 import SGASheet from "./components/portal/SGASheet";
 import HomePage from "./pages/HomePage";
 import AuthenticatedHomePage from "./pages/AuthenticatedHomePage";
-import AuthenticatedPlaceholderPage from "./pages/AuthenticatedPlaceholderPage";
+import MenuPage from "./pages/MenuPage";
 import DisciplinesPage from "./pages/DisciplinesPage";
 import AcademicPage from "./pages/AcademicPage";
 import APucPage from "./pages/APucPage";
@@ -116,7 +116,7 @@ const App: React.FC = () => {
         case "avaliacoes":
           return <AcademicPage />;
         case "menu":
-          return <AuthenticatedPlaceholderPage title="Menu" />;
+          return <MenuPage card={authenticatedCard} onNavigate={setAuthenticatedTab} />;
       }
     }
 
@@ -194,5 +194,6 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
 
