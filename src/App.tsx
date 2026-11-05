@@ -5,6 +5,7 @@ import SGASheet from "./components/portal/SGASheet";
 import HomePage from "./pages/HomePage";
 import AuthenticatedHomePage from "./pages/AuthenticatedHomePage";
 import MenuPage from "./pages/MenuPage";
+import AccessCredentialsPage from "./pages/AccessCredentialsPage";
 import DisciplinesPage from "./pages/DisciplinesPage";
 import AcademicPage from "./pages/AcademicPage";
 import APucPage from "./pages/APucPage";
@@ -64,6 +65,7 @@ const App: React.FC = () => {
     null,
   );
   const [showMissaoValores, setShowMissaoValores] = useState(false);
+  const [showAccessCredentials, setShowAccessCredentials] = useState(false);
   const prevTabRef = useRef<NavTab>("inicio");
 
   const openMissaoValores = () => setShowMissaoValores(true);
@@ -101,12 +103,14 @@ const App: React.FC = () => {
 
   const renderPage = () => {
     if (authenticatedCard) {
+      if (showAccessCredentials) return <AccessCredentialsPage onBack={() => setShowAccessCredentials(false)} />;
       switch (authenticatedTab) {
         case "inicio":
           return (
             <AuthenticatedHomePage
               card={authenticatedCard}
               onNavigate={setAuthenticatedTab}
+              onOpenAccessCredentials={() => setShowAccessCredentials(true)}
             />
           );
         case "credencial":
@@ -116,7 +120,7 @@ const App: React.FC = () => {
         case "avaliacoes":
           return <AcademicPage />;
         case "menu":
-          return <MenuPage card={authenticatedCard} onNavigate={setAuthenticatedTab} />;
+          return <MenuPage card={authenticatedCard} onOpenAccessCredentials={() => setShowAccessCredentials(true)} />;
       }
     }
 
@@ -180,7 +184,7 @@ const App: React.FC = () => {
       {authenticatedCard && !validacaoId && (
         <AuthenticatedBottomNavigation
           activeTab={authenticatedTab}
-          onTabChange={setAuthenticatedTab}
+          onTabChange={(tab) => { setShowAccessCredentials(false); setAuthenticatedTab(tab); }}
         />
       )}
       {sgaOpen && (
@@ -194,6 +198,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
 
 

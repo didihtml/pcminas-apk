@@ -1,24 +1,38 @@
 import React, { useState } from "react";
-import { AlarmClock, Bell, CalendarDays, QrCode, Wallet } from "lucide-react";
+import { AlarmClock, Bell, QrCode } from "lucide-react";
 import type { AccessCard, AuthNavTab } from "../types";
 
 interface AuthenticatedHomePageProps {
   card: AccessCard;
   onNavigate: (tab: AuthNavTab) => void;
+  onOpenAccessCredentials: () => void;
 }
 
+const AcademicCalendarIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M15 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v5M7 2v4M16 2v4M3 9h17" />
+    <path d="m15 15.3 3.5-1.7 3.5 1.7-3.5 1.7-3.5-1.7ZM16.4 16.1v2.1c1.2 1 3 1 4.2 0v-2.1M22 15.3v2.4" />
+  </svg>
+);
+
+const BankSlipIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 8.5V7a2 2 0 0 1 1.4-1.9L16 2v5M5 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" />
+    <circle cx="17" cy="13.5" r=".7" fill="currentColor" stroke="none" />
+  </svg>
+);
 const shortcuts: Array<{
   label: string;
   icon: React.ReactNode;
   destination: AuthNavTab;
 }> = [
   { label: "Grade de\nHorários", icon: <AlarmClock size={20} strokeWidth={1.6} />, destination: "avaliacoes" },
-  { label: "Calendário\nLetivo", icon: <CalendarDays size={20} strokeWidth={1.6} />, destination: "avaliacoes" },
-  { label: "Boletos\nBancários", icon: <Wallet size={20} strokeWidth={1.6} />, destination: "menu" },
+  { label: "Calendário\nLetivo", icon: <AcademicCalendarIcon />, destination: "avaliacoes" },
+  { label: "Boletos\nBancários", icon: <BankSlipIcon />, destination: "menu" },
   { label: "Credenciais\nde Acesso", icon: <QrCode size={21} strokeWidth={1.6} />, destination: "credencial" },
 ];
 
-const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onNavigate }) => {
+const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onNavigate, onOpenAccessCredentials }) => {
   const [showNewsMessage, setShowNewsMessage] = useState(false);
   return (
   <div className="flex min-h-[100dvh] flex-col bg-[#0d1019] pb-28 text-white">
@@ -33,7 +47,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onN
           <button
             key={shortcut.label}
             type="button"
-            onClick={() => onNavigate(shortcut.destination)}
+            onClick={() => shortcut.destination === "credencial" ? onOpenAccessCredentials() : onNavigate(shortcut.destination)}
             className="flex h-[91px] flex-col items-center justify-center gap-3 rounded-[11px] border border-white/[0.025] bg-[#141720] px-3 text-center text-white"
           >
             {shortcut.icon}
@@ -60,4 +74,6 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onN
 };
 
 export default AuthenticatedHomePage;
+
+
 

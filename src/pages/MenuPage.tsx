@@ -3,11 +3,11 @@ import {
   ArrowLeft, Banknote, Bell, Book, BriefcaseBusiness, ChevronRight,
   ClipboardCheck, Laptop, LifeBuoy, Pencil, QrCode, ScanFace, UserRound,
 } from "lucide-react";
-import type { AccessCard, AuthNavTab } from "../types";
+import type { AccessCard } from "../types";
 
 interface MenuPageProps {
   card: AccessCard;
-  onNavigate: (tab: AuthNavTab) => void;
+  onOpenAccessCredentials: () => void;
 }
 
 const menuItems = [
@@ -21,7 +21,7 @@ const menuItems = [
   { label: "Avaliações Institucionais - CPA", icon: ClipboardCheck },
 ];
 
-const MenuPage: React.FC<MenuPageProps> = ({ card, onNavigate }) => {
+const MenuPage: React.FC<MenuPageProps> = ({ card, onOpenAccessCredentials }) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [imageError, setImageError] = useState(false);
 
@@ -67,7 +67,7 @@ const MenuPage: React.FC<MenuPageProps> = ({ card, onNavigate }) => {
                 key={label}
                 type="button"
                 disabled={disabled}
-                onClick={() => label === "Credenciais de acesso" ? onNavigate("credencial") : setSelectedItem(label)}
+                onClick={() => label === "Credenciais de acesso" ? onOpenAccessCredentials() : setSelectedItem(label)}
                 className="flex min-h-[65px] w-full items-center gap-[15px] rounded-[9px] border border-white/[0.035] bg-[#141720] px-[18px] text-left shadow-[0_1px_4px_rgba(0,0,0,0.15)] disabled:text-[#85858e]"
               >
                 <Icon size={24} strokeWidth={1.7} className="shrink-0" aria-hidden="true" />
@@ -83,3 +83,4 @@ const MenuPage: React.FC<MenuPageProps> = ({ card, onNavigate }) => {
 };
 
 export default MenuPage;
+
