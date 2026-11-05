@@ -6,6 +6,7 @@ import {
   CalendarDays,
   ChevronRight,
   GraduationCap,
+  LoaderCircle,
   Presentation,
   Ruler,
 } from "lucide-react";
@@ -39,9 +40,9 @@ const AcademicPage: React.FC = () => {
       </header>
 
       {selectedItem ? (
-        <main className="px-[18px] pt-7">
-          <h2 className="text-lg font-semibold">{selectedItem}</h2>
-          <p className="mt-4 text-sm text-white/50">Esta área está em desenvolvimento.</p>
+        <main className="flex min-h-[calc(100dvh-250px)] flex-col items-center justify-center gap-4 px-[18px]">
+          <LoaderCircle size={34} strokeWidth={1.8} className="animate-spin text-[#00618b]" aria-label="Carregando" />
+          <h2 className="text-base font-semibold">{selectedItem}</h2>
         </main>
       ) : (
         <main className="space-y-2 px-[17px] pt-[18px]">

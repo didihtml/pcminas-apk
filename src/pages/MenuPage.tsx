@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   ArrowLeft, Banknote, Bell, Book, BriefcaseBusiness, ChevronRight,
-  ClipboardCheck, Laptop, LifeBuoy, Pencil, QrCode, ScanFace, UserRound,
+  ClipboardCheck, Laptop, LifeBuoy, LoaderCircle, Pencil, QrCode, ScanFace, UserRound,
 } from "lucide-react";
 import type { AccessCard } from "../types";
 
@@ -38,9 +38,9 @@ const MenuPage: React.FC<MenuPageProps> = ({ card, onOpenAccessCredentials }) =>
       </header>
 
       {selectedItem ? (
-        <main className="px-[18px] pt-7">
-          <h2 className="text-lg font-semibold">{selectedItem}</h2>
-          <p className="mt-4 text-sm text-white/50">Esta área está em desenvolvimento.</p>
+        <main className="flex min-h-[calc(100dvh-250px)] flex-col items-center justify-center gap-4 px-[18px]">
+          <LoaderCircle size={34} strokeWidth={1.8} className="animate-spin text-[#00618b]" aria-label="Carregando" />
+          <h2 className="text-base font-semibold">{selectedItem}</h2>
         </main>
       ) : (
         <main className="px-[17px]">
