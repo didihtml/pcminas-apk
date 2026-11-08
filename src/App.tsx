@@ -198,7 +198,7 @@ const App: React.FC = () => {
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-3" role="dialog" aria-modal="true" aria-label="Aviso de avaliação institucional">
           <div className="flex max-h-[calc(100dvh-24px)] w-full max-w-[320px] flex-col gap-3 rounded-2xl bg-[#141720] p-3">
             <img
-              src="/aviso-avaliacao.png"
+              src="/aviso-avaliacao.png?v=2"
               alt="Sua voz ajuda a construir o futuro da PUC Minas. Chegou a hora de avaliar os professores, coordenadores e membros de colegiado. Acesse o SGA, o PUC Mobile ou o Canvas e participe. Alunos dos demais cursos: 5/10 a 13/11. Alunos do curso de Medicina e professores: 5/10 a 18/12."
               className="min-h-0 w-full flex-1 rounded-xl object-contain"
             />

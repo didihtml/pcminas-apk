@@ -200,7 +200,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                   RG
                 </p>
                 <p className="text-white text-xs leading-snug font-bold whitespace-nowrap">
-                  {card.rg?.replace(/[^\p{L}\p{N}]/gu, "") || "-"}
+                  {card.rg?.replace(/\D/g, "") || "-"}
                 </p>
               </div>
               <div>
