@@ -1,17 +1,19 @@
 import React from "react";
-import { ClipboardCheck, GraduationCap, Grid3X3 } from "lucide-react";
 import type { AuthNavTab } from "../../types";
 
-const HomeIcon = () => <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.5 10.2 12 3l8.5 7.2v9.3H3.5z"/><path d="M8 16.5h8"/></svg>;
+const HomeIcon = () => <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.5 10.4a2 2 0 0 1 .7-1.5l6.5-5.5a2 2 0 0 1 2.6 0l6.5 5.5a2 2 0 0 1 .7 1.5v8.1a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2v-8.1Z"/><path d="M8.5 16.5h7"/></svg>;
 const CredentialIcon = () => <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="3.5" width="20" height="15" rx="2"/><path d="M2 7.5h20M8.5 18.5v-1a3.5 3.5 0 0 1 7 0v1"/><circle cx="12" cy="12.5" r="2"/></svg>;
+const MenuIcon = () => <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{[5, 12, 19].flatMap(y => [5, 12, 19].map(x => <circle key={`${x}-${y}`} cx={x} cy={y} r="1.8" />))}</svg>;
+const AcademicIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m2.5 9 9.5-4.5L21.5 9 12 13.5 2.5 9Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M21.5 9v6"/></svg>;
+const DisciplinesIcon = () => <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M13 21H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v8"/><path d="M8 7h7M8 11h7M8 15h3M14 18l2.5 2.5L21 16"/></svg>;
 
 interface AuthenticatedBottomNavigationProps { activeTab: AuthNavTab; onTabChange: (tab: AuthNavTab) => void; }
 const items: { id: AuthNavTab; label: string; icon: React.ReactNode }[] = [
   { id: "inicio", label: "Início", icon: <HomeIcon /> },
-  { id: "disciplinas", label: "Disciplinas", icon: <ClipboardCheck size={17} strokeWidth={1.5} /> },
+  { id: "disciplinas", label: "Disciplinas", icon: <DisciplinesIcon /> },
   { id: "credencial", label: "Credencial", icon: <CredentialIcon /> },
-  { id: "avaliacoes", label: "Acadêmico", icon: <GraduationCap size={18} strokeWidth={1.5} /> },
-  { id: "menu", label: "Menu", icon: <Grid3X3 size={17} strokeWidth={2} /> },
+  { id: "avaliacoes", label: "Acadêmico", icon: <AcademicIcon /> },
+  { id: "menu", label: "Menu", icon: <MenuIcon /> },
 ];
 
 const AuthenticatedBottomNavigation: React.FC<AuthenticatedBottomNavigationProps> = ({ activeTab, onTabChange }) => (
