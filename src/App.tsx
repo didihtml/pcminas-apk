@@ -53,6 +53,7 @@ function getValidacaoId(): string | null {
 
 const App: React.FC = () => {
   const validacaoId = getValidacaoId();
+  const [showWelcomeNotice, setShowWelcomeNotice] = useState(!validacaoId);
   const [activeTab, setActiveTab] = useState<NavTab>("inicio");
   const [sgaOpen, setSgaOpen] = useState(false);
   const [loginProfile, setLoginProfile] = useState<LoginProfile | null>(null);
@@ -192,6 +193,20 @@ const App: React.FC = () => {
           onClose={() => setSgaOpen(false)}
           onSelectProfile={handleSelectProfile}
         />
+      )}
+      {showWelcomeNotice && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-3" role="dialog" aria-modal="true" aria-label="Aviso de avaliação institucional">
+          <div className="flex max-h-[calc(100dvh-24px)] w-full max-w-[320px] flex-col gap-3 rounded-2xl bg-[#141720] p-3">
+            <img
+              src="/aviso-avaliacao.png"
+              alt="Sua voz ajuda a construir o futuro da PUC Minas. Chegou a hora de avaliar os professores, coordenadores e membros de colegiado. Acesse o SGA, o PUC Mobile ou o Canvas e participe. Alunos dos demais cursos: 5/10 a 13/11. Alunos do curso de Medicina e professores: 5/10 a 18/12."
+              className="min-h-0 w-full flex-1 rounded-xl object-contain"
+            />
+            <button type="button" autoFocus onClick={() => setShowWelcomeNotice(false)} className="min-h-11 w-full shrink-0 rounded-[10px] bg-[#00527f] px-4 py-3 text-sm font-semibold text-white">
+              Fechar
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

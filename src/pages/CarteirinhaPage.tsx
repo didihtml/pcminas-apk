@@ -111,7 +111,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
       {/* Header */}
       <div
         className="flex items-center justify-between px-5"
-        style={{ background: "#00527F", height: "90px", paddingTop: "36px" }}
+        style={{ background: "#171b31", height: "90px", paddingTop: "36px" }}
       >
         <div className="w-8" />
         <span className="text-white text-sm font-bold uppercase tracking-widest">
@@ -141,9 +141,9 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
               <div
                 className="flex-shrink-0 overflow-hidden flex items-center justify-center"
                 style={{
-                  width: "110px",
-                  height: "130px",
-                  borderRadius: "14px",
+                  width: "88px",
+                  height: "88px",
+                  borderRadius: "10px",
                   border: "3px solid #7ECCEF",
                   background: "#01365C",
                 }}
@@ -165,7 +165,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                 )}
               </div>
 
-              <div className="flex flex-col gap-2 pt-1">
+              <div className="min-w-0 flex flex-col gap-1 pt-1">
                 <div>
                   <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                     Nome
@@ -199,16 +199,16 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                 <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                   RG
                 </p>
-                <p className="text-white text-xs leading-snug font-bold">
-                  {card.rg ?? "-"}
+                <p className="text-white text-xs leading-snug font-bold whitespace-nowrap">
+                  {card.rg?.replace(/[^\p{L}\p{N}]/gu, "") || "-"}
                 </p>
               </div>
               <div>
                 <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                   CPF
                 </p>
-                <p className="text-white text-xs leading-snug font-bold">
-                  {card.cpf}
+                <p className="text-white text-xs leading-snug font-bold whitespace-nowrap">
+                  {card.cpf.replace(/\D/g, "") || "-"}
                 </p>
               </div>
               <div>
@@ -223,24 +223,16 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                 <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                   Campus
                 </p>
-                <p
-                  className="text-white text-xs leading-snug font-bold"
-                  style={{ whiteSpace: "pre-line" }}
-                >
-                  {card.campus
-                    ? card.campus.replace(/(Caldas|Ppc)/gi, "\n$1")
-                    : "-"}
+                <p className="text-white text-xs leading-snug font-bold">
+                  {card.campus || "-"}
                 </p>
               </div>
               <div>
                 <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                   Curso
                 </p>
-                <p
-                  className="text-white text-xs leading-snug font-bold"
-                  style={{ whiteSpace: "pre-line" }}
-                >
-                  {card.curso.replace(/\s(Computação)/i, "\n$1")}
+                <p className="text-white text-xs leading-snug font-bold">
+                  {card.curso}
                 </p>
               </div>
             </div>
