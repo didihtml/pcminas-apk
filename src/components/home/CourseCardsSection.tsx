@@ -6,22 +6,22 @@ const COURSE_CARDS: CourseCardType[] = [
   {
     id: 'graduacao',
     title: 'Graduação',
-    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=360&fit=crop&crop=face',
+    imageUrl: '/curso-graduacao.png',
   },
   {
     id: 'pos-graduacao',
     title: 'Pós-Graduação\nLato Sensu',
-    imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=360&fit=crop&crop=face',
+    imageUrl: '/curso-pos-graduacao.png',
   },
   {
     id: 'mestrado',
     title: 'Mestrado e\nDoutorado',
-    imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=360&fit=crop&crop=face',
+    imageUrl: '/curso-mestrado.png',
   },
   {
     id: 'aperfeicoamento',
     title: 'Aperfeiçoamento',
-    imageUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=360&fit=crop&crop=face',
+    imageUrl: '/curso-aperfeicoamento.png',
   },
 ]
 
