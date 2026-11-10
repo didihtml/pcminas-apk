@@ -1,148 +1,36 @@
-import React from "react";
-import PageHeader from "../components/layout/PageHeader";
+import React, { useState } from "react";
+import { ArrowLeft, Bell, Globe, MessageSquareText } from "lucide-react";
+import ContactPage from "./ContactPage";
 
-interface MissaoValoresPageProps {
-  onBack: () => void;
-}
+const principles = [
+  "Fidelidade à doutrina cristã e respeito aos princípios da Igreja Católica, em seu compromisso missionário para com a educação superior.",
+  "Promoção do bem comum e da dignidade da pessoa humana.",
+  "Promoção da formação solidária, interdisciplinar e humanística, orientada por uma perspectiva ética, cristã e católica, respeitadas a autonomia universitária e a liberdade acadêmica.",
+  "Compromisso com a inclusão e a justiça social.",
+  "Integração e pluralismo na articulação e nas concepções de ensino, pesquisa e extensão, respeitados os projetos pedagógicos e as diretrizes fixadas pelos órgãos de deliberação superior.",
+  "Valorização do mérito acadêmico.",
+];
+const values = [
+  "Igualdade – de valor dos seres humanos e garantia de igualdade de direitos entre eles.",
+  "Liberdade – de criação, de expressão do pensamento e de produção de conhecimento.",
+  "Autonomia – capacidade de formular leis em liberdade e se reger por elas.",
+  "Pluralidade – expressão de igualdade e diferença entre pessoas, iguais porque humanas e diferentes porque singulares.",
+  "Solidariedade – adesão à causa do outro, fundada no respeito mútuo e na interlocução entre sujeitos da sociedade.",
+  "Justiça – orientada pela igualdade de direitos e pelo respeito às diferenças.",
+];
 
-const MissaoValoresPage: React.FC<MissaoValoresPageProps> = ({ onBack }) => {
-  return (
-    <div className="min-h-screen pb-32" style={{ background: "var(--bg-main)" }}>
-      <PageHeader title="MISSÃO E VALORES" onBack={onBack} />
-
-      <div className="px-4 pt-24">
-        {/* Imagem */}
-        <div className="rounded-2xl overflow-hidden mb-6">
-          <img
-            src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=400&fit=crop"
-            alt="PUC Minas"
-            className="w-full h-48 object-cover"
-          />
-        </div>
-
-        {/* Missão */}
-        <section className="mb-6">
-          <h2 className="text-white text-lg font-bold mb-1">Missão</h2>
-          <h3 className="text-white text-base font-bold mb-2">
-            A missão explicita a razão da existência da nossa Instituição
-          </h3>
-          <p className="text-white text-sm leading-relaxed">
-            Promover o desenvolvimento humano e social, contribuindo para a
-            formação humanista e científica de profissionais competentes, que
-            tenha como base valores da ética e da solidariedade e compromisso
-            com o bem comum, mediante a produção e disseminação das ciências,
-            das artes e da cultura, a interdisciplinaridade e a integração
-            entre a Universidade e a sociedade.
-          </p>
-        </section>
-
-        {/* Princípios */}
-        <section className="mb-6">
-          <h2 className="text-white text-lg font-bold mb-2">Princípios</h2>
-          <h3 className="text-white text-base font-bold mb-2">
-            A Universidade orienta suas ações, em consonância com o artigo 4°
-            do seu Estatuto, pelos seguintes princípios:
-          </h3>
-          <ul className="text-white text-sm leading-relaxed list-none space-y-2">
-            <li className="flex gap-2">
-              <span>•</span>
-              <span>
-                Fidelidade à doutrina cristã e respeito aos princípios da Igreja
-                Católica, em seu compromisso missionário para com a educação
-                superior.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span>•</span>
-              <span>
-                Promoção do bem comum e da dignidade da pessoa humana.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span>•</span>
-              <span>
-                Promoção da formação solidária, interdisciplinar e humanística,
-                orientada por uma perspectiva ética, cristã e católica,
-                respeitadas a autonomia universitária e a liberdade acadêmica.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span>•</span>
-              <span>
-                Pluralidade – expressão de igualdade e diferença entre pessoas,
-                iguais porque humanas e diferentes porque singulares.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span>•</span>
-              <span>
-                Solidariedade – adesão à causa do outro, fundada no respeito
-                mútuo e na interlocução entre sujeitos da sociedade.
-              </span>
-            </li>
-            <li className="flex gap-2">
-              <span>•</span>
-              <span>
-                Justiça – orientada pela igualdade de direitos e pelo respeito
-                às diferenças.
-              </span>
-            </li>
-          </ul>
-        </section>
-
-        {/* Visão */}
-        <section className="mb-6">
-          <h2 className="text-white text-lg font-bold mb-1">Visão</h2>
-          <h3 className="text-white text-base font-bold mb-2">
-            A visão da PUC Minas para o horizonte 2012-2016 explicita o seu
-            desafio estratégico e sinaliza a direção a ser perseguida por todos:
-          </h3>
-          <p className="text-white text-sm leading-relaxed">
-            Ser uma instituição católica de educação cada vez mais reconhecida
-            pela capacidade de gerar conhecimento e inovações, bem como
-            promover a inclusão social e consolidar alianças nacionais e
-            internacionais, atuando nas diversas áreas de conhecimento com
-            eficiência, com agilidade e com adequada dimensão em sua estrutura
-            acadêmico-administrativa, assegurando a sua contemporaneidade,
-            qualidade e sustentabilidade.
-          </p>
-        </section>
-
-        {/* Call Center e Site */}
-        <section className="mt-8 space-y-3">
-          <p className="text-white text-base font-semibold text-center mb-4">
-            Dúvidas? Fale com a gente
-          </p>
-          <a
-            href="https://www.pucminas.br/callcenter"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 w-full py-3.5 rounded-xl text-white font-semibold text-sm"
-            style={{ background: "#06557D" }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-            </svg>
-            Acessar Call Center
-          </a>
-          <a
-            href="https://www.pucminas.br"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 w-full py-3.5 rounded-xl text-white font-semibold text-sm"
-            style={{ background: "#3A7CA5" }}
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <line x1="2" y1="12" x2="22" y2="12" />
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-            </svg>
-            Visitar site
-          </a>
-        </section>
-      </div>
-    </div>
-  );
+const MissaoValoresPage: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+  const [showContact, setShowContact] = useState(false);
+  if (showContact) return <ContactPage onBack={() => setShowContact(false)} />;
+  return <div className="min-h-[100dvh] bg-[#0d111d] pb-28 text-white">
+    <header className="sticky top-0 z-20 flex h-[100px] items-end justify-center bg-[#182037] px-12 pb-5 pt-[env(safe-area-inset-top)]"><button type="button" onClick={onBack} aria-label="Voltar" className="absolute bottom-4 left-3 p-1"><ArrowLeft size={21}/></button><h1 className="text-center text-[14px] font-semibold">MISSÃO E VALORES</h1><Bell size={19} className="absolute bottom-5 right-5" aria-label="Notificações"/></header>
+    <main className="px-[15px] pt-[15px]"><img src="/missao-valores.png" alt="" className="block w-full rounded-lg"/>
+      <div className="mt-4 text-[13px] leading-[1.18]"><section><h2 className="font-bold">Missão</h2><h3 className="font-bold">A missão explicita a razão da existência da nossa Instituição</h3><p>Promover o desenvolvimento humano e social, contribuindo para a formação humanista e científica de profissionais competentes, que tenha como base valores da ética e da solidariedade e compromisso com o bem comum, mediante a produção e disseminação das ciências, das artes e da cultura, a interdisciplinaridade e a integração entre a Universidade e a sociedade.</p></section>
+      <section><h2 className="font-bold">Princípios</h2><h3 className="font-bold">A Universidade orienta suas ações, em consonância com o artigo 4° do seu Estatuto, pelos seguintes princípios:</h3><ul className="list-disc pl-[9px]">{principles.map(item => <li key={item}>{item}</li>)}</ul></section>
+      <section><h2 className="font-bold">Valores</h2><h3 className="font-bold">Em consonância com o PPI (Projeto Pedagógico Institucional) da Universidade, os seguintes valores devem ser considerados:</h3><ul className="list-disc pl-[9px]">{values.map(item => <li key={item}>{item}</li>)}</ul></section>
+      <section><h2 className="font-bold">Visão</h2><h3 className="font-bold">A visão da PUC Minas para o horizonte 2012-2016 explicita o seu desafio estratégico e sinaliza a direção a ser perseguida por todos:</h3><p>Ser uma instituição católica de educação cada vez mais reconhecida pela capacidade de gerar conhecimento e inovações, bem como promover a inclusão social e consolidar alianças nacionais e internacionais, atuando nas diversas áreas de conhecimento com eficiência, com agilidade e com adequada dimensão em sua estrutura acadêmico-administrativa, assegurando a sua contemporaneidade, qualidade e sustentabilidade.</p></section></div>
+    </main>
+    <section className="mt-4 bg-[#151923] px-7 py-8"><h2 className="text-center text-lg font-light">Dúvidas? Fale com a gente</h2><button type="button" onClick={() => setShowContact(true)} className="mt-7 flex w-full items-center justify-center gap-3 rounded-lg bg-[#00537d] px-4 py-3 text-sm font-semibold"><MessageSquareText size={18}/>Acessar Call Center</button><a href="https://www.pucminas.br/" target="_blank" rel="noopener noreferrer" className="mt-7 flex w-full items-center justify-center gap-3 rounded-lg bg-[#326f96] px-4 py-3 text-sm font-semibold"><Globe size={18}/>Visitar site</a></section>
+  </div>;
 };
-
 export default MissaoValoresPage;

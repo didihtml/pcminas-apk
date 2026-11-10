@@ -1,92 +1,27 @@
-import React from 'react'
-import { ChevronRight, Award, Star, FlaskConical, MonitorPlay, Settings2 } from 'lucide-react'
-import PageHeader from '../components/layout/PageHeader'
+import React, { useState } from "react";
+import { ArrowLeft, Award, ChevronRight, Microscope, Presentation, Settings, Star } from "lucide-react";
+import SettingsPage from "./SettingsPage";
 
-interface MenuItem {
-  id: string
-  label: string
-  icon: React.ReactNode
-}
+const items = [
+  { id: "missao", label: "Missão e Valores", icon: Award },
+  { id: "reitoria", label: "Reitoria", icon: Star },
+  { id: "pesquisa", label: "Pesquisa", icon: Microscope },
+  { id: "extensao", label: "Extensão", icon: Presentation },
+  { id: "configuracoes", label: "Configurações", icon: Settings },
+];
 
-const MENU_ITEMS: MenuItem[] = [
-  { id: 'missao',        label: 'Missão e Valores', icon: <Award size={22} strokeWidth={1.6} /> },
-  { id: 'reitoria',     label: 'Reitoria',          icon: <Star size={22} strokeWidth={1.6} /> },
-  { id: 'pesquisa',     label: 'Pesquisa',           icon: <FlaskConical size={22} strokeWidth={1.6} /> },
-  { id: 'extensao',     label: 'Extensão',           icon: <MonitorPlay size={22} strokeWidth={1.6} /> },
-  { id: 'configuracoes',label: 'Configurações',      icon: <Settings2 size={22} strokeWidth={1.6} /> },
-]
-
-interface APucPageProps {
-  onBack: () => void;
-  onMissaoValores: () => void;
-}
+interface APucPageProps { onBack: () => void; onMissaoValores: () => void }
 
 const APucPage: React.FC<APucPageProps> = ({ onBack, onMissaoValores }) => {
-  return (
-    <div className="min-h-screen pb-32" style={{ background: 'var(--bg-main)' }}>
-      <PageHeader title="A PUC" onBack={onBack} />
-
-      {/* Imagem de apresentação */}
-      <div className="mx-4" style={{ paddingTop: '80px' }}>
-        <div className="relative rounded-2xl overflow-hidden" style={{ height: '200px' }}>
-          <img
-            src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=400&fit=crop"
-            alt="PUC Minas"
-            className="w-full h-full object-cover"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 60%)' }}
-          />
-          <div className="absolute bottom-4 left-4">
-            <p className="text-white text-lg font-bold uppercase tracking-wide leading-tight">
-              APRESENTAÇÃO
-            </p>
-            <a
-              href="https://www.pucminas.br/destaques/Paginas/default.aspx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 mt-1"
-            >
-              <span className="text-white text-xs font-semibold uppercase tracking-widest">
-                VER MAIS
-              </span>
-              <ChevronRight size={14} className="text-white" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Menu list */}
-      <div className="mx-4 mt-5 flex flex-col gap-3">
-        {MENU_ITEMS.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => {
-              if (item.id === 'missao') onMissaoValores();
-            }}
-            className="flex items-center justify-between w-full px-4 py-4 rounded-2xl"
-            style={{ background: 'var(--bg-card)' }}
-          >
-            <div className="flex items-center gap-4">
-              <span className="text-primary">{item.icon}</span>
-              <span className="text-primary text-sm font-medium">{item.label}</span>
-            </div>
-            <ChevronRight size={18} className="text-gray-400" />
-          </button>
-        ))}
-      </div>
-
-      {/* Versão */}
-      <div className="mt-8 text-center">
-        <p className="text-gray-500 text-xs leading-7">
-          <span className="font-semibold text-primary">Versão:</span> 3.0.12<br />
-          <span className="font-semibold text-primary">Compilação:</span> 1.318<br />
-          <span className="font-semibold text-primary">OTA:</span> 0.0.32
-        </p>
-      </div>
-    </div>
-  )
-}
-
-export default APucPage
+  const [showSettings, setShowSettings] = useState(false);
+  const [notice, setNotice] = useState("");
+  if (showSettings) return <SettingsPage onBack={() => setShowSettings(false)} />;
+  return <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
+    <header className="relative flex h-[100px] items-end justify-center bg-[#182037] px-12 pb-5 pt-[env(safe-area-inset-top)]"><button type="button" onClick={onBack} aria-label="Voltar" className="absolute bottom-4 left-3 p-1"><ArrowLeft size={21}/></button><h1 className="text-center text-[14px] font-semibold">A PUC MINAS</h1></header>
+    <main className="px-[15px] pt-[15px]"><a href="https://www.pucminas.br/destaques/Paginas/default.aspx" target="_blank" rel="noopener noreferrer" aria-label="Apresentação — ver mais" className="block overflow-hidden rounded-lg"><img src="/a-puc-apresentacao.png" alt="" className="block w-full"/></a>
+      <div className="mt-[15px] space-y-[7px]">{items.map(({ id, label, icon: Icon }) => <button key={id} type="button" onClick={() => { setNotice(""); if (id === "missao") onMissaoValores(); else if (id === "configuracoes") setShowSettings(true); else setNotice("Este serviço não está disponível no momento."); }} className="flex min-h-[53px] w-full items-center gap-3 rounded-lg border border-white/[0.05] bg-[#151923] px-4 text-left"><Icon size={21} strokeWidth={1.7} className="shrink-0"/><span className="flex-1 text-[15px] font-semibold">{label}</span><ChevronRight size={21}/></button>)}</div>
+      {notice && <p role="status" className="mt-4 text-sm text-[#a4aab5]">{notice}</p>}
+    </main>
+  </div>;
+};
+export default APucPage;
