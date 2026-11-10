@@ -104,7 +104,7 @@ const App: React.FC = () => {
 
   const renderPage = () => {
     if (authenticatedCard) {
-      if (showAccessCredentials) return <AccessCredentialsPage onBack={() => setShowAccessCredentials(false)} />;
+      if (showAccessCredentials) return <AccessCredentialsPage card={authenticatedCard} onBack={() => setShowAccessCredentials(false)} />;
       switch (authenticatedTab) {
         case "inicio":
           return (
@@ -121,7 +121,7 @@ const App: React.FC = () => {
         case "avaliacoes":
           return <AcademicPage />;
         case "menu":
-          return <MenuPage card={authenticatedCard} onOpenAccessCredentials={() => setShowAccessCredentials(true)} />;
+          return <MenuPage card={authenticatedCard} onOpenAccessCredentials={() => setShowAccessCredentials(true)} onLogout={() => { setAuthenticatedCard(null); setLoginProfile(null); setShowAccessCredentials(false); setActiveTab("inicio"); }} />;
       }
     }
 

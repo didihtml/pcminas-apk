@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { ArrowLeft, Banknote, Bell, Book, BriefcaseBusiness, ChevronRight, ClipboardCheck, Laptop, LifeBuoy, Pencil, QrCode, ScanFace, UserRound, ReceiptText, MessagesSquare, BadgePercent, FileCheck, FileText, MessageCircle, MessageSquareText, Phone, PackageOpen } from "lucide-react";
+import { ArrowLeft, Banknote, Bell, Book, BriefcaseBusiness, ChevronRight, ClipboardCheck, Laptop, LifeBuoy, Pencil, QrCode, ScanFace, UserRound, ReceiptText, MessagesSquare, BadgePercent, FileCheck, FileText, MessageCircle, MessageSquareText, Phone, PackageOpen, Landmark, Settings, LogOut } from "lucide-react";
 import type { AccessCard } from "../types";
 import FacialCapture from "../components/portal/FacialCapture";
+import APucPage from "./APucPage";
+import MissaoValoresPage from "./MissaoValoresPage";
 
-interface MenuPageProps { card: AccessCard; onOpenAccessCredentials: () => void; }
+interface MenuPageProps { card: AccessCard; onOpenAccessCredentials: () => void; onLogout: () => void; }
 const menuItems = [
   { label: "Reconhecimento Facial", icon: ScanFace }, { label: "Credenciais de acesso", icon: QrCode },
   { label: "Financeiro", icon: Banknote }, { label: "Bolsas", icon: Book },
   { label: "Solicitação de Serviços", icon: Laptop }, { label: "Central de ajuda", icon: LifeBuoy },
   { label: "PUC Carreiras", icon: BriefcaseBusiness, disabled: true }, { label: "Avaliações Institucionais - CPA", icon: ClipboardCheck },
+  { label: "A PUC Minas", icon: Landmark }, { label: "Configurações", icon: Settings }, { label: "Sair", icon: LogOut },
 ];
 const referenceIcons: Record<string, string> = {
   "Reconhecimento Facial": "reconhecimento",
@@ -18,6 +21,8 @@ const referenceIcons: Record<string, string> = {
   "Solicitação de Serviços": "servicos",
   "Central de ajuda": "ajuda",
   "PUC Carreiras": "carreiras",
+  "A PUC Minas": "puc",
+  "Configurações": "configuracoes",
 };
 const categoryItems: Record<string, { label: string; icon: typeof Book }[]> = {
   Financeiro: [ { label: "Emissão de boleto bancário", icon: ReceiptText }, { label: "Negociação de Parcelas", icon: MessagesSquare }, { label: "Valor do plano de estudos", icon: BadgePercent }, { label: "Declaração de pagamento", icon: FileCheck } ],
@@ -25,14 +30,16 @@ const categoryItems: Record<string, { label: string; icon: typeof Book }[]> = {
   "Central de ajuda": [ { label: "Assistente Virtual", icon: MessageCircle }, { label: "Fale Conosco", icon: MessageSquareText }, { label: "Ouvidoria", icon: MessagesSquare }, { label: "Whatsapp Institucional", icon: Phone } ],
 };
 
-const MenuPage: React.FC<MenuPageProps> = ({ card, onOpenAccessCredentials }) => {
+const MenuPage: React.FC<MenuPageProps> = ({ card, onOpenAccessCredentials, onLogout }) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [imageError, setImageError] = useState(false);
   const [voice, setVoice] = useState(true);
   const [capturing, setCapturing] = useState(false);
+  const [showMission, setShowMission] = useState(false);
   const [notice, setNotice] = useState("");
-  const choose = (label: string) => { setNotice(""); if (label === "Credenciais de acesso") onOpenAccessCredentials(); else setSelectedItem(label); };
+  const choose = (label: string) => { setNotice(""); if (label === "Credenciais de acesso") onOpenAccessCredentials(); else if (label === "Sair") onLogout(); else setSelectedItem(label); };
   const unavailable = () => setNotice("Este serviço não está disponível no momento.");
+  if (selectedItem === "A PUC Minas") return showMission ? <MissaoValoresPage onBack={() => setShowMission(false)} /> : <APucPage onBack={() => setSelectedItem(null)} onMissaoValores={() => setShowMission(true)} />;
   return <div className={`min-h-[100dvh] pb-32 text-white ${selectedItem === "Reconhecimento Facial" ? "bg-[#101115]" : "bg-[#0d1019]"}`}>
     <header className={`relative flex h-[100px] items-end justify-center px-12 pb-5 pt-[env(safe-area-inset-top)] ${selectedItem === "Reconhecimento Facial" ? "bg-[#182037]" : "bg-[#171b31]"}`}>
       {selectedItem && <button type="button" onClick={() => { setSelectedItem(null); setNotice(""); }} className="absolute bottom-4 left-3 p-1" aria-label="Voltar para Menu"><ArrowLeft size={21} /></button>}
@@ -43,7 +50,7 @@ const MenuPage: React.FC<MenuPageProps> = ({ card, onOpenAccessCredentials }) =>
       <div className="mb-9 mt-2 flex min-h-[82px] items-center gap-[17px]"><div className="relative shrink-0"><div className="flex h-[68px] w-[68px] items-center justify-center overflow-hidden rounded-full bg-[#e8e8e8] text-[#8c8c8c]">{card.fotoUrl && !imageError ? <img src={card.fotoUrl} alt="" onError={() => setImageError(true)} className="h-full w-full object-cover" /> : <UserRound size={32} />}</div><span className="absolute bottom-0 right-0 flex h-4 w-4 items-center justify-center rounded-full border border-white bg-[#00577c]"><Pencil size={9} /></span></div><div><h2 className="text-[17px] font-semibold">{card.nome}</h2>{card.codigo && <p className="mt-1 text-sm text-[#85858e]">RA {card.codigo}</p>}</div></div>
       <div className="space-y-2">{menuItems.map(({ label, icon: Icon, disabled }) => <button key={label} type="button" disabled={disabled} onClick={() => choose(label)} className="flex min-h-[65px] w-full items-center gap-[15px] rounded-[9px] border border-white/[0.035] bg-[#141720] px-[18px] text-left disabled:text-[#85858e]">{referenceIcons[label] ? <img src={`/menu-icons/${referenceIcons[label]}.png`} alt="" className="h-6 w-6 shrink-0" /> : <Icon size={24} strokeWidth={1.7} className="shrink-0" />}<span className="min-w-0 flex-1 text-[17px] font-semibold leading-tight">{label}</span><ChevronRight size={24} /></button>)}</div>
     </main> : categoryItems[selectedItem] ? <main className="space-y-2 px-[15px] pt-[15px]">{categoryItems[selectedItem].map(({ label, icon: Icon }) => <button key={label} type="button" onClick={unavailable} className="flex min-h-[55px] w-full items-center gap-3 rounded-lg border border-white/[0.05] bg-[#141720] px-4 text-left"><Icon size={21} className="shrink-0 text-[#80c7e6]" strokeWidth={1.7}/><span className="flex-1 text-[15px] font-semibold">{label}</span><ChevronRight size={21} className="text-[#80c7e6]" /></button>)}{notice && <p role="status" className="px-1 pt-3 text-sm text-[#a4aab5]">{notice}</p>}</main>
-    : selectedItem === "Reconhecimento Facial" ? <main><section className="flex min-h-[500px] flex-col items-center justify-center px-5 py-10"><h2 className="mb-4 text-xl font-semibold">Cadastro Facial</h2><div className="w-full rounded-md border border-[#183e77] bg-[#0d1c31] p-4 text-[#cbdcf6]"><h3 className="mb-2 font-bold">Instruções</h3><ul className="list-disc space-y-1 pl-6 text-sm"><li>🔊 Ligue e aumente o som para ouvir as instruções</li><li>👀 Abra bem os olhos e olhe para a câmera</li><li>💡 Fique em um local bem iluminado</li><li>🚫 Remova óculos, chapéu ou máscara</li></ul></div><label className="mt-6 flex items-center gap-2 text-sm"><input type="checkbox" role="switch" checked={voice} onChange={e => setVoice(e.target.checked)} className="peer sr-only" /><span aria-hidden="true" className="relative h-[18px] w-[34px] rounded-full bg-[#59616b] transition-colors peer-checked:bg-[#0d6efd] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-white after:absolute after:left-[2px] after:top-[2px] after:h-[14px] after:w-[14px] after:rounded-full after:bg-white after:transition-transform peer-checked:after:translate-x-4" /> Habilitar guia de voz</label><button type="button" onClick={() => setCapturing(true)} className="mt-5 rounded-lg bg-[#00537d] px-5 py-3 text-base">Iniciar Captura Facial</button>{notice && <p role="status" className="mt-3 text-center text-sm text-[#a4aab5]">{notice}</p>}</section><section className="border-t border-[#202637] bg-[#0d111d] px-5 py-5 text-sm text-[#8a8e9b]"><h3 className="mb-2 text-[#f5f6fa]">Identificação facial para acesso à PUC</h3><p>Ao ativar o reconhecimento facial, sua identificação será utilizada exclusivamente para controle de acesso às dependências da PUC Minas, como portarias e áreas autorizadas.</p><p className="mt-3">Sua imagem não é armazenada como foto. Ela é convertida em um código digital seguro, usado apenas para confirmar sua identidade.</p></section></main>
+    : selectedItem === "Reconhecimento Facial" ? <main><section className="flex min-h-[500px] flex-col items-center justify-center px-5 py-10"><h2 className="mb-4 text-xl font-semibold">Cadastro Facial</h2><div className="w-full rounded-md border border-[#183e77] bg-[#0d1c31] p-4 text-[#cbdcf6]"><h3 className="mb-2 font-bold">Instruções</h3><ul className="list-disc space-y-1 pl-6 text-sm"><li>🔊 Ligue e aumente o som para ouvir as instruções</li><li>👀 Abra bem os olhos e olhe para a câmera</li><li>💡 Fique em um local bem iluminado</li><li>🚫 Remova óculos, chapéu ou máscara</li></ul></div><label className="mt-6 flex items-center gap-2 text-sm"><input type="checkbox" role="switch" checked={voice} onChange={e => setVoice(e.target.checked)} className="peer sr-only" /><span aria-hidden="true" className="relative h-[18px] w-[34px] rounded-full bg-[#59616b] transition-colors peer-checked:bg-[#0d6efd] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-white after:absolute after:left-[2px] after:top-[2px] after:h-[14px] after:w-[14px] after:rounded-full after:bg-white after:transition-transform peer-checked:after:translate-x-4" /> Habilitar guia de voz</label><button type="button" onClick={() => setCapturing(true)} className="mt-5 rounded-lg bg-[#00537d] px-5 py-3 text-base">Iniciar Captura Facial</button>{notice && <p role="status" className="mt-3 text-center text-sm text-[#a4aab5]">{notice}</p>}</section><section className="border-t border-[#202637] bg-[#0d111d] px-5 py-5 text-sm text-[#8a8e9b]"><h3 className="mb-2 text-[#f5f6fa]">Identificação facial para acesso à PUC</h3><p>Esta tela não realiza identificação nem libera acesso às dependências da PUC Minas.</p><p className="mt-3">A imagem da câmera é usada apenas para a prévia e não é armazenada ou enviada.</p></section></main>
     : selectedItem === "Solicitação de Serviços" ? <main className="flex flex-col items-center px-8 pt-16 text-center"><PackageOpen size={150} strokeWidth={0.9} className="mb-10 text-[#3b7890]"/><h2 className="text-lg font-bold">Nada por aqui!</h2><p className="mt-3 text-base text-[#a4aab5]">Comece abrindo um novo chamado.</p><button type="button" onClick={unavailable} className="mt-14 w-full rounded bg-[#00527f] px-4 py-3 font-semibold">ABRIR CHAMADO</button>{notice && <p role="status" className="mt-3 text-sm text-[#a4aab5]">{notice}</p>}</main>
     : <main className="px-5 pt-8 text-sm text-[#a4aab5]">Este serviço não está disponível no momento.</main>}
     {capturing && <FacialCapture onClose={() => setCapturing(false)} />}
