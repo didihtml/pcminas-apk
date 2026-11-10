@@ -11,7 +11,7 @@ if ("serviceWorker" in navigator) {
 
 function StartupApp() {
   useEffect(() => {
-    const delay = Math.max(0, 1200 - performance.now());
+    const delay = Math.max(0, 3100 - performance.now());
     const timer = window.setTimeout(() => {
       document.getElementById("startup-screen")?.remove();
     }, delay);
