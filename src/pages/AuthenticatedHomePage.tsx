@@ -6,6 +6,7 @@ interface AuthenticatedHomePageProps {
   card: AccessCard;
   onNavigate: (tab: AuthNavTab) => void;
   onOpenAccessCredentials: () => void;
+  onOpenSchedule: () => void;
 }
 
 const AcademicCalendarIcon = () => (
@@ -32,7 +33,7 @@ const shortcuts: Array<{
   { label: "Credenciais\nde Acesso", icon: <QrCode size={21} strokeWidth={1.6} />, destination: "credencial" },
 ];
 
-const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onNavigate, onOpenAccessCredentials }) => {
+const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onNavigate, onOpenAccessCredentials, onOpenSchedule }) => {
   return (
   <div className="flex min-h-[100dvh] flex-col bg-[#0d111d] pb-28 text-white">
     <header className="relative flex h-[220px] flex-col items-center rounded-b-[18px] bg-[#182037] px-5 pt-[max(48px,env(safe-area-inset-top))]">
@@ -46,7 +47,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onN
           <button
             key={shortcut.label}
             type="button"
-            onClick={() => shortcut.destination === "credencial" ? onOpenAccessCredentials() : onNavigate(shortcut.destination)}
+            onClick={() => shortcut.label === "Grade de\nHorários" ? onOpenSchedule() : shortcut.destination === "credencial" ? onOpenAccessCredentials() : onNavigate(shortcut.destination)}
             className="flex h-[91px] flex-col items-center justify-center gap-3 rounded-[11px] border border-white/[0.025] bg-[#141720] px-3 text-center text-white"
           >
             {shortcut.icon}

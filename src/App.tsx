@@ -67,6 +67,7 @@ const App: React.FC = () => {
   );
   const [showMissaoValores, setShowMissaoValores] = useState(false);
   const [showAccessCredentials, setShowAccessCredentials] = useState(false);
+  const [openSchedule, setOpenSchedule] = useState(false);
   const prevTabRef = useRef<NavTab>("inicio");
 
   const openMissaoValores = () => setShowMissaoValores(true);
@@ -112,6 +113,7 @@ const App: React.FC = () => {
               card={authenticatedCard}
               onNavigate={setAuthenticatedTab}
               onOpenAccessCredentials={() => setShowAccessCredentials(true)}
+              onOpenSchedule={() => { setOpenSchedule(true); setAuthenticatedTab("avaliacoes"); }}
             />
           );
         case "credencial":
@@ -119,7 +121,7 @@ const App: React.FC = () => {
         case "disciplinas":
           return <DisciplinesPage card={authenticatedCard} />;
         case "avaliacoes":
-          return <AcademicPage />;
+          return <AcademicPage card={authenticatedCard} openSchedule={openSchedule} onCloseSchedule={() => setOpenSchedule(false)} />;
         case "menu":
           return <MenuPage card={authenticatedCard} onOpenAccessCredentials={() => setShowAccessCredentials(true)} onLogout={() => { setAuthenticatedCard(null); setLoginProfile(null); setShowAccessCredentials(false); setActiveTab("inicio"); }} />;
       }
@@ -185,7 +187,7 @@ const App: React.FC = () => {
       {authenticatedCard && !validacaoId && (
         <AuthenticatedBottomNavigation
           activeTab={authenticatedTab}
-          onTabChange={(tab) => { setShowAccessCredentials(false); setAuthenticatedTab(tab); }}
+          onTabChange={(tab) => { setShowAccessCredentials(false); setOpenSchedule(false); setAuthenticatedTab(tab); }}
         />
       )}
       {sgaOpen && (

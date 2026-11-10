@@ -13,7 +13,10 @@ interface CourseExamples {
 }
 
 // Exemplos visuais: não representam matrícula, notas ou faltas reais.
-const courseExamples: CourseExamples[] = [
+export const courseExamples: CourseExamples[] = [
+  { matches: ["fisioterapia"], disciplines: [
+    { name: "BASES BIOLÓGICAS CELULARES", code: "8703.1.00" }, { name: "ANATOMIA HUMANA SISTÊMICA", code: "9280.1.02" }, { name: "MECANISMOS BIOLÓGICOS DE AGRESSÃO E DEFESA", code: "8704.1.00" }, { name: "CINESIOLOGIA", code: "9288.1.00" },
+  ] },
   { matches: ["medicina veterinaria"], disciplines: [
     { name: "ANATOMIA VETERINÁRIA" }, { name: "FISIOLOGIA ANIMAL" }, { name: "PATOLOGIA VETERINÁRIA" }, { name: "CLÍNICA DE PEQUENOS ANIMAIS" },
   ] },
@@ -52,7 +55,7 @@ const courseExamples: CourseExamples[] = [
   ] },
 ];
 
-function normalize(value: string): string {
+export function normalizeCourse(value: string): string {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
@@ -69,7 +72,7 @@ const Progress: React.FC<{ label: string; value: string; percentage: number }> =
 );
 
 const DisciplinesPage: React.FC<{ card: AccessCard }> = ({ card }) => {
-  const course = normalize(card.curso || "");
+  const course = normalizeCourse(card.curso || "");
   const examples = courseExamples.find(({ matches }) => matches.some((match) => course.includes(match)));
   const campus = card.campus?.trim();
 

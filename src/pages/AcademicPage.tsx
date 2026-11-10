@@ -10,6 +10,9 @@ import {
   Presentation,
   Ruler,
 } from "lucide-react";
+import type { AccessCard } from "../types";
+import SchedulePage from "./SchedulePage";
+import TeachingPlanPage from "./TeachingPlanPage";
 
 const academicItems = [
   { label: "Grade de horários", icon: AlarmClock },
@@ -19,8 +22,15 @@ const academicItems = [
   { label: "Calendário Acadêmico", icon: CalendarDays },
 ];
 
-const AcademicPage: React.FC = () => {
+const AcademicPage: React.FC<{ card: AccessCard; openSchedule: boolean; onCloseSchedule: () => void }> = ({ card, openSchedule, onCloseSchedule }) => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+
+  if (openSchedule || selectedItem === "Grade de horários") {
+    return <SchedulePage card={card} onBack={() => { setSelectedItem(null); onCloseSchedule(); }} />;
+  }
+  if (selectedItem === "Plano de ensino") {
+    return <TeachingPlanPage card={card} onBack={() => setSelectedItem(null)} />;
+  }
 
   return (
     <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
