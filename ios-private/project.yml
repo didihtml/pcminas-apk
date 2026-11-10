@@ -1,0 +1,22 @@
+name: PUCMinas
+options:
+  bundleIdPrefix: app.vercel.pucminas
+targets:
+  PUCMinas:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.vercel.pucminas.privado
+        PRODUCT_NAME: PUCMinas
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: PUC Minas
+        INFOPLIST_KEY_NSCameraUsageDescription: A câmera é usada na captura facial.
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: A biblioteca é usada para selecionar uma foto.
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        TARGETED_DEVICE_FAMILY: "1,2"

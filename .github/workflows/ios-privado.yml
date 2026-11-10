@@ -1,0 +1,29 @@
+name: Gerar IPA privado
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ipa:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar XcodeGen
+        run: brew install xcodegen
+      - name: Gerar projeto iOS
+        working-directory: ios-private
+        run: xcodegen generate
+      - name: Compilar aplicativo sem assinatura
+        working-directory: ios-private
+        run: |
+          xcodebuild -project PUCMinas.xcodeproj -scheme PUCMinas -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/PUCMinas.app Payload/
+          zip -qry PUCMinas-sem-assinatura.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PUCMinas-IPA-sem-assinatura
+          path: ios-private/PUCMinas-sem-assinatura.ipa
