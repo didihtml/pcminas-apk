@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import type { AccessCard } from "../types";
 
@@ -24,16 +24,11 @@ function formatDate(value: string | null | undefined) {
 
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
   const [imageError, setImageError] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1);
   const [dragOffset, setDragOffset] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const touchStartX = useRef(0);
   const containerWidth = useRef(0);
-  const currentSlideRef = useRef(0);
-
-  useEffect(() => {
-    currentSlideRef.current = currentSlide;
-  }, [currentSlide]);
 
   const telefone = card.codigoAcesso ?? card.id;
   const qrCredencialValue = `tel:${telefone}`;
@@ -75,7 +70,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
         </svg>
       ),
       qrValue: qrVinculoValue,
-      qrSize: 110,
+      qrSize: 100,
       qrPadding: "p-2",
       label: "Validade do QRCode",
       value: dataHoje,
@@ -105,16 +100,16 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
   return (
     <div
-      className="h-screen flex flex-col"
+      className="h-[100dvh] flex flex-col"
       style={{ background: "var(--bg-main)" }}
     >
       {/* Header */}
       <div
         className="flex items-center justify-between px-5"
-        style={{ background: "#171b31", height: "90px", paddingTop: "36px" }}
+        style={{ background: "#181d32", height: "100px", paddingTop: "36px" }}
       >
         <div className="w-8" />
-        <span className="text-white text-sm font-bold uppercase tracking-widest">
+        <span className="text-white text-sm font-semibold uppercase">
           Cartões de Acesso
         </span>
         <svg
@@ -132,10 +127,10 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
         {/* Card principal */}
         <div
           className="flex flex-col overflow-hidden"
-          style={{ background: "#02406D", borderRadius: "10px" }}
+          style={{ background: "#033862", borderRadius: "8px" }}
         >
           {/* Topo + meio com fundo azul original */}
-          <div style={{ background: "#024D85" }}>
+          <div className="min-h-[295px]" style={{ background: "#03447c" }}>
             {/* Topo: foto + nome/código */}
             <div className="p-4 flex gap-4 items-start">
               <div
@@ -156,12 +151,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                     onError={() => setImageError(true)}
                   />
                 ) : (
-                  <span
-                    className="text-center text-xs px-3"
-                    style={{ color: "#C9E9F5" }}
-                  >
-                    Foto indisponível
-                  </span>
+                  <img src="/cartao-sem-foto.png" alt="Sem foto cadastrada" className="h-full w-full object-cover" />
                 )}
               </div>
 
@@ -186,7 +176,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             </div>
 
             {/* Meio: grid de informações */}
-            <div className="px-4 pb-4 grid grid-cols-2 gap-x-3 gap-y-3">
+            <div className="px-5 pb-5 grid grid-cols-2 gap-x-3 gap-y-3">
               <div>
                 <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                   Atribuição
@@ -240,9 +230,9 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
           {/* Baixo: credencial de acesso - carrossel */}
           <div
-            className="flex flex-col px-4 pt-3 pb-3"
+            className="flex min-h-[188px] flex-col px-5 pt-5 pb-4"
             style={{
-              background: "#02406D",
+              background: "#033862",
             }}
           >
             <div
@@ -343,14 +333,14 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
             <div className="bg-white rounded-2xl p-4">
               <QRCodeSVG
-                value={slides[currentSlideRef.current].qrValue}
+                value={slides[currentSlide].qrValue}
                 size={280}
                 includeMargin
               />
             </div>
 
             <p className="text-white text-base font-semibold">
-              {slides[currentSlideRef.current].title}
+              {slides[currentSlide].title}
             </p>
           </div>
         </div>
