@@ -79,14 +79,14 @@ const FacialCapture: React.FC<FacialCaptureProps> = ({ onClose }) => {
       </header>
       <main className="relative min-h-0 flex-1 overflow-hidden bg-black">
         <video ref={videoRef} muted playsInline autoPlay className="absolute inset-0 h-full w-full scale-x-[-1] object-cover" aria-label="Prévia da câmera frontal" />
-        <div className="absolute left-4 top-4 rounded-xl bg-black/70 px-4 py-2 text-white">
-          <p className="text-sm">Passo {step + 1}/{steps.length}</p>
-          <p className="mt-1 text-lg font-semibold">{steps[step].title}</p>
+        <div className="absolute left-[4%] top-[14px] rounded-xl bg-[#302e2c]/85 px-[15px] py-2 text-white">
+          <p className="text-[13px] font-medium">Passo {step + 1}/{steps.length}</p>
+          <p className="mt-1 text-[18px] font-semibold leading-tight">{steps[step].title}</p>
         </div>
-        <button type="button" onClick={onClose} className="absolute right-4 top-4 rounded bg-white px-3 py-1.5 text-sm text-black">Fechar</button>
+        <button type="button" onClick={onClose} className="absolute right-[4%] top-[14px] rounded bg-[#f7f7f7] px-2 py-1.5 text-[13px] text-black">Fechar</button>
         {status === "ready" && <>
           <div aria-hidden="true" className="pointer-events-none absolute left-[5%] top-[15%] h-[67%] w-[90%] rounded-[50%] border-[5px] border-[#ff4048]" />
-          <p aria-live="polite" className="absolute bottom-[12%] left-1/2 w-max max-w-[80%] -translate-x-1/2 rounded-2xl bg-black/85 px-5 py-2 text-center text-sm text-[#00e987]">{steps[step].instruction}</p>
+          <p aria-live="polite" className="absolute bottom-[12%] left-1/2 w-[185px] max-w-[80%] -translate-x-1/2 rounded-[20px] bg-black/85 px-4 py-2 text-center text-[13px] leading-[19px] text-[#00e987]">{steps[step].instruction}</p>
         </>}
         {status === "loading" && <div role="status" className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 px-8 text-center"><span className="mb-5 h-12 w-12 animate-spin rounded-full border-4 border-[#10c5ec] border-b-transparent" /><p className="text-xl font-semibold">Quase pronto...</p><p className="mt-2 text-sm text-white/75">Abrindo a câmera. Aguarde.</p></div>}
         {status === "error" && <div role="alert" className="absolute inset-0 flex flex-col items-center justify-center bg-black/90 px-8 text-center"><p className="text-lg font-semibold">Não foi possível abrir a câmera</p><p className="mt-3 text-sm text-white/75">{error}</p><button type="button" onClick={onClose} className="mt-5 rounded-lg bg-[#00537d] px-5 py-2">Voltar</button></div>}
