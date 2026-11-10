@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { AlarmClock, Bell, QrCode } from "lucide-react";
 import type { AccessCard, AuthNavTab } from "../types";
 
@@ -33,7 +33,6 @@ const shortcuts: Array<{
 ];
 
 const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onNavigate, onOpenAccessCredentials }) => {
-  const [showNewsMessage, setShowNewsMessage] = useState(false);
   return (
   <div className="flex min-h-[100dvh] flex-col bg-[#0d1019] pb-28 text-white">
     <header className="relative flex h-[220px] flex-col items-center rounded-b-[18px] bg-[#171b31] px-5 pt-[max(48px,env(safe-area-inset-top))]">
@@ -63,10 +62,9 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onN
         <time className="text-[14px] text-[#85858e]" dateTime="2026-10-02">02/10/2026</time>
         <h2 className="mt-1.5 text-[14px] font-semibold leading-[17px]">Você foi inscrito(a) como ingressante para o ENADE 2026</h2>
       </article>
-      <button type="button" onClick={() => setShowNewsMessage(true)} className="mt-[11px] w-full rounded-[10px] bg-[#00527f] py-[14px] text-[13px] font-semibold text-white">
+      <a href="https://www.pucminas.br/destaques/Paginas/default.aspx" target="_blank" rel="noopener noreferrer" className="mt-[11px] block w-full rounded-[10px] bg-[#00527f] py-[14px] text-center text-[13px] font-semibold text-white">
         Ver mais
-      </button>
-      {showNewsMessage && <p className="mt-3 text-sm text-white/50" role="status">Não há outras notícias disponíveis.</p>}
+      </a>
     </main>
   </div>
   );
