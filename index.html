@@ -22,10 +22,26 @@
         margin: 0;
         background: #0d111d;
       }
+      #startup-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        background: #0e1118;
+      }
+      #startup-screen img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+      }
     </style>
     <title>PUC Minas</title>
   </head>
   <body>
+    <div id="startup-screen" role="status" aria-label="Carregando aplicativo">
+      <img src="/logo-splash.png" alt="PUC Minas" />
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

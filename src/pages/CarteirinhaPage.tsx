@@ -213,7 +213,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                 <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                   Campus
                 </p>
-                <p className="text-white text-xs leading-snug font-bold">
+                <p className="max-w-[110px] text-white text-xs leading-snug font-bold">
                   {card.campus || "-"}
                 </p>
               </div>
@@ -221,7 +221,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                 <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                   Curso
                 </p>
-                <p className="text-white text-xs leading-snug font-bold">
+                <p className="max-w-[110px] text-white text-xs leading-snug font-bold">
                   {card.curso}
                 </p>
               </div>
