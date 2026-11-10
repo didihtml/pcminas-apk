@@ -34,8 +34,8 @@ const shortcuts: Array<{
 
 const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onNavigate, onOpenAccessCredentials }) => {
   return (
-  <div className="flex min-h-[100dvh] flex-col bg-[#0d1019] pb-28 text-white">
-    <header className="relative flex h-[220px] flex-col items-center rounded-b-[18px] bg-[#171b31] px-5 pt-[max(48px,env(safe-area-inset-top))]">
+  <div className="flex min-h-[100dvh] flex-col bg-[#0d111d] pb-28 text-white">
+    <header className="relative flex h-[220px] flex-col items-center rounded-b-[18px] bg-[#182037] px-5 pt-[max(48px,env(safe-area-inset-top))]">
       <Bell size={19} strokeWidth={1.8} className="absolute right-5 top-12" aria-label="Notificações" />
       <img src="/logo-splash.png" alt={`PUC Minas - ${card.nome}`} className="h-[105px] w-[105px] object-contain" />
     </header>

@@ -74,8 +74,8 @@ const DisciplinesPage: React.FC<{ card: AccessCard }> = ({ card }) => {
   const campus = card.campus?.trim();
 
   return (
-    <div className="min-h-[100dvh] bg-[#0d1019] pb-32 text-white">
-      <header className="relative flex h-[118px] items-end justify-center bg-[#171b31] pb-6 pt-[env(safe-area-inset-top)]">
+    <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
+      <header className="relative flex h-[118px] items-end justify-center bg-[#182037] pb-6 pt-[env(safe-area-inset-top)]">
         <h1 className="text-[16px] font-semibold">PROGRESSO</h1>
         <Bell size={21} strokeWidth={1.8} className="absolute bottom-6 right-6" aria-label="Notificações" />
       </header>

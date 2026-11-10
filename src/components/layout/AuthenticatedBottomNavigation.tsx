@@ -17,7 +17,7 @@ const items: { id: AuthNavTab; label: string; icon: React.ReactNode }[] = [
 ];
 
 const AuthenticatedBottomNavigation: React.FC<AuthenticatedBottomNavigationProps> = ({ activeTab, onTabChange }) => (
-  <nav className="fixed bottom-0 left-1/2 z-50 w-full max-w-[430px] -translate-x-1/2 rounded-t-[15px] border-t border-white/[0.025] bg-[#0d111b]" aria-label="Navegação do perfil">
+  <nav className="fixed bottom-0 left-1/2 z-50 w-full max-w-[430px] -translate-x-1/2 rounded-t-[15px] border-t border-white/[0.025] bg-[#0d111d]" aria-label="Navegação do perfil">
     <div className="grid h-[77px] grid-cols-5 pb-[env(safe-area-inset-bottom)]">
       {items.map(({ id, label, icon }) => id === "credencial" ? (
         <button key={id} type="button" onClick={() => onTabChange(id)} aria-label="Abrir credencial de acesso" aria-current={activeTab === id ? "page" : undefined} className="relative flex justify-center">

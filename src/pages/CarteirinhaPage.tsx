@@ -106,7 +106,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
       {/* Header */}
       <div
         className="flex items-center justify-between px-5"
-        style={{ background: "#181d32", height: "100px", paddingTop: "36px" }}
+        style={{ background: "#182037", height: "100px", paddingTop: "36px" }}
       >
         <div className="w-8" />
         <span className="text-white text-sm font-semibold uppercase">

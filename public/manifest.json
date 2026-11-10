@@ -4,8 +4,8 @@
   "description": "PUC Minas — Sistema de Gestão Acadêmica",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0e1118",
-  "theme_color": "#172037",
+  "background_color": "#0e121a",
+  "theme_color": "#182037",
   "orientation": "portrait-primary",
   "icons": [
     {

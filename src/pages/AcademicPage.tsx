@@ -23,8 +23,8 @@ const AcademicPage: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
   return (
-    <div className="min-h-[100dvh] bg-[#0d1019] pb-32 text-white">
-      <header className="relative flex h-[118px] items-end justify-center bg-[#171b31] pb-6 pt-[env(safe-area-inset-top)]">
+    <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
+      <header className="relative flex h-[118px] items-end justify-center bg-[#182037] pb-6 pt-[env(safe-area-inset-top)]">
         {selectedItem && (
           <button
             type="button"
