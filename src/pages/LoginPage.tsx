@@ -132,11 +132,11 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
   return (
     <div
-      className="min-h-screen flex flex-col"
+      className="login-screen min-h-screen flex flex-col"
       style={{ background: "var(--bg-nav)" }}
     >
       <div
-        className="flex items-center justify-between px-5 pt-14 pb-5"
+        className="login-header flex items-center justify-between"
         style={{
           background: "var(--bg-header)",
         }}
@@ -144,24 +144,24 @@ const LoginPage: React.FC<LoginPageProps> = ({
         <button onClick={onBack} className="text-white p-1">
           <ArrowLeft size={22} strokeWidth={2} />
         </button>
-        <span className="text-white text-sm font-bold uppercase tracking-widest">
-          {isAluno ? "Aluno" : "Professor"}
+        <span className="text-white text-sm font-semibold uppercase">
+          {isAluno ? "Aluno" : profile === "funcionario" ? "Funcionário" : "Professor"}
         </span>
         <div className="w-8" />
       </div>
 
-      <div className="flex-1 flex flex-col items-center px-6 pt-24 pb-32">
+      <div className="login-content flex-1 flex flex-col items-center">
         <SGALogo size={2.0} />
 
-        <div className="mt-4 text-center">
+        <div className="login-intro text-center">
           <h2
-            className="text-xl font-bold mb-2"
+            className="text-[17px] font-semibold mb-2"
             style={{ color: "var(--text-primary)" }}
           >
             Acesse sua conta
           </h2>
           <p
-            className="text-sm leading-relaxed"
+            className="text-[15px] leading-[19px]"
             style={{ color: "var(--text-muted)" }}
           >
             Por favor, insira seus dados de login
@@ -170,7 +170,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
           </p>
         </div>
 
-        <div className="w-full mt-8 flex flex-col gap-3">
+        <div className="login-form w-full flex flex-col">
           {isAluno && (
             <div className="relative">
               <button
@@ -258,7 +258,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
             type="text"
             value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
-            placeholder="Código ou CPF"
+            placeholder="Insira seu usuário"
             className="w-full px-4 py-4 text-sm placeholder-gray-500 outline-none"
             style={{ ...inputStyle, color: "var(--text-input)" }}
           />
@@ -268,7 +268,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
               type={showPassword ? "text" : "password"}
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
-              placeholder="Senha"
+              placeholder="Insira sua senha"
               className="w-full px-4 py-4 pr-12 text-sm placeholder-gray-500 outline-none"
               style={{ ...inputStyle, color: "var(--text-input)" }}
             />
@@ -288,7 +288,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
               style={{
                 width: "44px",
                 height: "24px",
-                background: manterId ? "#0891B2" : "rgba(255,255,255,0.15)",
+                background: manterId ? "#0891B2" : "#c2cfd3",
               }}
             >
               <span
@@ -305,10 +305,10 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
           <button
             onClick={handleAcessar}
-            disabled={loading}
+            disabled={loading || !usuario.trim() || !senha || (isAluno && !origem)}
             className="w-full py-4 rounded-2xl font-semibold text-base mt-2 transition-opacity"
             style={{
-              background: loading ? "#00527F99" : "#00527F",
+              background: loading || !usuario.trim() || !senha || (isAluno && !origem) ? "#383b45" : "#00527F",
               color: "#B0B8C1",
             }}
           >
@@ -330,3 +330,5 @@ const LoginPage: React.FC<LoginPageProps> = ({
 };
 
 export default LoginPage;
+
+

@@ -182,7 +182,7 @@ const App: React.FC = () => {
         {renderPage()}
       </div>
       {!authenticatedCard && !validacaoId && (
-        <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
+        <BottomNavigation activeTab={loginProfile ? "portal" : activeTab} onTabChange={handleTabChange} />
       )}
       {authenticatedCard && !validacaoId && (
         <AuthenticatedBottomNavigation
@@ -215,6 +215,7 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
 
 

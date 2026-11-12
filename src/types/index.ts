@@ -5,7 +5,7 @@ export type AuthNavTab =
   | "credencial"
   | "avaliacoes"
   | "menu";
-export type LoginProfile = "aluno" | "professor";
+export type LoginProfile = "aluno" | "professor" | "funcionario";
 
 export interface CourseCard {
   id: string;
@@ -70,3 +70,4 @@ export interface StudentDiscipline {
   absences: number | null;
   absenceLimit: number | null;
 }
+
