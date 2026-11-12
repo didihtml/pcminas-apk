@@ -5,7 +5,7 @@ import CourseCardsSection from '../components/home/CourseCardsSection'
 import VoceporDentroSection from '../components/home/VoceporDentroSection'
 import NewsSection from '../components/home/NewsSection'
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC<{ onOpenNews: () => void }> = ({ onOpenNews }) => {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-main)' }}>
       <Header />
@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
         <BannerCarousel />
         <CourseCardsSection />
         <VoceporDentroSection />
-        <NewsSection />
+        <NewsSection onVerMais={onOpenNews} />
       </main>
     </div>
   )

@@ -3,6 +3,7 @@ import BottomNavigation from "./components/layout/BottomNavigation";
 import AuthenticatedBottomNavigation from "./components/layout/AuthenticatedBottomNavigation";
 import SGASheet from "./components/portal/SGASheet";
 import HomePage from "./pages/HomePage";
+import NewsPage from "./pages/NewsPage";
 import AuthenticatedHomePage from "./pages/AuthenticatedHomePage";
 import MenuPage from "./pages/MenuPage";
 import AccessCredentialsPage from "./pages/AccessCredentialsPage";
@@ -66,6 +67,7 @@ const App: React.FC = () => {
     null,
   );
   const [showMissaoValores, setShowMissaoValores] = useState(false);
+  const [showNews, setShowNews] = useState(false);
   const [showAccessCredentials, setShowAccessCredentials] = useState(false);
   const [openSchedule, setOpenSchedule] = useState(false);
   const prevTabRef = useRef<NavTab>("inicio");
@@ -149,11 +151,15 @@ const App: React.FC = () => {
       return <MissaoValoresPage onBack={closeMissaoValores} />;
     }
 
+    if (showNews) {
+      return <NewsPage onBack={() => setShowNews(false)} />;
+    }
+
     const goHome = () => setActiveTab("inicio");
 
     switch (activeTab) {
       case "inicio":
-        return <HomePage />;
+        return <HomePage onOpenNews={() => setShowNews(true)} />;
       case "ingressar":
         return <IngressarPage onBack={goHome} />;
       case "campi":
@@ -161,7 +167,7 @@ const App: React.FC = () => {
       case "a-puc":
         return <APucPage onBack={goHome} onMissaoValores={openMissaoValores} />;
       default:
-        return <HomePage />;
+        return <HomePage onOpenNews={() => setShowNews(true)} />;
     }
   };
 
@@ -181,7 +187,7 @@ const App: React.FC = () => {
       >
         {renderPage()}
       </div>
-      {!authenticatedCard && !validacaoId && (
+      {!authenticatedCard && !validacaoId && !showNews && (
         <BottomNavigation activeTab={loginProfile ? "portal" : activeTab} onTabChange={handleTabChange} />
       )}
       {authenticatedCard && !validacaoId && (
