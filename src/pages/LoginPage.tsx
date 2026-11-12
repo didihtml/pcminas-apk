@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, Eye, EyeOff, ChevronDown, X, Check } from "lucide-react";
+import { ArrowLeft, ChevronDown, X, Check } from "lucide-react";
 import { createPortal } from "react-dom";
 import { SGALogo } from "../components/portal/icons";
 import type { AccessCard, LoginProfile } from "../types";
@@ -43,10 +43,8 @@ const LoginPage: React.FC<LoginPageProps> = ({
   onBack,
   onSuccess,
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
   const [manterId, setManterId] = useState(false);
   const [usuario, setUsuario] = useState("");
-  const [senha, setSenha] = useState("");
   const [origem, setOrigem] = useState("");
   const [showOrigem, setShowOrigem] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -57,7 +55,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
   const handleAcessar = async () => {
     if (!usuario.trim()) {
-      setError("Informe o código ou CPF cadastrado na tabela cards.");
+      setError("Informe o CPF cadastrado.");
       return;
     }
 
@@ -76,7 +74,6 @@ const LoginPage: React.FC<LoginPageProps> = ({
             },
             body: JSON.stringify({
               usuario,
-              senha,
               origem,
               profile,
               manterId,
@@ -164,7 +161,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
             className="text-[15px] leading-[19px]"
             style={{ color: "var(--text-muted)" }}
           >
-            Por favor, insira seus dados de login
+            Por favor, informe seu CPF
             <br />
             para visualizar suas informações
           </p>
@@ -256,28 +253,10 @@ const LoginPage: React.FC<LoginPageProps> = ({
             type="text"
             value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
-            placeholder="Insira seu usuário"
+            placeholder="Insira seu CPF"
             className="w-full px-4 py-4 text-sm placeholder-gray-500 outline-none"
             style={{ ...inputStyle, color: "var(--text-input)" }}
           />
-
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              placeholder="Insira sua senha"
-              className="w-full px-4 py-4 pr-12 text-sm placeholder-gray-500 outline-none"
-              style={{ ...inputStyle, color: "var(--text-input)" }}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword((v) => !v)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
 
           <div className="flex items-center gap-3 mt-1">
             <button
@@ -303,10 +282,10 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
           <button
             onClick={handleAcessar}
-            disabled={loading || !usuario.trim() || !senha || (isAluno && !origem)}
+            disabled={loading || !usuario.trim() || (isAluno && !origem)}
             className="w-full py-4 rounded-2xl font-semibold text-base mt-2 transition-opacity"
             style={{
-              background: loading || !usuario.trim() || !senha || (isAluno && !origem) ? "#383b45" : "#00527F",
+              background: loading || !usuario.trim() || (isAluno && !origem) ? "#383b45" : "#00527F",
               color: "#B0B8C1",
             }}
           >

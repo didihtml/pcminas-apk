@@ -1,6 +1,5 @@
 import { PrismaPg } from "@prisma/adapter-pg"
 import { PrismaClient } from "@prisma/client"
-import { scryptSync, timingSafeEqual } from "node:crypto"
 import { hasCardAccess } from "../_lib/payment-db.js"
 
 /**
@@ -77,11 +76,11 @@ export default async function handler(req: { method?: string; body?: { usuario?:
 
   try {
     const p = getPrisma()
-    const { usuario, senha } = req.body ?? {}
+    const { usuario } = req.body ?? {}
 
-    if (typeof usuario !== "string" || !usuario.trim() || typeof senha !== "string" || !senha) {
+    if (typeof usuario !== "string" || !usuario.trim()) {
       return res.status(400).json({
-        message: "Informe usuário e senha.",
+        message: "Informe o CPF cadastrado.",
       })
     }
 
@@ -102,14 +101,8 @@ export default async function handler(req: { method?: string; body?: { usuario?:
 
     if (!card) {
       return res.status(401).json({
-        message: "Usuário ou senha inválidos.",
+        message: "Carteirinha não encontrada para o CPF informado.",
       })
-    }
-
-    const [salt, hash, extra] = card.alunoSenhaHash.split(":")
-    const validHash = extra === undefined && /^[a-f0-9]{32}$/i.test(salt ?? "") && /^[a-f0-9]{128}$/i.test(hash ?? "")
-    if (!validHash || !timingSafeEqual(scryptSync(senha, salt, 64), Buffer.from(hash, "hex"))) {
-      return res.status(401).json({ message: "Usuário ou senha inválidos." })
     }
 
     if (process.env.PAYMENT_GATE_ENABLED === "true" && !(await hasCardAccess(card.id))) {

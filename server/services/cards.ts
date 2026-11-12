@@ -2,7 +2,6 @@ import type { cards } from '@prisma/client'
 import prisma from '../../lib/prisma'
 import type { CardDto, CreateCardRequestBody } from '../types/cards'
 import { syncCardImage } from '../utils/syncCardImage'
-import { verifyStudentPassword } from '../../lib/student-password'
 
 function formatCpf(value: string) {
   const digits = value.replace(/\D/g, '')
@@ -53,7 +52,7 @@ export async function findCardById(id: string) {
   return card ? await toCardDto(card) : null
 }
 
-export async function findCardByIdentifier(identifier: string, password: string) {
+export async function findCardByIdentifier(identifier: string) {
   const value = identifier.trim()
   const digits = value.replace(/\D/g, '')
   const cpfCandidates = Array.from(new Set([value, digits, formatCpf(digits)]))
@@ -71,7 +70,7 @@ export async function findCardByIdentifier(identifier: string, password: string)
     },
   })
 
-  return card && verifyStudentPassword(password, card.alunoSenhaHash) ? await toCardDto(card) : null
+  return card ? await toCardDto(card) : null
 }
 
 export async function createCard(data: CreateCardRequestBody) {

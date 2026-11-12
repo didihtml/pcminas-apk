@@ -44,18 +44,18 @@ router.get('/cards/:id', async (request, response, next) => {
 
 router.post('/auth/login', async (request, response, next) => {
   try {
-    const { usuario, senha }: LoginRequestBody = request.body ?? {}
+    const { usuario }: LoginRequestBody = request.body ?? {}
 
-    if (!usuario?.trim() || !senha) {
-      response.status(400).json({ message: 'Informe usuário e senha.' })
+    if (!usuario?.trim()) {
+      response.status(400).json({ message: 'Informe o CPF cadastrado.' })
       return
     }
 
-    const card = await findCardByIdentifier(usuario, senha)
+    const card = await findCardByIdentifier(usuario)
 
     if (!card) {
       response.status(401).json({
-        message: 'Usuário ou senha inválidos.',
+        message: 'Carteirinha não encontrada para o CPF informado.',
       })
       return
     }
