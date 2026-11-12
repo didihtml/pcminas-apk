@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { paymentDb, hasCardAccess } from "./_lib/payment-db";
-import { createPixSale, getSaleStatus, CARD_UPDATE_AMOUNT_CENTS } from "./_lib/blackcat";
+import { paymentDb, hasCardAccess } from "./_lib/payment-db.js";
+import { createPixSale, getSaleStatus, CARD_UPDATE_AMOUNT_CENTS } from "./_lib/blackcat.js";
 
 type Request = { method?: string; body?: { action?: string; identifier?: string; email?: string; phone?: string; orderId?: string } };
 type Response = { status: (code: number) => { json: (data: unknown) => void }; json: (data: unknown) => void };

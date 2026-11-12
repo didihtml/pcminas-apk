@@ -87,8 +87,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
             ?.includes("application/json")
             ? await response.json()
             : {
-                message:
-                  "A resposta da API não veio em JSON. Verifique se o app foi aberto pelo Vite e se a API local está rodando.",
+                message: `O servidor de login está indisponível (erro ${response.status}). Tente novamente mais tarde.`,
               }) ?? {}) as Partial<LoginResponse> & {
             message?: string;
           };

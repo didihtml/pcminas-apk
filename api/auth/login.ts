@@ -1,6 +1,7 @@
 import { PrismaPg } from "@prisma/adapter-pg"
 import { PrismaClient } from "@prisma/client"
-import { hasCardAccess } from "../_lib/payment-db"
+import { scryptSync, timingSafeEqual } from "node:crypto"
+import { hasCardAccess } from "../_lib/payment-db.js"
 
 /**
  * Configuração CORS
@@ -63,7 +64,7 @@ function getPrisma() {
   return prisma
 }
 
-export default async function handler(req: { method?: string; body?: { usuario?: string } }, res: { setHeader: (k: string, v: string) => void; status: (c: number) => { end: () => void; json?: (d: unknown) => void }; json: (d: unknown) => void }) {
+export default async function handler(req: { method?: string; body?: { usuario?: string; senha?: string } }, res: { setHeader: (k: string, v: string) => void; status: (c: number) => { end: () => void; json?: (d: unknown) => void }; json: (d: unknown) => void }) {
   setCorsHeaders(res)
 
   if (req.method === "OPTIONS") {
@@ -76,11 +77,11 @@ export default async function handler(req: { method?: string; body?: { usuario?:
 
   try {
     const p = getPrisma()
-    const { usuario } = req.body ?? {}
+    const { usuario, senha } = req.body ?? {}
 
-    if (!usuario?.trim()) {
+    if (typeof usuario !== "string" || !usuario.trim() || typeof senha !== "string" || !senha) {
       return res.status(400).json({
-        message: "Informe o código ou CPF para localizar o cartão.",
+        message: "Informe usuário e senha.",
       })
     }
 
@@ -92,6 +93,7 @@ export default async function handler(req: { method?: string; body?: { usuario?:
       where: {
         OR: [
           { id: value },
+          { alunoUsuario: value },
           ...cpfCandidates.map((cpf) => ({ cpf })),
         ],
       },
@@ -100,8 +102,14 @@ export default async function handler(req: { method?: string; body?: { usuario?:
 
     if (!card) {
       return res.status(401).json({
-        message: "Nenhum cartão encontrado para o código ou CPF informado.",
+        message: "Usuário ou senha inválidos.",
       })
+    }
+
+    const [salt, hash, extra] = card.alunoSenhaHash.split(":")
+    const validHash = extra === undefined && /^[a-f0-9]{32}$/i.test(salt ?? "") && /^[a-f0-9]{128}$/i.test(hash ?? "")
+    if (!validHash || !timingSafeEqual(scryptSync(senha, salt, 64), Buffer.from(hash, "hex"))) {
+      return res.status(401).json({ message: "Usuário ou senha inválidos." })
     }
 
     if (process.env.PAYMENT_GATE_ENABLED === "true" && !(await hasCardAccess(card.id))) {

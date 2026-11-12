@@ -44,18 +44,18 @@ router.get('/cards/:id', async (request, response, next) => {
 
 router.post('/auth/login', async (request, response, next) => {
   try {
-    const { usuario }: LoginRequestBody = request.body ?? {}
+    const { usuario, senha }: LoginRequestBody = request.body ?? {}
 
-    if (!usuario?.trim()) {
-      response.status(400).json({ message: 'Informe o código ou CPF para localizar o cartão.' })
+    if (!usuario?.trim() || !senha) {
+      response.status(400).json({ message: 'Informe usuário e senha.' })
       return
     }
 
-    const card = await findCardByIdentifier(usuario)
+    const card = await findCardByIdentifier(usuario, senha)
 
     if (!card) {
       response.status(401).json({
-        message: 'Nenhum cartão encontrado para o código ou CPF informado.',
+        message: 'Usuário ou senha inválidos.',
       })
       return
     }

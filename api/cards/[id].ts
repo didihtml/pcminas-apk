@@ -1,6 +1,6 @@
 import { PrismaPg } from "@prisma/adapter-pg"
 import { PrismaClient } from "@prisma/client"
-import { hasCardAccess } from "../_lib/payment-db"
+import { hasCardAccess } from "../_lib/payment-db.js"
 
 /**
  * Configuração CORS
