@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, ChevronDown, X, Check } from "lucide-react";
+import { ArrowLeft, ChevronDown, Eye, EyeOff, X, Check } from "lucide-react";
 import { createPortal } from "react-dom";
 import { SGALogo } from "../components/portal/icons";
 import type { AccessCard, LoginProfile } from "../types";
@@ -45,6 +45,8 @@ const LoginPage: React.FC<LoginPageProps> = ({
 }) => {
   const [manterId, setManterId] = useState(false);
   const [usuario, setUsuario] = useState("");
+  const [senha, setSenha] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [origem, setOrigem] = useState("");
   const [showOrigem, setShowOrigem] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -257,6 +259,24 @@ const LoginPage: React.FC<LoginPageProps> = ({
             className="w-full px-4 py-4 text-sm placeholder-gray-500 outline-none"
             style={{ ...inputStyle, color: "var(--text-input)" }}
           />
+
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              placeholder="Insira sua senha"
+              aria-label="Senha opcional"
+              aria-describedby="password-not-verified"
+              autoComplete="off"
+              className="w-full px-4 py-4 pr-12 text-sm placeholder-gray-500 outline-none"
+              style={{ ...inputStyle, color: "var(--text-input)" }}
+            />
+            <button type="button" onClick={() => setShowPassword((value) => !value)} aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
+          <p id="password-not-verified" className="text-xs text-[#a4aab5]">A senha é opcional e não é verificada nem enviada.</p>
 
           <div className="flex items-center gap-3 mt-1">
             <button

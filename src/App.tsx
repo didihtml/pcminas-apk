@@ -102,7 +102,7 @@ const App: React.FC = () => {
 
   const handleLoginSuccess = (card: AccessCard) => {
     setAuthenticatedCard(card);
-    setAuthenticatedTab("credencial");
+    setAuthenticatedTab("inicio");
   };
 
   const renderPage = () => {
