@@ -3,7 +3,7 @@ import { MapPin } from 'lucide-react'
 import type { NavTab } from '../../types'
 
 const IconHome = () => (
-  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M3.5 10.4a2 2 0 0 1 .7-1.5l6.5-5.5a2 2 0 0 1 2.6 0l6.5 5.5a2 2 0 0 1 .7 1.5v8.1a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z" />
     <path d="M8.5 16.5h7" />
   </svg>
@@ -11,7 +11,7 @@ const IconHome = () => (
 
 // Recibo/certificado com linhas e borda ondulada
 const IconIngressar = () => (
-  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <rect x="3.5" y="2.5" width="17" height="19" rx="1.7" />
     <path d="M7.5 6.5h9M7.5 9.5h9M7.5 13h3" />
     <circle cx="14.5" cy="15" r="2.2" />
@@ -21,7 +21,7 @@ const IconIngressar = () => (
 
 // Prédio clássico com colunas e frontão
 const IconAPuc = () => (
-  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M2 9l10-6 10 6H2z" />
     <line x1="5"  y1="9" x2="5"  y2="18" />
     <line x1="9"  y1="9" x2="9"  y2="18" />
@@ -34,7 +34,7 @@ const IconAPuc = () => (
 
 // Pessoa centralizada
 const IconUser = () => (
-  <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <circle cx="12" cy="7.5" r="3.5" />
     <path d="M4.5 20v-1.1c0-2.5 2-4.4 4.5-4.4h6c2.5 0 4.5 1.9 4.5 4.4V20" />
   </svg>
@@ -57,7 +57,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
     { id: 'inicio',    label: 'Início',    icon: <IconHome /> },
     { id: 'ingressar', label: 'Ingressar', icon: <IconIngressar /> },
     { id: 'portal',    label: '',          icon: <IconUser />, isCenter: true },
-    { id: 'campi',     label: 'Campi',     icon: <MapPin size={19} strokeWidth={1.8} aria-hidden="true" /> },
+    { id: 'campi',     label: 'Campi',     icon: <MapPin size={17} strokeWidth={1.8} aria-hidden="true" /> },
     { id: 'a-puc',     label: 'A PUC',     icon: <IconAPuc /> },
   ]
 
@@ -67,7 +67,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
       style={{ background: 'var(--bg-nav)' }}
       aria-label="Navegação principal"
     >
-      <div className="relative grid h-[99px] grid-cols-5 pb-[env(safe-area-inset-bottom)]">
+      <div className="relative grid h-[95px] grid-cols-5 pb-[env(safe-area-inset-bottom)]">
         {navItems.map((item) => {
           if (item.isCenter) {
             return (
@@ -79,7 +79,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
                 aria-label="Portal do Aluno"
               >
                 <div
-                  className="absolute -top-[14px] h-[62px] w-[62px] rounded-full flex items-center justify-center text-white"
+                  className="absolute -top-[14px] h-[59px] w-[59px] rounded-full flex items-center justify-center text-white"
                   style={{ background: '#00537d' }}
                 >
                   {item.icon}
@@ -96,10 +96,10 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
               type="button"
               onClick={() => onTabChange(item.id)}
               aria-current={isActive ? 'page' : undefined}
-            className="relative flex flex-col items-center gap-1.5 pt-[15px]"
+            className="relative flex flex-col items-center gap-1 pt-[15px]"
             >
               {isActive && (
-                <span className="absolute top-0 left-1/2 h-[3px] w-[34px] -translate-x-1/2 rounded-full" style={{ background: 'var(--nav-active)' }} />
+                <span className="absolute top-0 left-1/2 h-[3px] w-[32px] -translate-x-1/2 rounded-full" style={{ background: 'var(--nav-active)' }} />
               )}
               <span style={{ color: isActive ? 'var(--nav-active)' : 'var(--nav-inactive)' }}>
                 {item.icon}
@@ -116,3 +116,4 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
 }
 
 export default BottomNavigation
+
