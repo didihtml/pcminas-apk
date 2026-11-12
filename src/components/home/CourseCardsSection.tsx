@@ -3,41 +3,18 @@ import CourseCard from './CourseCard'
 import type { CourseCard as CourseCardType } from '../../types'
 
 const COURSE_CARDS: CourseCardType[] = [
-  {
-    id: 'graduacao',
-    title: 'Graduação',
-    imageUrl: '/curso-graduacao.png',
-  },
-  {
-    id: 'pos-graduacao',
-    title: 'Pós-Graduação\nLato Sensu',
-    imageUrl: '/curso-pos-graduacao.png',
-  },
-  {
-    id: 'mestrado',
-    title: 'Mestrado e\nDoutorado',
-    imageUrl: '/curso-mestrado.png',
-  },
-  {
-    id: 'aperfeicoamento',
-    title: 'Aperfeiçoamento',
-    imageUrl: '/curso-aperfeicoamento.png',
-  },
+  { id: 'graduacao', title: 'Graduação', imageUrl: '/curso-graduacao.png' },
+  { id: 'pos-graduacao', title: 'Pós-Graduação\nLato Sensu', imageUrl: '/curso-pos-graduacao.png' },
+  { id: 'mestrado', title: 'Mestrado e\nDoutorado', imageUrl: '/curso-mestrado.png' },
+  { id: 'aperfeicoamento', title: 'Aperfeiçoamento', imageUrl: '/curso-aperfeicoamento.png' },
 ]
 
-const CourseCardsSection: React.FC = () => {
-  return (
-    <section className="px-4 mt-6">
-      <h2 className="text-primary text-lg font-bold uppercase mb-4 tracking-wide">
-        Vem Pra PUC
-      </h2>
-      <div className="grid grid-cols-2 gap-3">
-        {COURSE_CARDS.map((card) => (
-          <CourseCard key={card.id} card={card} />
-        ))}
-      </div>
-    </section>
-  )
-}
-
+const CourseCardsSection: React.FC = () => (
+  <section className="mt-[29px] px-[15px]">
+    <h2 className="mb-[19px] text-[18px] font-bold uppercase leading-6 text-white">Vem Pra PUC</h2>
+    <div className="grid grid-cols-2 gap-x-[10px] gap-y-[20px]">
+      {COURSE_CARDS.map(card => <CourseCard key={card.id} card={card} />)}
+    </div>
+  </section>
+)
 export default CourseCardsSection

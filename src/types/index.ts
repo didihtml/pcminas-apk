@@ -58,4 +58,15 @@ export interface AccessCard {
   atribuicao: string | null;
   codigoAcesso: string | null;
   createdAt: string;
+  disciplines?: StudentDiscipline[];
+}
+
+export interface StudentDiscipline {
+  id: string;
+  name: string;
+  code: string | null;
+  grade: number | null;
+  gradeMax: number | null;
+  absences: number | null;
+  absenceLimit: number | null;
 }

@@ -1,123 +1,16 @@
 import React from "react";
-import { ArrowRight, Bell } from "lucide-react";
+import { Bell } from "lucide-react";
 import type { AccessCard } from "../types";
 
-interface Discipline {
-  name: string;
-  code?: string;
-}
-
-interface CourseExamples {
-  matches: string[];
-  disciplines: Discipline[];
-}
-
-// Exemplos visuais: não representam matrícula, notas ou faltas reais.
-export const courseExamples: CourseExamples[] = [
-  { matches: ["fisioterapia"], disciplines: [
-    { name: "BASES BIOLÓGICAS CELULARES", code: "8703.1.00" }, { name: "ANATOMIA HUMANA SISTÊMICA", code: "9280.1.02" }, { name: "MECANISMOS BIOLÓGICOS DE AGRESSÃO E DEFESA", code: "8704.1.00" }, { name: "CINESIOLOGIA", code: "9288.1.00" },
-  ] },
-  { matches: ["medicina veterinaria"], disciplines: [
-    { name: "ANATOMIA VETERINÁRIA" }, { name: "FISIOLOGIA ANIMAL" }, { name: "PATOLOGIA VETERINÁRIA" }, { name: "CLÍNICA DE PEQUENOS ANIMAIS" },
-  ] },
-  { matches: ["medicina"], disciplines: [
-    { name: "ANATOMIA HUMANA" }, { name: "FISIOLOGIA HUMANA" }, { name: "PATOLOGIA GERAL" }, { name: "SEMIOLOGIA MÉDICA" }, { name: "SAÚDE COLETIVA" },
-  ] },
-  { matches: ["ciencia da computacao", "sistemas de informacao", "engenharia de software", "analise e desenvolvimento de sistemas", "engenharia da computacao"], disciplines: [
-    { code: "7180.1.00", name: "SEMINÁRIOS II" }, { code: "7174.1.00", name: "PROJETO E DESENVOLVIMENTO DE APLICAÇÕES WEB I" }, { name: "ALGORITMOS E ESTRUTURAS DE DADOS" }, { name: "BANCO DE DADOS" }, { name: "ENGENHARIA DE SOFTWARE" },
-  ] },
-  { matches: ["direito"], disciplines: [
-    { name: "INTRODUÇÃO AO DIREITO" }, { name: "DIREITO CONSTITUCIONAL" }, { name: "DIREITO CIVIL" }, { name: "DIREITO PENAL" },
-  ] },
-  { matches: ["psicologia"], disciplines: [
-    { name: "INTRODUÇÃO À PSICOLOGIA" }, { name: "PSICOLOGIA DO DESENVOLVIMENTO" }, { name: "NEUROCIÊNCIAS" }, { name: "PSICOLOGIA SOCIAL" },
-  ] },
-  { matches: ["enfermagem"], disciplines: [
-    { name: "ANATOMIA HUMANA" }, { name: "FUNDAMENTOS DE ENFERMAGEM" }, { name: "SAÚDE COLETIVA" }, { name: "FARMACOLOGIA" },
-  ] },
-  { matches: ["odontologia"], disciplines: [
-    { name: "ANATOMIA DA CABEÇA E PESCOÇO" }, { name: "MATERIAIS ODONTOLÓGICOS" }, { name: "DENTÍSTICA" }, { name: "SAÚDE BUCAL COLETIVA" },
-  ] },
-  { matches: ["administracao"], disciplines: [
-    { name: "TEORIA GERAL DA ADMINISTRAÇÃO" }, { name: "GESTÃO DE PESSOAS" }, { name: "MARKETING" }, { name: "ADMINISTRAÇÃO FINANCEIRA" },
-  ] },
-  { matches: ["ciencias contabeis", "contabilidade"], disciplines: [
-    { name: "CONTABILIDADE GERAL" }, { name: "CONTABILIDADE DE CUSTOS" }, { name: "LEGISLAÇÃO TRIBUTÁRIA" }, { name: "AUDITORIA" },
-  ] },
-  { matches: ["arquitetura"], disciplines: [
-    { name: "PROJETO DE ARQUITETURA" }, { name: "DESENHO ARQUITETÔNICO" }, { name: "HISTÓRIA DA ARQUITETURA" }, { name: "URBANISMO" },
-  ] },
-  { matches: ["engenharia"], disciplines: [
-    { name: "CÁLCULO DIFERENCIAL E INTEGRAL" }, { name: "FÍSICA GERAL" }, { name: "DESENHO TÉCNICO" }, { name: "INTRODUÇÃO À ENGENHARIA" },
-  ] },
-  { matches: ["pedagogia"], disciplines: [
-    { name: "FUNDAMENTOS DA EDUCAÇÃO" }, { name: "DIDÁTICA" }, { name: "PSICOLOGIA DA EDUCAÇÃO" }, { name: "ALFABETIZAÇÃO E LETRAMENTO" },
-  ] },
-];
-
-export function normalizeCourse(value: string): string {
-  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-}
-
-const Progress: React.FC<{ label: string; value: string; percentage: number }> = ({ label, value, percentage }) => (
-  <div className="min-w-0 flex-1">
-    <div className="mb-1 flex items-baseline justify-between gap-2 text-[17px] leading-5">
-      <span className="font-semibold text-[#f4f4f7]">{label}</span>
-      <span className="whitespace-nowrap text-[#85858e]">{value}</span>
-    </div>
-    <div className="h-[9px] overflow-hidden rounded-full bg-[#25273a]" aria-hidden="true">
-      <div className="h-full rounded-full bg-[#00618b]" style={{ width: `${percentage}%` }} />
-    </div>
+const DisciplinesPage: React.FC<{ card: AccessCard }> = ({ card }) => (
+  <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
+    <header className="relative flex h-[118px] items-end justify-center bg-[#182037] pb-6 pt-[env(safe-area-inset-top)]"><h1 className="text-[16px] font-semibold">PROGRESSO</h1><Bell size={21} strokeWidth={1.8} className="absolute bottom-6 right-6" aria-label="Notificações" /></header>
+    <main className="px-[18px] pt-7"><h2 className="mb-4 text-[18px] font-bold">NOTAS E FALTAS</h2>
+      {card.disciplines?.length ? <div className="space-y-4">{card.disciplines.map(item => <article key={item.id} className="rounded-[13px] border border-white/[0.05] bg-[#141720] p-[18px]">
+        <h3 className="text-[17px] font-bold leading-tight">{item.code ? `${item.code} - ` : ""}{item.name}</h3><p className="mt-2 text-sm text-[#9295a0]">{card.curso}{card.campus ? ` - ${card.campus}` : ""}</p><div className="my-4 h-px bg-white/[0.06]" />
+        <div className="flex gap-6 text-sm"><p><strong>Notas:</strong> {item.grade === null ? "Não cadastrada" : `${item.grade} / ${item.gradeMax}`}</p><p><strong>Faltas:</strong> {item.absences === null ? "Não cadastradas" : `${item.absences} / ${item.absenceLimit}`}</p></div>
+      </article>)}</div> : <p className="text-sm text-[#a4aab5]">As disciplinas, notas e faltas de {card.curso || "seu curso"} ainda não foram cadastradas.</p>}
+    </main>
   </div>
 );
-
-const DisciplinesPage: React.FC<{ card: AccessCard }> = ({ card }) => {
-  const course = normalizeCourse(card.curso || "");
-  const examples = courseExamples.find(({ matches }) => matches.some((match) => course.includes(match)));
-  const campus = card.campus?.trim();
-
-  return (
-    <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
-      <header className="relative flex h-[118px] items-end justify-center bg-[#182037] pb-6 pt-[env(safe-area-inset-top)]">
-        <h1 className="text-[16px] font-semibold">PROGRESSO</h1>
-        <Bell size={21} strokeWidth={1.8} className="absolute bottom-6 right-6" aria-label="Notificações" />
-      </header>
-      <main className="px-[18px] pt-7">
-        <h2 className="mb-2 text-[18px] font-bold">NOTAS E FALTAS</h2>
-        {examples ? (
-          <>
-            <p className="mb-4 text-sm text-[#a4aab5]">Disciplinas ilustrativas para {card.curso}. Notas e faltas reais não estão disponíveis.</p>
-            <div className="space-y-4">
-              {examples.disciplines.map((discipline, index) => {
-                // Valores variados apenas para demonstrar o layout até existir integração acadêmica.
-                const absences = (index * 5 + 2) % 12;
-                const absenceLimit = 36;
-                const grade = (6.4 + ((index * 1.1) % 3.2)).toFixed(1);
-
-                return (
-                <article key={discipline.name} className="rounded-[13px] border border-white/[0.025] bg-[#141720] px-[18px] pb-[18px] pt-5 shadow-[0_1px_4px_rgba(0,0,0,0.15)]">
-                  <div className="flex items-start gap-3">
-                    <h3 className="flex-1 text-[17px] font-bold leading-[1.2]">{discipline.code && `${discipline.code} - `}{discipline.name}</h3>
-                    <ArrowRight size={23} strokeWidth={1.8} className="mt-0.5 shrink-0" aria-hidden="true" />
-                  </div>
-                  <p className="mt-1.5 text-[17px] leading-[1.25] text-[#85858e]">{card.curso}{campus && ` - ${campus}`}</p>
-                  <div className="my-4 h-px bg-white/[0.025]" />
-                  {campus && <p className="text-[17px] leading-[1.45] text-[#85858e]"><span className="font-semibold">Local</span> {campus}</p>}
-                  <div className="mt-4 flex gap-5">
-                    <Progress label="Faltas" value={`${absences} / ${absenceLimit}`} percentage={(absences / absenceLimit) * 100} />
-                    <Progress label="Notas" value={`${grade} / 10`} percentage={Number(grade) * 10} />
-                  </div>
-                </article>
-                );
-              })}
-            </div>
-          </>
-        ) : (
-          <p className="mt-4 text-sm text-[#a4aab5]">Ainda não há disciplinas de exemplo para {card.curso || "o curso desta carteirinha"}. As informações acadêmicas reais não estão disponíveis.</p>
-        )}
-      </main>
-    </div>
-  );
-};
-
 export default DisciplinesPage;

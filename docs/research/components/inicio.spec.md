@@ -1,0 +1,2 @@
+# Início
+Rota src/pages/HomePage.tsx e componentes src/components/home/*, src/components/layout/Header.tsx. Referência 77c25e5d em C:/Users/2D/AppData/Local/Temp. Fundo e cabeçalho escuros; brasão branco centralizado; destaque vazio com ícone de imagem e texto; VEM PRA PUC em grade 2x2 com imagens existentes; título VOCÊ POR DENTRO. Medidas aproximadas a partir de print 739x1600. Preservar dados reais, links, carrossel e ações; não converter para Expo. Assets existentes devem ser priorizados.

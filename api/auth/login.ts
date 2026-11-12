@@ -1,5 +1,6 @@
 import { PrismaPg } from "@prisma/adapter-pg"
 import { PrismaClient } from "@prisma/client"
+import { hasCardAccess } from "../_lib/payment-db"
 
 /**
  * Configuração CORS
@@ -103,7 +104,18 @@ export default async function handler(req: { method?: string; body?: { usuario?:
       })
     }
 
-    return res.json({ card: await toCardDto(card) })
+    if (process.env.PAYMENT_GATE_ENABLED === "true" && !(await hasCardAccess(card.id))) {
+      return res.status(402).json({ message: "Pagamento necessário para acessar a carteirinha.", paymentRequired: true })
+    }
+    const cardDto = await toCardDto(card)
+    if (process.env.ACADEMIC_DATA_ENABLED === "true") {
+      const result = await p.$queryRaw<Array<{ id: string; name: string; code: string | null; grade: string | null; grade_max: string | null; absences: number | null; absence_limit: number | null }>>`
+        SELECT id::text, name, code, grade::text, grade_max::text, absences, absence_limit
+        FROM student_disciplines WHERE card_id = ${card.id} ORDER BY created_at, id
+      `
+      return res.json({ card: { ...cardDto, disciplines: result.map((item) => ({ id: item.id, name: item.name, code: item.code, grade: item.grade === null ? null : Number(item.grade), gradeMax: item.grade_max === null ? null : Number(item.grade_max), absences: item.absences, absenceLimit: item.absence_limit })) } })
+    }
+    return res.json({ card: cardDto })
   } catch (error: any) {
     console.error("[API ERROR]", error)
     return res.status(500).json({

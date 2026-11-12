@@ -57,11 +57,15 @@ function getPrisma() {
   return prisma
 }
 
-export default async function handler(req: { method?: string; body?: unknown }, res: { setHeader: (k: string, v: string) => void; status: (c: number) => { end: () => void; json?: (d: unknown) => void }; json: (d: unknown) => void }) {
+export default async function handler(req: { method?: string; body?: unknown; headers?: { authorization?: string } }, res: { setHeader: (k: string, v: string) => void; status: (c: number) => { end: () => void; json?: (d: unknown) => void }; json: (d: unknown) => void }) {
   setCorsHeaders(res)
 
   if (req.method === "OPTIONS") {
     return handleOptions(res)
+  }
+
+  if (process.env.PAYMENT_GATE_ENABLED === "true" && (!process.env.CARDS_ADMIN_TOKEN || req.headers?.authorization !== `Bearer ${process.env.CARDS_ADMIN_TOKEN}`)) {
+    return res.status(403).json({ message: "Acesso administrativo necessário." })
   }
 
   try {

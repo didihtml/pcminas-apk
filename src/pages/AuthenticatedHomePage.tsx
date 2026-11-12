@@ -59,10 +59,7 @@ const AuthenticatedHomePage: React.FC<AuthenticatedHomePageProps> = ({ card, onN
 
     <main className="px-[14px] pt-[30px]">
       <h1 className="mb-[14px] text-[16px] font-bold">NOTÍCIAS</h1>
-      <article className="rounded-[10px] border border-white/[0.025] bg-[#141720] px-[15px] py-[14px]">
-        <time className="text-[14px] text-[#85858e]" dateTime="2026-10-02">02/10/2026</time>
-        <h2 className="mt-1.5 text-[14px] font-semibold leading-[17px]">Você foi inscrito(a) como ingressante para o ENADE 2026</h2>
-      </article>
+      <p className="text-sm text-[#85858e]">Nenhuma notícia pessoal cadastrada.</p>
       <a href="https://www.pucminas.br/destaques/Paginas/default.aspx" target="_blank" rel="noopener noreferrer" className="mt-[11px] block w-full rounded-[10px] bg-[#00527f] py-[14px] text-center text-[13px] font-semibold text-white">
         Ver mais
       </a>

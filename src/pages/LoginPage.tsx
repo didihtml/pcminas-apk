@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ArrowLeft, Eye, EyeOff, ChevronDown, X } from "lucide-react";
 import { SGALogo } from "../components/portal/icons";
 import type { AccessCard, LoginProfile } from "../types";
+import PaymentPage from "./PaymentPage";
 
 interface LoginPageProps {
   profile: LoginProfile;
@@ -49,6 +50,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
   const [showOrigem, setShowOrigem] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [paymentApi, setPaymentApi] = useState<string | null>(null);
 
   const isAluno = profile === "aluno";
 
@@ -91,6 +93,10 @@ const LoginPage: React.FC<LoginPageProps> = ({
             message?: string;
           };
 
+          if (response.status === 402) {
+            setPaymentApi(apiBaseUrl);
+            return;
+          }
           if (!response.ok || !payload.card) {
             setError(
               payload.message ??
@@ -119,6 +125,10 @@ const LoginPage: React.FC<LoginPageProps> = ({
     border: "1.5px solid var(--input-border)",
     borderRadius: "14px",
   };
+
+  if (paymentApi !== null) {
+    return <PaymentPage identifier={usuario} apiBaseUrl={paymentApi} onBack={() => setPaymentApi(null)} onPaid={() => { setPaymentApi(null); void handleAcessar(); }} />;
+  }
 
   return (
     <div

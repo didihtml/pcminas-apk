@@ -1,5 +1,6 @@
 import { PrismaPg } from "@prisma/adapter-pg"
 import { PrismaClient } from "@prisma/client"
+import { hasCardAccess } from "../_lib/payment-db"
 
 /**
  * Configuração CORS
@@ -56,7 +57,7 @@ function getPrisma() {
   return prisma
 }
 
-export default async function handler(req: { method?: string; query?: { id?: string | string[] }; body?: { status?: string } }, res: { setHeader: (k: string, v: string) => void; status: (c: number) => { end: () => void; json?: (d: unknown) => void }; json: (d: unknown) => void }) {
+export default async function handler(req: { method?: string; query?: { id?: string | string[] }; body?: { status?: string }; headers?: { authorization?: string } }, res: { setHeader: (k: string, v: string) => void; status: (c: number) => { end: () => void; json?: (d: unknown) => void }; json: (d: unknown) => void }) {
   setCorsHeaders(res)
 
   if (req.method === "OPTIONS") {
@@ -87,10 +88,17 @@ export default async function handler(req: { method?: string; query?: { id?: str
         return res.status(404).json({ message: "Cartão não encontrado." })
       }
 
+      if (process.env.PAYMENT_GATE_ENABLED === "true" && !(await hasCardAccess(card.id))) {
+        return res.status(402).json({ message: "Pagamento necessário para acessar a carteirinha." })
+      }
+
       return res.json({ card: await toCardDto(card) })
     }
 
     if (req.method === "PATCH") {
+      if (process.env.PAYMENT_GATE_ENABLED === "true" && (!process.env.CARDS_ADMIN_TOKEN || req.headers?.authorization !== `Bearer ${process.env.CARDS_ADMIN_TOKEN}`)) {
+        return res.status(403).json({ message: "Acesso administrativo necessário." })
+      }
       const { status } = req.body ?? {}
 
       if (!status?.trim()) {

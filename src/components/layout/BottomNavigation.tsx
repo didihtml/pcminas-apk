@@ -63,22 +63,22 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
 
   return (
     <div
-      className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-50"
+      className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] z-50 rounded-t-[14px] border-t border-white/[0.04]"
       style={{ background: 'var(--bg-nav)' }}
     >
-      <div className="relative flex items-end justify-around px-1 pb-[max(18px,env(safe-area-inset-bottom))] pt-3">
+      <div className="relative grid h-[99px] grid-cols-5 pb-[env(safe-area-inset-bottom)]">
         {navItems.map((item) => {
           if (item.isCenter) {
             return (
               <button
                 key={item.id}
                 onClick={() => onTabChange(item.id)}
-                className="relative -mt-9 flex min-w-[66px] flex-col items-center"
+                className="relative flex justify-center"
                 aria-label="Portal do Aluno"
               >
                 <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center text-white shadow-lg"
-                  style={{ background: '#06557D' }}
+                  className="absolute -top-[14px] h-[62px] w-[62px] rounded-full flex items-center justify-center text-white"
+                  style={{ background: '#00537d' }}
                 >
                   {item.icon}
                 </div>
@@ -92,15 +92,15 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({ activeTab, onTabCha
             <button
               key={item.id}
               onClick={() => onTabChange(item.id)}
-            className="relative flex min-w-[62px] flex-col items-center gap-1.5"
+            className="relative flex flex-col items-center gap-1.5 pt-[15px]"
             >
               {isActive && (
-                <span className="absolute -top-3 left-1/2 h-0.5 w-10 -translate-x-1/2 rounded-full" style={{ background: 'var(--nav-active)' }} />
+                <span className="absolute top-0 left-1/2 h-[3px] w-[34px] -translate-x-1/2 rounded-full" style={{ background: 'var(--nav-active)' }} />
               )}
               <span style={{ color: isActive ? 'var(--nav-active)' : 'var(--nav-inactive)' }}>
                 {item.icon}
               </span>
-              <span className="text-[10px] font-medium" style={{ color: isActive ? 'var(--nav-active)' : 'var(--nav-inactive)' }}>
+              <span className={`text-[10px] ${isActive ? 'font-bold' : 'font-normal'}`} style={{ color: isActive ? 'var(--nav-active)' : 'var(--nav-inactive)' }}>
                 {item.label}
               </span>
             </button>
