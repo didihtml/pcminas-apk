@@ -267,7 +267,6 @@ const LoginPage: React.FC<LoginPageProps> = ({
               onChange={(e) => setSenha(e.target.value)}
               placeholder="Insira sua senha"
               aria-label="Senha opcional"
-              aria-describedby="password-not-verified"
               autoComplete="off"
               className="w-full px-4 py-4 pr-12 text-sm placeholder-gray-500 outline-none"
               style={{ ...inputStyle, color: "var(--text-input)" }}
@@ -276,7 +275,6 @@ const LoginPage: React.FC<LoginPageProps> = ({
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
           </div>
-          <p id="password-not-verified" className="text-xs text-[#a4aab5]">A senha é opcional e não é verificada nem enviada.</p>
 
           <div className="flex items-center gap-3 mt-1">
             <button

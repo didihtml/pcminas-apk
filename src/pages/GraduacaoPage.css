@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+.grad-page { position:fixed; inset:0; z-index:55; max-width:430px; margin:0 auto; overflow:hidden; background:#fff; color:#222; font-family:'Outfit',system-ui,sans-serif; }
+.grad-app-header { position:absolute; inset:0 0 auto; height:108px; padding:44px 24px 18px; z-index:4; display:flex; align-items:center; justify-content:space-between; color:#fff; background:#182037; font:600 15px system-ui,sans-serif; }
+.grad-spacer { width:23px; }
+.grad-scroll { position:absolute; inset:108px 0 34px; overflow-y:auto; overscroll-behavior:contain; scroll-behavior:smooth; background:#fff; }
+.grad-hero { height:395px; background-size:cover; background-position:center top; position:relative; }
+.grad-menu-button { position:absolute; top:18px; right:12px; display:flex; align-items:center; gap:4px; padding:4px 10px; border:1px solid #111; border-radius:5px; background:#ffffff99; color:#111; font-size:16px; font-style:italic; }
+.grad-hero-actions { position:absolute; right:15px; top:34%; display:flex; flex-direction:column; align-items:stretch; gap:8px; }
+.grad-hero-actions a { padding:12px 7px; background:#0088c6; color:#fff; font-size:12px; font-weight:800; text-align:center; border-radius:6px; }
+.grad-hero-actions a+ a { border:2px solid white; background:#0005; padding:9px 7px; }
+.grad-container { padding:32px 40px; }
+.grad-container h2 { color:#103b61; text-align:center; font-size:22px; line-height:1.15; font-weight:800; margin:0 0 22px; }
+.grad-formas { display:flex; flex-direction:column; gap:7px; }
+.grad-formas button { position:relative; min-height:142px; overflow:hidden; text-align:left; border:3px solid #103b61; border-radius:10px; color:#103b61; padding:15px; font-size:23px; line-height:1.08; font-weight:800; }
+.grad-formas button span { position:relative; z-index:1; display:block; max-width:68%; }
+.grad-formas button::after { content:''; position:absolute; width:160px; height:150px; border:3px solid #20c8f5; border-radius:23px; right:-95px; top:0; transform:rotate(-23deg); }
+.grad-formas button.active { background:#ddf0ff; }
+.grad-details { padding:20px 10px 0; font-size:13px; line-height:1.45; }
+.grad-details h3 { color:#1766c8; font-size:20px; font-weight:800; margin-bottom:2px; }
+.grad-details p { margin:12px 0; }
+.grad-details ul { list-style:disc; padding-left:20px; }
+.grad-edital { display:inline-block; border:1px solid #777; border-radius:3px; padding:6px; margin-top:15px; }
+.grad-courses { padding-top:35px; }
+.grad-course { display:block; position:relative; overflow:hidden; margin-bottom:20px; border:2px solid #104774; border-radius:10px; color:white; aspect-ratio:575/415; background:#123c5d; }
+.grad-course img { width:100%; height:100%; object-fit:cover; }
+.grad-course > div { position:absolute; left:10px; bottom:18px; text-shadow:0 1px 3px #000; }
+.grad-course span { display:inline-block; background:#008bca; border-radius:6px; padding:10px 12px; font-size:12px; text-transform:uppercase; text-shadow:none; }
+.grad-course p { margin:5px 0 0; font-size:15px; }
+.grad-reasons { color:#333; }
+.grad-intro { text-align:center; font-size:13px; line-height:1.6; margin-bottom:44px; }
+.grad-reason { margin:35px 0; }
+.grad-reason img { width:48px; height:48px; object-fit:contain; margin-bottom:12px; }
+.grad-reason h3 { font-weight:700; font-size:14px; margin-bottom:8px; }
+.grad-reason p { font-size:13px; line-height:1.5; }
+.grad-medicine { min-height:265px; background-position:center; background-size:cover; display:flex; align-items:end; padding:20px; }
+.grad-medicine a { border:1px solid white; color:#fff; padding:8px 12px; font-size:12px; }
+.grad-resources { background:#0087c5; padding:24px 40px; color:#fff; }
+.grad-resources div { border:1px solid #6ec9e6; padding:16px; margin-bottom:12px; }
+.grad-resources h3 { font-size:15px; font-weight:700; }
+.grad-resources p { margin:6px 0 12px; font-size:13px; }
+.grad-resources a { display:inline-block; background:#fff; color:#007db4; padding:7px; font-size:11px; }
+.grad-social { text-align:center; }
+.grad-social a { color:#006794; }
+.grad-faq { padding-top:20px; }
+.grad-faq-item { margin-bottom:6px; border:1px solid #103b61; border-radius:5px; overflow:hidden; background:#dceefa; color:#103b61; }
+.grad-faq-item button { display:flex; gap:10px; align-items:center; justify-content:space-between; text-align:left; width:100%; padding:13px; font-size:12px; line-height:1.3; }
+.grad-faq-item svg { flex-shrink:0; }
+.grad-faq-item p { padding:8px 13px 14px; color:#315a72; font-size:12px; line-height:1.5; }
+.grad-footer { background:#001b2b; color:#fff; padding:25px 40px 55px; }
+.grad-footer > img { width:105px; height:95px; object-fit:contain; object-position:left; }
+.grad-footer div { margin:15px 0; }
+.grad-footer h3 { font-weight:700; font-size:14px; }
+.grad-footer p { color:#becad1; font-size:11px; line-height:1.4; }
+.grad-floating { position:absolute; z-index:5; inset:auto 35px 45px 5px; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
+.grad-floating button,.grad-whatsapp { width:49px; height:49px; border-radius:50%; color:#fff; display:grid; place-items:center; box-shadow:0 2px 8px #0004; pointer-events:auto; }
+.grad-floating button { background:#2855e9; border:3px solid #82b8e8; }.grad-whatsapp { background:#00c93b; }
+.grad-menu-overlay { position:absolute; inset:108px 0 34px; z-index:7; padding:20px 32px; background:#001e2eef; color:#fff; display:flex; flex-direction:column; align-items:stretch; gap:16px; overflow:auto; font-size:13px; }
+.grad-menu-overlay > button,.grad-menu-overlay > a { text-align:left; }
+.grad-menu-head { display:flex; align-items:center; justify-content:space-between; font-size:14px; margin-bottom:20px; }
+.grad-cookie-panel { position:absolute; z-index:8; bottom:34px; left:0; right:0; max-height:calc(100dvh - 142px); overflow:auto; padding:50px 20px 16px; background:#fff; color:#222; box-shadow:0 -4px 18px #0002; }
+.grad-cookie-close { position:absolute; right:18px; top:20px; color:#555; }
+.grad-cookie-panel h2 { font-size:20px; font-weight:800; line-height:1.2; margin:0 0 3px; }
+.grad-cookie-panel p { font-size:13px; line-height:1.48; margin-bottom:12px; }
+.grad-cookie-panel p a { text-decoration:underline; color:#00758a; font-weight:700; }
+.grad-cookie-panel label { display:block; font-size:13px; padding:8px 0; }
+.grad-cookie-action { display:block; width:100%; min-height:41px; margin-top:10px; border-radius:2px; background:#007386; color:#fff; font-size:13px; font-weight:700; }
+.grad-cookie-action.outline { border:1px solid #007386; color:#007386; background:#fff; }
+.grad-safe { position:absolute; bottom:0; left:0; right:0; height:34px; background:#0d111d; }

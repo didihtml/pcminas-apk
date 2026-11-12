@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { createPortal } from 'react-dom'
 import PageHeader from '../components/layout/PageHeader'
 import graduacao from '../assets/ingressar/graduacao.png'
 import posGraduacao from '../assets/ingressar/pos-graduacao.png'
@@ -8,6 +9,8 @@ import complementacao from '../assets/ingressar/complementacao.png'
 import reabertura from '../assets/ingressar/reabertura.png'
 import transferencia from '../assets/ingressar/transferencia.png'
 import segundaGraduacao from '../assets/ingressar/segunda-graduacao.png'
+import GraduacaoPage from './GraduacaoPage'
+import PosGraduacaoPage from './PosGraduacaoPage'
 
 interface IngressoCard { id: string; title: string; image: string }
 const PROCESSOS: IngressoCard[] = [
@@ -26,9 +29,13 @@ const OUTROS: IngressoCard[] = [
 interface IngressarPageProps { onBack: () => void }
 const IngressarPage: React.FC<IngressarPageProps> = ({ onBack }) => {
   const [notice, setNotice] = useState('')
+  const [showGraduacao, setShowGraduacao] = useState(false)
+  const [showPosGraduacao, setShowPosGraduacao] = useState(false)
+  if (showGraduacao) return createPortal(<GraduacaoPage onBack={() => setShowGraduacao(false)} />, document.body)
+  if (showPosGraduacao) return createPortal(<PosGraduacaoPage onBack={() => setShowPosGraduacao(false)} />, document.body)
   const renderCards = (cards: IngressoCard[]) => (
     <div className="grid grid-cols-2 gap-[15px]">
-      {cards.map(card => <button key={card.id} type="button" onClick={() => setNotice(card.title)} aria-label={`${card.title}: ver mais`} className="block w-full overflow-hidden rounded-[8px] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+      {cards.map(card => <button key={card.id} type="button" onClick={() => card.id === 'graduacao' ? setShowGraduacao(true) : card.id === 'pos-graduacao' ? setShowPosGraduacao(true) : setNotice(card.title)} aria-label={`${card.title}: ver mais`} className="block w-full overflow-hidden rounded-[8px] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
         <img src={card.image} alt="" className="block h-auto w-full" />
       </button>)}
     </div>

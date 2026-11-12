@@ -3,10 +3,9 @@ import {
   AlarmClock,
   ArrowLeft,
   Bell,
-  CalendarDays,
+  Calendar1,
   ChevronRight,
   GraduationCap,
-  LoaderCircle,
   Presentation,
   Ruler,
 } from "lucide-react";
@@ -19,7 +18,7 @@ const academicItems = [
   { label: "Plano de ensino", icon: Presentation },
   { label: "Guia do aluno", icon: Ruler },
   { label: "Calendário Letivo", icon: GraduationCap },
-  { label: "Calendário Acadêmico", icon: CalendarDays },
+  { label: "Calendário Acadêmico", icon: Calendar1 },
 ];
 
 const AcademicPage: React.FC<{ card: AccessCard; openSchedule: boolean; onCloseSchedule: () => void }> = ({ card, openSchedule, onCloseSchedule }) => {
@@ -34,7 +33,7 @@ const AcademicPage: React.FC<{ card: AccessCard; openSchedule: boolean; onCloseS
 
   return (
     <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
-      <header className="relative flex h-[118px] items-end justify-center bg-[#182037] pb-6 pt-[env(safe-area-inset-top)]">
+      <header className="relative flex h-[108px] items-end justify-center bg-[#182037] pb-6 pt-[env(safe-area-inset-top)]">
         {selectedItem && (
           <button
             type="button"
@@ -51,20 +50,20 @@ const AcademicPage: React.FC<{ card: AccessCard; openSchedule: boolean; onCloseS
 
       {selectedItem ? (
         <main className="flex min-h-[calc(100dvh-250px)] flex-col items-center justify-center gap-4 px-[18px]">
-          <LoaderCircle size={34} strokeWidth={1.8} className="animate-spin text-[#00618b]" aria-label="Carregando" />
           <h2 className="text-base font-semibold">{selectedItem}</h2>
+          <p className="text-center text-sm text-[#a4aab5]">Este conteúdo ainda não está disponível.</p>
         </main>
       ) : (
-        <main className="space-y-2 px-[17px] pt-[18px]">
+        <main className="space-y-2 px-4 pt-4">
           {academicItems.map(({ label, icon: Icon }) => (
             <button
               key={label}
               type="button"
               onClick={() => setSelectedItem(label)}
-              className="flex min-h-[65px] w-full items-center gap-[15px] rounded-[9px] border border-white/[0.035] bg-[#141720] px-[18px] text-left shadow-[0_1px_4px_rgba(0,0,0,0.15)]"
+              className="flex min-h-[59px] w-full items-center gap-[14px] rounded-[9px] border border-white/[0.035] bg-[#151923] px-[18px] text-left"
             >
-              <Icon size={24} strokeWidth={1.7} className="shrink-0" aria-hidden="true" />
-              <span className="min-w-0 flex-1 text-[17px] font-semibold leading-tight">{label}</span>
+              <Icon size={22} strokeWidth={1.7} className="shrink-0" aria-hidden="true" />
+              <span className="min-w-0 flex-1 text-[16px] font-semibold leading-tight">{label}</span>
               <ChevronRight size={24} strokeWidth={1.8} className="shrink-0" aria-hidden="true" />
             </button>
           ))}
