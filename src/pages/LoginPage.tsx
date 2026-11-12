@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ArrowLeft, Eye, EyeOff, ChevronDown, X } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, ChevronDown, X, Check } from "lucide-react";
+import { createPortal } from "react-dom";
 import { SGALogo } from "../components/portal/icons";
 import type { AccessCard, LoginProfile } from "../types";
 import PaymentPage from "./PaymentPage";
@@ -195,62 +196,60 @@ const LoginPage: React.FC<LoginPageProps> = ({
             </div>
           )}
 
-          {showOrigem && (
+          {showOrigem && createPortal(
             <>
               <div
                 className="fixed inset-0 z-[60]"
                 style={{
-                  background: "rgba(0,0,0,0.45)",
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
+                  background: "rgba(0,0,0,0.58)",
                   animation: "overlayFadeIn 0.25s ease forwards",
                 }}
                 onClick={() => setShowOrigem(false)}
               />
               <div
-                className="fixed bottom-0 left-1/2 w-full max-w-[430px] z-[70] rounded-t-3xl"
+                className="origin-sheet fixed bottom-0 left-1/2 w-full max-w-[430px] z-[70]"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="origin-title"
                 style={{
-                  background: "#1A1F2A",
+                  background: "#151923",
                   animation:
                     "sheetSlideUp 0.38s cubic-bezier(0.32, 0.72, 0, 1) forwards",
                   willChange: "transform",
                 }}
               >
-                <div className="w-10 h-1 rounded-full bg-gray-600 mx-auto mt-3 mb-1" />
-
-                <div className="flex items-center justify-between px-6 py-4">
-                  <span className="text-white text-base font-semibold">
+                <div className="origin-sheet-header">
+                  <span id="origin-title">
                     Selecione a origem
                   </span>
                   <button
                     onClick={() => setShowOrigem(false)}
-                    className="text-gray-400 hover:text-white"
+                    className="text-white"
+                    aria-label="Fechar"
                   >
-                    <X size={20} />
+                    <X size={23} />
                   </button>
                 </div>
 
-                <div className="overflow-y-auto" style={{ maxHeight: "60vh" }}>
+                <div className="origin-options" role="listbox" aria-label="Origem">
                   {ORIGENS.map((o) => (
                     <button
                       key={o}
-                      className="w-full text-left px-6 py-4 text-base transition-colors hover:bg-white/5"
-                      style={{
-                        color: "#82878F",
-                        borderTop: "1px solid rgba(255,255,255,0.06)",
-                      }}
+                      className="origin-option"
+                      role="option"
+                      aria-selected={origem === o}
                       onClick={() => {
                         setOrigem(o);
                         setShowOrigem(false);
                       }}
                     >
                       {o}
+                      {origem === o && <Check size={23} strokeWidth={2.2} />}
                     </button>
                   ))}
                 </div>
-                <div className="h-8" />
               </div>
-            </>
+            </>, document.body
           )}
 
           <input
