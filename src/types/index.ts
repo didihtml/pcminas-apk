@@ -59,6 +59,17 @@ export interface AccessCard {
   codigoAcesso: string | null;
   createdAt: string;
   disciplines?: StudentDiscipline[];
+  email?: string | null;
+  bills?: StudentBill[];
+}
+
+export interface StudentBill {
+  id: string;
+  description: string;
+  dueDate: string;
+  amountCents: number;
+  status: "PENDENTE" | "PAGO" | "CANCELADO";
+  paymentUrl: string | null;
 }
 
 export interface StudentDiscipline {
