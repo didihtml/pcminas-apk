@@ -57,7 +57,7 @@
 .grad-menu-overlay { position:absolute; inset:108px 0 34px; z-index:7; padding:20px 32px; background:#001e2eef; color:#fff; display:flex; flex-direction:column; align-items:stretch; gap:16px; overflow:auto; font-size:13px; }
 .grad-menu-overlay > button,.grad-menu-overlay > a { text-align:left; }
 .grad-menu-head { display:flex; align-items:center; justify-content:space-between; font-size:14px; margin-bottom:20px; }
-.grad-cookie-panel { position:absolute; z-index:8; bottom:34px; left:0; right:0; max-height:calc(100dvh - 142px); overflow:auto; padding:50px 20px 16px; background:#fff; color:#222; box-shadow:0 -4px 18px #0002; }
+.grad-cookie-panel { position:absolute; z-index:8; bottom:0; left:0; right:0; max-height:calc(100dvh - 108px); overflow:auto; padding:50px 20px 16px; background:#fff; color:#222; box-shadow:0 -4px 18px #0002; }
 .grad-cookie-close { position:absolute; right:18px; top:20px; color:#555; }
 .grad-cookie-panel h2 { font-size:20px; font-weight:800; line-height:1.2; margin:0 0 3px; }
 .grad-cookie-panel p { font-size:13px; line-height:1.48; margin-bottom:12px; }

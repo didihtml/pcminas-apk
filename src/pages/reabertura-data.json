@@ -1,0 +1,444 @@
+[
+  [
+    {
+      "id": "2259",
+      "title": "Administração",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/administracao_2259_1_fac6a15fbc2660a999c24dc800044848.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/administracao"
+    },
+    {
+      "id": "2393",
+      "title": "Administração - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/administracao_ead_2393_1_173656792c980fa24a5bc8dd1194f254.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/administracao-ead"
+    },
+    {
+      "id": "2285",
+      "title": "Arquitetura e Urbanismo",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/arquitetura_e_urbanismo_2285_1_b31ae13f0cce4c528ae2d94c655056fc.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/arquitetura-e-urbanismo"
+    },
+    {
+      "id": "2263",
+      "title": "Biomedicina",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/biomedicina_2263_1_446ca1b2b2b66ae9fc5ca508013dba40.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/biomedicina"
+    },
+    {
+      "id": "2305",
+      "title": "Ciência da Computação",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencia_da_computacao_2305_1_d5c05a26b184d660011822da3c9438e4.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencia-da-computacao"
+    },
+    {
+      "id": "2363",
+      "title": "Ciência de Dados e Inteligência Artificial",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencia_de_dados_2363_1_c21576e11ba285e01b0cb30fdf2054b2.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencia-de-dados"
+    },
+    {
+      "id": "2321",
+      "title": "Ciências Biológicas - Bacharelado",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencias_biologicas_bacharelado_2321_1_24d148114bab5363d5e74bccf70abbc8.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencias-biologicas-bacharelado"
+    },
+    {
+      "id": "2327",
+      "title": "Ciências Biológicas - Licenciatura",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencias_biologicas_licenciatura_2327_1_606064817ca688614d23e3ee88dba372.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencias-biologicas-licenciatura"
+    },
+    {
+      "id": "2277",
+      "title": "Ciências Contábeis",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencias_contabeis_2277_1_b26db6aae26dee759d8c18203cce46b1.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencias-contabeis"
+    },
+    {
+      "id": "2429",
+      "title": "Ciências Contábeis - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencias_contabeis_ead_2429_1_c895aa6d7d13fadb55bc625c5853c0de.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencias-contabeis-ead"
+    },
+    {
+      "id": "2331",
+      "title": "Ciências Econômicas",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencias_economicas_2331_1_4910e3909d0d6a8d7fcfba9ba02b103f.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencias-economicas"
+    },
+    {
+      "id": "2365",
+      "title": "Ciências Econômicas - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencias_economicas_ead_2365_1_fcc6816bcac3c5803f18067aeceebc7d.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencias-economicas-ead"
+    },
+    {
+      "id": "2339",
+      "title": "Ciências Sociais - Bacharelado",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencias_sociais_bacharelado_2339_1_be06cbad54ae5349cdd507315827a1b2.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencias-sociais-bacharelado"
+    },
+    {
+      "id": "2341",
+      "title": "Ciências Sociais - Licenciatura",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/ciencias_sociais_licenciatura_2341_1_71730c0c2d6f56a260ba04204c3d5eb9.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/ciencias-sociais-licenciatura"
+    },
+    {
+      "id": "2335",
+      "title": "Cinema e Audiovisual",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/cinema_e_audiovisual_2335_1_33ab237aecb546c883640c5b91d4e14b.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/cinema-e-audiovisual"
+    },
+    {
+      "id": "2261",
+      "title": "Direito",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/direito_2261_1_eeead2c9c55896907201e0781a0abd05.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/direito"
+    },
+    {
+      "id": "2333",
+      "title": "Educação Física - Bacharelado",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/educacao_fisica_bacharelado_2333_1_2f1863c3d25e9185fb848d4305e04516.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/educacao-fisica-bacharelado"
+    },
+    {
+      "id": "2337",
+      "title": "Educação Física - Licenciatura",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/educacao_fisica_licenciatura_2337_1_499a97bc52e514378f3a37a563c85ead.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/educacao-fisica-licenciatura"
+    },
+    {
+      "id": "2269",
+      "title": "Enfermagem",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/enfermagem_2269_1_bbd9f2cd5ae059740b5d195854c1d6e6.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/enfermagem"
+    },
+    {
+      "id": "2345",
+      "title": "Engenharia Aeronáutica",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_aeronautica_2345_1_bfebf91d74f55dbb50d315132a17b6e2.jpg",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-aeronautica"
+    },
+    {
+      "id": "2343",
+      "title": "Engenharia Civil",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_civil_2343_1_57aa638aba05baa0e3cb62fdb819f435.jpg",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-civil"
+    },
+    {
+      "id": "2357",
+      "title": "Engenharia de Computação",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_de_computacao_2357_1_e958591de1e23972b72030fdc9086f4c.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-de-computacao"
+    },
+    {
+      "id": "2355",
+      "title": "Engenharia de Controle e Automação",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_de_controle_e_automacao_2355_1_5b87d70aad7a8fa04d4c5591b735276a.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-de-controle-e-automacao"
+    },
+    {
+      "id": "2349",
+      "title": "Engenharia de Produção",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_de_producao_2349_1_a46541af0e2ce3fe1bc699230844b4af.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-de-producao"
+    },
+    {
+      "id": "2353",
+      "title": "Engenharia de Software",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_de_software_2353_1_95dcd02d294cfcfdc7340f91db7cd00b.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-de-software"
+    },
+    {
+      "id": "2351",
+      "title": "Engenharia Elétrica",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_eletrica_2351_1_bc8dd4ef4c17b8834a7e25e9492e0a97.jpg",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-eletrica"
+    },
+    {
+      "id": "2289",
+      "title": "Engenharia Mecânica",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_mecanica_2289_1_6e975532418f9e13af750435c631b18e.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-mecanica"
+    },
+    {
+      "id": "2291",
+      "title": "Engenharia Química",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_quimica_2291_1_e9acf728361c20acabd369c62eddea25.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-quimica"
+    },
+    {
+      "id": "2389",
+      "title": "Engenharia Robótica",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/engenharia_mecatronica_2389_1_195b2d5d4130e5b747bb56db20f4bb2b.jpg",
+      "url": "https://vemprapuc.pucminas.br/graduacao/engenharia-mecatronica"
+    },
+    {
+      "id": "2295",
+      "title": "Farmácia",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/farmacia_2295_1_b6e8d8090906230ad3fa0a470fc8c461.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/farmacia"
+    },
+    {
+      "id": "2391",
+      "title": "Filosofia - Bacharelado",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/filosofia_bacharelado_2391_1_0034e96ea25752640a290ab81d0d9921.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/filosofia-bacharelado"
+    },
+    {
+      "id": "2257",
+      "title": "Física",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/fisica_2257_1_caa56cb9dd82aa2314a86eb4138f5b10.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/fisica"
+    },
+    {
+      "id": "2267",
+      "title": "Fisioterapia",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/fisioterapia_2267_1_6a1d1498fe315f760b6758d5fc710eab.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/fisioterapia"
+    },
+    {
+      "id": "2287",
+      "title": "Fonoaudiologia",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/fonoaudiologia_2287_1_d38bf85c2863de0aa2421d5f325b3cdf.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/fonoaudiologia"
+    },
+    {
+      "id": "2293",
+      "title": "Geografia - Bacharelado",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/geografia_bacharelado_2293_1_f7c50991f6a6f3b724ab34154a43155b.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/geografia-bacharelado"
+    },
+    {
+      "id": "2307",
+      "title": "Geografia - Licenciatura",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/geografia_licenciatura_2307_1_c9ca9bb305464d5acd9d87b5bd83ad84.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/geografia-licenciatura"
+    },
+    {
+      "id": "2309",
+      "title": "História - Bacharelado",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/historia_bacharelado_2309_1_ec6be00691f419f4daf275d2db00518f.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/historia-bacharelado"
+    },
+    {
+      "id": "2303",
+      "title": "História - Licenciatura",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/historia_licenciatura_2303_1_6eba364d7344d8c68313f7fa1000ddce.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/historia-licenciatura"
+    },
+    {
+      "id": "2361",
+      "title": "Jogos Digitais",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/jogos_digitais_2361_1_2b1cdb2e19c769b44206c60556a71ce7.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/jogos-digitais"
+    },
+    {
+      "id": "2297",
+      "title": "Jornalismo",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/jornalismo_2297_1_0fed8e19e4ef90ba2136677f92029a75.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/jornalismo"
+    },
+    {
+      "id": "2313",
+      "title": "Letras - Bacharelado",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/letras_bacharelado_2313_1_fa8c0fc60aef4039c592d771ad41e0b6.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/letras-bacharelado"
+    },
+    {
+      "id": "2315",
+      "title": "Letras - Licenciatura em Português",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/letras_licenciatura_em_portugues_2315_1_a6e9decc35da2a9038a74e7fd314c200.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/letras-licenciatura-em-portugues"
+    },
+    {
+      "id": "2301",
+      "title": "Letras - Licenciatura em Português/Inglês",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/letras_licenciatura_em_portugues_ingles_2301_1_5dc9ab04328078052c5684bf8c295ebb.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/letras-licenciatura-em-portuguesingles"
+    },
+    {
+      "id": "2311",
+      "title": "Matemática",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/matematica_2311_1_630f7276722f5f929def2839cdbbc642.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/matematica"
+    },
+    {
+      "id": "2271",
+      "title": "Medicina Veterinária",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/medicina_veterinria_1_20260820105749_1538107851e5.jpg",
+      "url": "https://vemprapuc.pucminas.br/graduacao/medicina-veterinaria"
+    },
+    {
+      "id": "2279",
+      "title": "Nutrição",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/nutricao_2279_1_a605f83581ba82be6f0cac67cc141f22.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/nutricao"
+    },
+    {
+      "id": "2283",
+      "title": "Odontologia",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/odontologia_2283_1_9201a608783a0c6ed77302a5c1b74f50.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/odontologia"
+    },
+    {
+      "id": "2299",
+      "title": "Pedagogia",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/pedagogia_2299_1_3a82d4c8b3a2482dbb5d5f636a6c54bf.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/pedagogia"
+    }
+  ],
+  [
+    {
+      "id": "2273",
+      "title": "Psicologia",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/psicologia_2273_1_3c406f290e740c4c5eaa981183df91eb.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/psicologia"
+    },
+    {
+      "id": "2317",
+      "title": "Publicidade e Propaganda",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/publicidade_e_propaganda_2317_1_e12b4dbccd567abc180b902e7d816147.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/publicidade-e-propaganda"
+    },
+    {
+      "id": "2367",
+      "title": "Publicidade e Propaganda - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/publicidade_e_propaganda_ead_2367_1_b2160343cbd072b9af299bb590b56a5e.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/publicidade-e-propaganda-ead"
+    },
+    {
+      "id": "2323",
+      "title": "Relações Internacionais",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/relacoes_internacionais_2323_1_aa97e7e2bce6217858d0df87b2acb4af.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/relacoes-internacionais"
+    },
+    {
+      "id": "2325",
+      "title": "Relações Públicas",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/relacoes_publicas_2325_1_3ce9e5c06fe7d2b862414bee86a20812.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/relacoes-publicas"
+    },
+    {
+      "id": "2319",
+      "title": "Serviço Social",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/servico_social_2319_1_5b7ec89f93c8ad2cf42f833ddd10147e.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/servico-social"
+    },
+    {
+      "id": "2265",
+      "title": "Sistemas de Informação",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/sistemas_de_informacao_2265_1_b3d93510487d707f0f5b0992dc9695bc.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/sistemas-de-informacao"
+    },
+    {
+      "id": "2431",
+      "title": "Sistemas de Informação - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/sistemas_de_informacao_ead_2431_1_be0421aa85b4e3ac07db89bf42699a79.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/sistemas-de-informacao-ead"
+    },
+    {
+      "id": "2275",
+      "title": "Tecnologia em Análise e Desenvolvimento de Sistemas",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_analise_e_desenvolvimento_de_sistemas_2275_1_e3e8b13ef2e4b0ec6ea1aae467294225.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-analise-e-desenvolv-de-sistemas"
+    },
+    {
+      "id": "2395",
+      "title": "Tecnologia em Análise e Desenvolvimento de Sistemas - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_analise_e_desenvolvimento_de_sistemas_ead_2395_1_0f4752a38ba77dc6922b02abb9efcfc9.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-analise-e-desenv-de-sistemas-ead"
+    },
+    {
+      "id": "2397",
+      "title": "Tecnologia em Banco de Dados - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_banco_de_dados_ead_2397_1_91fbf153dc4ab7e59008c6287db94954.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-banco-de-dados-ead"
+    },
+    {
+      "id": "2401",
+      "title": "Tecnologia em Comércio Exterior - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_comercio_exterior_ead_2401_1_6a57f94ab93903f9571bb51e408fb619.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-comercio-exterior-ead"
+    },
+    {
+      "id": "2403",
+      "title": "Tecnologia em Gestão Comercial - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_gestao_comercial_ead_2403_1_40c33b56bb270249f5644640f320f7e0.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-gestao-comercial-ead"
+    },
+    {
+      "id": "2407",
+      "title": "Tecnologia em Gestão de Recursos Humanos - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_gestao_de_recursos_humanos_ead_2407_1_a2fd9e5b73e2917cc926d0bbe75b750c.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-gestao-de-recursos-humanos-ead"
+    },
+    {
+      "id": "2405",
+      "title": "Tecnologia em Gestão Financeira - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_gestao_financeira_ead_2405_1_a94134600dc9c57faaf6f53dee87f3a5.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-gestao-financeira-ead"
+    },
+    {
+      "id": "2417",
+      "title": "Tecnologia em Gestão Tecnologia da Informação EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_gestao_tecnologia_da_informacao_ead_2417_1_0c10576962529d96a281c06afa2a42b0.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-gestao-tecnologia-da-informacao-ead"
+    },
+    {
+      "id": "2411",
+      "title": "Tecnologia em Jogos Digitais - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_jogos_digitais_ead_2411_1_ef68b7b01fc0f758fcb00eb00b8a0051.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-jogos-digitais-ead"
+    },
+    {
+      "id": "4379",
+      "title": "Tecnologia em Manutenção de Aeronaves",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_manutencao_de_aeronaves_4379_1_bfebf91d74f55dbb50d315132a17b6e2.jpg",
+      "url": "https://vemprapuc.pucminas.br/graduacao/presencial/aulas-presenciais/tecnologia-em-manutencao-de-aeronaves"
+    },
+    {
+      "id": "2415",
+      "title": "Tecnologia em Marketing - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_marketing_ead_2415_1_dfadc36376897314768e8ee70fb596f4.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-marketing-ead"
+    },
+    {
+      "id": "2381",
+      "title": "Tecnologia em Processos Gerenciais - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_processos_gerenciais_ead_2381_1_405e1a9fee6401ccea1c6a0339d02fe5.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-processos-gerenciais-ead"
+    },
+    {
+      "id": "2383",
+      "title": "Tecnologia em Produção Audiovisual - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_producao_audiovisual_ead_2383_1_e2026ab6fe38120cca86edf0f9a78326.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-producao-audiovisual-ead"
+    },
+    {
+      "id": "2425",
+      "title": "Tecnologia em Redes de Computadores - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_redes_de_computadores_ead_2425_1_1276aeee76d909c70c0ab5ef25dd6658.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-redes-de-computadores-ead"
+    },
+    {
+      "id": "2427",
+      "title": "Tecnologia em Segurança da Informação - EAD",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/tecnologia_em_seguranca_da_informacao_ead_2427_1_938989099fe658d5cd15d5c686ab82b3.png",
+      "url": "https://vemprapuc.pucminas.br/graduacao/tecnologia-em-seguranca-da-informacao-ead"
+    },
+    {
+      "id": "2387",
+      "title": "Teologia",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/teologia_2387_1_970baa917e682f99ca793aad97b7b5d2.jpg",
+      "url": "https://vemprapuc.pucminas.br/graduacao/teologia"
+    },
+    {
+      "id": "6765",
+      "title": "Física Médica",
+      "image": "https://images.tcdn.com.br/img/img_prod/548342/fsica_mdica_1_20260915092036_82d67b892a7a.jpg",
+      "url": "https://vemprapuc.pucminas.br/graduacao/so-na-universidade/aulas-presenciais-apenas/fisica-medica"
+    }
+  ]
+]

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { ArrowLeft, ChevronDown, Cookie, Menu, MessageCircle, X } from 'lucide-react'
 import banner from '../assets/transferencia/bannermobile.png'
 import brasao from '../assets/transferencia/brasao-branco.png'
@@ -20,7 +20,6 @@ const graduationQuestions=['Como funciona o processo de segunda graduação?','Q
 export default function TransferenciaPage({onBack, segundaGraduacao=false}:{onBack:()=>void; segundaGraduacao?:boolean}) {
  const scroll=useRef<HTMLDivElement>(null); const second=useRef<HTMLElement>(null)
  const [cookie,setCookie]=useState(()=>!localStorage.getItem('puc-transferencia-cookies')); const [settings,setSettings]=useState(false); const [menu,setMenu]=useState(false); const [open,setOpen]=useState('')
- useEffect(()=>{if(segundaGraduacao) requestAnimationFrame(()=>second.current?.scrollIntoView())},[segundaGraduacao])
  const save=(value:string)=>{localStorage.setItem('puc-transferencia-cookies',value);setCookie(false)}
  const go=(id:string)=>{setMenu(false);document.getElementById(id)?.scrollIntoView({behavior:'smooth'})}
  return <div className="trans-page"><header className="trans-header"><button onClick={onBack} aria-label="Voltar"><ArrowLeft size={23}/></button><strong>{segundaGraduacao?'SEGUNDA GRADUAÇÃO':'TRANSFERÊNCIA EXTERNA'}</strong><span/></header><div className="trans-scroll" ref={scroll}><nav className="trans-nav"><button aria-label="Abrir menu" onClick={()=>setMenu(!menu)}><Menu size={25}/></button><a href={signup} target="_blank" rel="noreferrer">INSCRIÇÕES</a>{menu&&<div className="trans-menu">{[['Por que mudar','trans-porque'],['Quem pode se inscrever','trans-quem'],['Passo a passo','trans-passos'],['Segunda graduação','trans-segunda'],['Perguntas frequentes','trans-faq']].map(([t,id])=><button key={id} onClick={()=>go(id)}>{t}</button>)}</div>}</nav>

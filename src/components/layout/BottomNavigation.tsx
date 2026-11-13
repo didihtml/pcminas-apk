@@ -9,13 +9,12 @@ const IconHome = () => (
   </svg>
 )
 
-// Recibo/certificado com linhas e borda ondulada
 const IconIngressar = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <rect x="3.5" y="2.5" width="17" height="19" rx="1.7" />
-    <path d="M7.5 6.5h9M7.5 9.5h9M7.5 13h3" />
-    <circle cx="14.5" cy="15" r="2.2" />
-    <path d="m12.8 17-1 4 2.7-1.5 2.7 1.5-1-4" />
+    <rect x="3.5" y="2.5" width="17" height="18.5" rx="2" />
+    <path d="M7.5 6.5h9M8 9.5h8" />
+    <circle cx="12" cy="14" r="2.5" />
+    <path d="m10 15.8-1.1 4 3.1-1.5 3.1 1.5-1.1-4" />
   </svg>
 )
 

@@ -14,6 +14,7 @@ import PosGraduacaoPage from './PosGraduacaoPage'
 import AcompanheInscricaoPage from './AcompanheInscricaoPage'
 import InstitucionalIngressoPage from './InstitucionalIngressoPage'
 import TransferenciaPage from './TransferenciaPage'
+import ReaberturaPage from './ReaberturaPage'
 
 interface IngressoCard { id: string; title: string; image: string }
 const PROCESSOS: IngressoCard[] = [
@@ -35,11 +36,13 @@ const IngressarPage: React.FC<IngressarPageProps> = ({ onBack }) => {
   const [showGraduacao, setShowGraduacao] = useState(false)
   const [showPosGraduacao, setShowPosGraduacao] = useState(false)
   const [showAcompanhe, setShowAcompanhe] = useState(false)
+  const [showReabertura, setShowReabertura] = useState(false)
   const [institucional, setInstitucional] = useState<'disciplinas-isoladas' | 'complementacao' | null>(null)
   const [transferenciaTipo, setTransferenciaTipo] = useState<'transferencia' | 'segunda-graduacao' | null>(null)
   if (showGraduacao) return createPortal(<GraduacaoPage onBack={() => setShowGraduacao(false)} />, document.body)
   if (showPosGraduacao) return createPortal(<PosGraduacaoPage onBack={() => setShowPosGraduacao(false)} />, document.body)
   if (showAcompanhe) return createPortal(<AcompanheInscricaoPage onBack={() => setShowAcompanhe(false)} />, document.body)
+  if (showReabertura) return createPortal(<ReaberturaPage onBack={() => setShowReabertura(false)} />, document.body)
   if (institucional) return createPortal(<InstitucionalIngressoPage tipo={institucional} onBack={() => setInstitucional(null)} />, document.body)
   if (transferenciaTipo) return createPortal(<TransferenciaPage segundaGraduacao={transferenciaTipo === 'segunda-graduacao'} onBack={() => setTransferenciaTipo(null)} />, document.body)
   const openCard = (card: IngressoCard) => {
@@ -49,6 +52,7 @@ const IngressarPage: React.FC<IngressarPageProps> = ({ onBack }) => {
       case 'acompanhe': setShowAcompanhe(true); break
       case 'matriculas': setInstitucional('disciplinas-isoladas'); break
       case 'complementacao': setInstitucional('complementacao'); break
+      case 'reabertura': setShowReabertura(true); break
       case 'transferencia': setTransferenciaTipo('transferencia'); break
       case 'segunda-graduacao': setTransferenciaTipo('segunda-graduacao'); break
       default: setNotice(card.title)
