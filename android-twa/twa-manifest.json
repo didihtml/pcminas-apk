@@ -14,7 +14,7 @@
   "enableNotifications": true,
   "startUrl": "/",
   "iconUrl": "https://puc-minas-main-nu.vercel.app/icon-512.png",
-  "maskableIconUrl": "https://puc-minas-main-nu.vercel.app/icon-512.png",
+  "maskableIconUrl": "https://puc-minas-main-nu.vercel.app/icon-maskable-512.png",
   "splashScreenFadeOutDuration": 300,
   "signingKey": {
     "path": "C:\\Users\\2D\\AppData\\Local\\pcminas-android-signing\\release.keystore",

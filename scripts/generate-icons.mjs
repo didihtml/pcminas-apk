@@ -1,46 +1,44 @@
 import Jimp from 'jimp'
-import { join, dirname } from 'path'
-import { fileURLToPath } from 'url'
+import { mkdir } from 'node:fs/promises'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const publicDir = join(__dirname, '../public')
+const root = join(dirname(fileURLToPath(import.meta.url)), '..')
+const publicDir = join(root, 'public')
+const resDir = join(root, 'android-twa', 'app', 'src', 'main', 'res')
+const blue = 0x00578aff
+const source = await Jimp.read(join(publicDir, 'icon-reference.png'))
+if (source.bitmap.width !== 512 || source.bitmap.height !== 512) throw new Error('A referência deve ter 512 × 512 pixels')
 
-const PUC_BLUE = 0x1E5FA8FF
+// Preserve the supplied image for ordinary icons. Extract only its white mark
+// for the alpha-only themed icon; the blue background is supplied separately.
+const mark = source.clone()
+mark.scan(0, 0, 512, 512, function (x, y, index) {
+  const { data } = this.bitmap
+  const brightness = Math.min(data[index], data[index + 1], data[index + 2])
+  const insideMark = x >= 120 && x <= 392 && y >= 65 && y <= 415
+  const alpha = insideMark ? Math.max(0, Math.min(255, Math.round((brightness - 70) * 255 / 150))) : 0
+  data[index] = data[index + 1] = data[index + 2] = 255
+  data[index + 3] = Math.round(alpha * data[index + 3] / 255)
+})
 
-async function generate() {
-  // Load the source logo
-  const logo = await Jimp.read(join(publicDir, 'logo-puc-white.png'))
+await source.clone().resize(192, 192).writeAsync(join(publicDir, 'icon-192.png'))
+await source.clone().writeAsync(join(publicDir, 'icon-512.png'))
+await mark.clone().writeAsync(join(publicDir, 'icon-monochrome-512.png'))
+const maskable = new Jimp(512, 512, blue).composite(mark, 0, 0)
+await maskable.writeAsync(join(publicDir, 'icon-maskable-512.png'))
 
-  // Make every non-transparent pixel pure white, and very-light pixels transparent
-  logo.scan(0, 0, logo.bitmap.width, logo.bitmap.height, function (x, y, idx) {
-    const r = this.bitmap.data[idx]
-    const g = this.bitmap.data[idx + 1]
-    const b = this.bitmap.data[idx + 2]
-
-    // White/near-white background → fully transparent
-    if (r > 220 && g > 220 && b > 220) {
-      this.bitmap.data[idx + 3] = 0
-    } else {
-      // All other pixels → pure white
-      this.bitmap.data[idx]     = 255
-      this.bitmap.data[idx + 1] = 255
-      this.bitmap.data[idx + 2] = 255
-    }
-  })
-
-  for (const size of [192, 512]) {
-    const bg = await new Promise((res, rej) =>
-      new Jimp(size, size, PUC_BLUE, (err, img) => (err ? rej(err) : res(img)))
-    )
-
-    const logoResized = logo.clone().resize(Math.round(size * 0.75), Jimp.AUTO)
-    const x = Math.round((size - logoResized.bitmap.width) / 2)
-    const y = Math.round((size - logoResized.bitmap.height) / 2)
-
-    bg.composite(logoResized, x, y)
-    await bg.writeAsync(join(publicDir, `icon-${size}.png`))
-    console.log(`✓ icon-${size}.png gerado`)
-  }
+// Adaptive icons have a 108dp canvas and a smaller safe area than the PWA.
+const foreground = new Jimp(512, 512, 0x00000000)
+const insetMark = mark.clone().resize(432, 432)
+foreground.composite(insetMark, 40, 40)
+for (const [density, factor] of [['mdpi', 1], ['hdpi', 1.5], ['xhdpi', 2], ['xxhdpi', 3], ['xxxhdpi', 4]]) {
+  const dir = join(resDir, `mipmap-${density}`)
+  await mkdir(dir, { recursive: true })
+  const legacySize = Math.round(48 * factor)
+  const adaptiveSize = Math.round(108 * factor)
+  await source.clone().resize(legacySize, legacySize).writeAsync(join(dir, 'ic_launcher.png'))
+  await maskable.clone().resize(adaptiveSize, adaptiveSize).writeAsync(join(dir, 'ic_maskable.png'))
+  await foreground.clone().resize(adaptiveSize, adaptiveSize).writeAsync(join(dir, 'ic_launcher_foreground.png'))
+  await foreground.clone().resize(adaptiveSize, adaptiveSize).writeAsync(join(dir, 'ic_launcher_monochrome.png'))
 }
-
-generate().catch(console.error)
