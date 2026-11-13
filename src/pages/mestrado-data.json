@@ -1,0 +1,92 @@
+[
+  {
+    "curso": "ADMINISTRAÇÃO",
+    "descricao": "Com foco em Gestão Estratégica das Organizações, o programa desenvolve pesquisas em Estratégia e Marketing, Inovação e Conhecimento e Pessoas, Trabalho e Sociedade. Forma mestres e doutores preparados para atuar na pesquisa, no ensino e na análise dos desafios contemporâneos das organizações.",
+    "link": "https://www.pucminas.br/pos/administracao",
+    "imagem": "/src/assets/mestrado/img_administracao.png"
+  },
+  {
+    "curso": "BIODIVERSIDADE E MEIO AMBIENTE",
+    "descricao": "Com linhas de pesquisa que habilitam os egressos a atuarem tanto no campo da biodiversidade quanto em áreas de interface com a saúde única, o programa  conta com uma infraestrutura moderna e laboratórios bem equipados, além da prática nas áreas de conservação, comportamento e saúde única.",
+    "link": "https://www.pucminas.br/pos/biologia",
+    "imagem": "/src/assets/mestrado/img_biodiversidade.png"
+  },
+  {
+    "curso": "CIÊNCIAS DA RELIGIÃO",
+    "descricao": "Investiga o fenômeno religioso na articulação entre religião e cultura. O programa concentra suas pesquisas em temas como os aspectos constitutivos da religião na história, nos ordenamentos sociais, políticos e culturais; interpretar o fenômeno religioso à luz das teorias em curso; compreender o pluralismo religioso com capacidade de diálogo e de juízo críticos, entre outros.",
+    "link": "https://www.pucminas.br/pos/religiao",
+    "imagem": "/src/assets/mestrado/img_ciencias_religiao.png"
+  },
+  {
+    "curso": "CIÊNCIAS SOCIAIS",
+    "descricao": "Com foco na área Cidades: Cultura, Trabalho e Políticas Públicas, o programa desenvolve pesquisas sobre questões urbanas e suas dimensões sociais, culturais, políticas e econômicas. São três as suas linhas de pesquisa: Cultura, Identidades e Modos de Vida; Democracia, Estado e Políticas Públicas; Metrópoles, Trabalho e Desigualdades.",
+    "link": "https://www.pucminas.br/pos/cienciassociais",
+    "imagem": "/src/assets/mestrado/img_ciencias_sociais.png"
+  },
+  {
+    "curso": "COMUNICAÇÃO SOCIAL",
+    "descricao": "Investiga as interações em uma sociedade midiatizada, considerando o papel das tecnologias de comunicação, implicadas no cotidiano, fundamentais para as mediações. As pesquisas abordam a circulação de sentidos e significados sob a perspectiva da vinculação social.",
+    "link": "https://www.pucminas.br/pos/fca",
+    "imagem": "/src/assets/mestrado/img_comunicacao.png"
+  },
+  {
+    "curso": "DIREITO",
+    "descricao": "Para consolidar a pesquisa científica, buscando estabelecer um eixo teórico na reflexão sobre o Estado Democrático de Direito, o programa forma mestres e doutores e desenvolve pesquisas em três áreas de concentração e nove linhas de pesquisa.",
+    "link": "https://www.pucminas.br/pos/direito",
+    "imagem": "/src/assets/mestrado/img_direito.png"
+  },
+  {
+    "curso": "EDUCAÇÃO",
+    "descricao": "O programa compreende a educação como uma prática social, científica e humanizadora, articulando teoria, prática e compromisso social. Desenvolve estudos voltados aos desafios educacionais contemporâneos, com abordagem interdisciplinar e atenção à educação básica e superior.",
+    "link": "https://www.pucminas.br/pos/educacao",
+    "imagem": "/src/assets/mestrado/img_educacao.png"
+  },
+  {
+    "curso": "ENGENHARIA MECÂNICA",
+    "descricao": "Dividido em duas áreas de concentração, com duas linhas de pesquisa cada, o programa forma mestres e doutores nas áreas de Projeto e Fabricação e Sistemas Térmicos e Fluidos. Além disso, contribui com o desenvolvimento sustentável da ciência, tecnologia e inovação.",
+    "link": "https://www.pucminas.br/pos/mecanica",
+    "imagem": "/src/assets/mestrado/img_engenharia.png"
+  },
+  {
+    "curso": "GEOGRAFIA - TRATAMENTO DA INFORMAÇÃO ESPACIAL",
+    "descricao": "O programa oferece linhas de pesquisa em Sistemas de Informações Geográficas, Estudos Urbanos e Regionais e Meio Ambiente.",
+    "link": "https://www.pucminas.br/pos/geografia",
+    "imagem": "/src/assets/mestrado/img_geografia.png"
+  },
+  {
+    "curso": "INFORMÁTICA",
+    "descricao": "Com área de concentração em Ciência da Computação, o programa desenvolve pesquisas em Análise de Dados, Descoberta de Conhecimento e Recuperação de Informação, além de Engenharia de Software e Sistemas de Computação. Forma profissionais qualificados para contribuir com o desenvolvimento científico e tecnológico.",
+    "link": "https://www.pucminas.br/pos/informatica",
+    "imagem": "/src/assets/mestrado/img_informatica.png"
+  },
+  {
+    "curso": "LETRAS",
+    "descricao": "O programa reúne duas áreas de concentração: Linguística e Língua Portuguesa e Literaturas de Língua Portuguesa. Forma mestres e doutores com qualificação e autonomia para o exercício inovador, reflexivo e crítico, individual e/ou coletivo, da pesquisa, da docência, da extensão e da atuação em outros campos de especialidade das áreas de Letras.",
+    "link": "https://www.pucminas.br/pos/letras",
+    "imagem": "/src/assets/mestrado/img_letras.png"
+  },
+  {
+    "curso": "ODONTOLOGIA",
+    "descricao": "Voltado ao desenvolvimento, aprofundamento e divulgação do conhecimento, o programa forma recursos humanos qualificados para o exercício do ensino, da pesquisa, da extensão e de atividades profissionais na área da Odontologia.",
+    "link": "https://www.pucminas.br/pos/odontologia",
+    "imagem": "/src/assets/mestrado/img_odontologia.png"
+  },
+  {
+    "curso": "PSICOLOGIA",
+    "descricao": "Com área de concentração em Processos de Subjetivação, o programa possui duas linhas de pesquisa: Processos Psicossociais e Intervenções Clínicas e Sociais. Reúne diferentes campos de conhecimento e oferece possibilidade de aprimoramento técnico, científico e cultural.",
+    "link": "https://www.pucminas.br/pos/psicologia",
+    "imagem": "/src/assets/mestrado/img_psicologia.png"
+  },
+  {
+    "curso": "RELAÇÕES INTERNACIONAIS",
+    "descricao": "O programa mantém laços estreitos com os principais departamentos de RI pelo mundo e é conhecido internacionalmente por sua especialização em Economia Política Internacional, Segurança Internacional e Instituições Internacionais.",
+    "link": "https://www.pucminas.br/pos/ri",
+    "imagem": "/src/assets/mestrado/img_relacoes_internacionais.png"
+  },
+  {
+    "curso": "TEOLOGIA PRÁTICA (PROFISSIONAL)",
+    "descricao": "O programa propõe uma formação acadêmica e profissional em Teologia Prática, articulando reflexão teológica e atuação concreta na sociedade e na Igreja. Suas pesquisas estão organizadas nas linhas Formação e Anúncio e Pastorais Sociais e de Fronteira.",
+    "link": "https://mestradoteologia.pucminas.br/",
+    "imagem": "/src/assets/mestrado/img_teologia.png"
+  }
+]

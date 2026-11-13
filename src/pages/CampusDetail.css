@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+.campus-detail { position:fixed; z-index:40; inset:0; max-width:430px; margin:auto; overflow:hidden; background:#0d111d; color:#f9fafc; font-family:Montserrat,system-ui,sans-serif; }
+.campus-detail-header { position:absolute; z-index:2; inset:0 0 auto; height:108px; padding:44px 23px 19px; display:flex; align-items:center; justify-content:space-between; background:#182037; }
+.campus-detail-header h1 { margin:0; text-transform:uppercase; text-align:center; font-size:14px; font-weight:600; }
+.campus-detail-header>span { width:23px; }
+.campus-detail-scroll { position:absolute; inset:108px 0 0; overflow-y:auto; overscroll-behavior:contain; padding-bottom:95px; }
+.campus-detail-content { padding:16px; }
+.campus-detail-photo { width:100%; aspect-ratio:679/380; object-fit:cover; border-radius:8px; }
+.campus-presentation { margin-top:25px; }
+.campus-presentation h2,.campus-location h2 { margin:0 0 2px; font-size:15px; line-height:1.2; font-weight:700; }
+.campus-presentation p { margin:0; font-size:14px; line-height:1.23; font-weight:400; white-space:pre-line; }
+.campus-location { margin-top:27px; }
+.campus-location h2 { margin-bottom:13px; color:#95969f; }
+.campus-location img,.campus-location iframe { width:100%; aspect-ratio:679/380; border:0; border-radius:8px; display:block; object-fit:cover; background:#344a61; }
+.campus-info { margin-top:40px; padding:16px; background:#151923; border:1px solid #222733; border-radius:8px; }
+.campus-info + .campus-info { margin-top:16px; }
+.campus-info-heading { display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+.campus-info-heading span { width:32px; height:32px; display:grid; place-items:center; background:#00537f; border-radius:6px; color:white; }
+.campus-info-heading h3 { font-size:15px; font-weight:700; color:#c5c9d2; margin:0; }
+.campus-info>a { color:#fff; text-decoration:none; font-size:14px; font-weight:600; line-height:1.25; display:block; }
+.campus-contact { margin-top:40px; padding:30px 16px 42px; background:#151923; text-align:center; }
+.campus-contact h2 { margin:0 0 24px; font-size:19px; font-weight:400; }
+.campus-contact a { display:flex; justify-content:center; align-items:center; gap:8px; min-height:48px; margin-top:15px; background:#00527f; color:white; border-radius:8px; font-size:13px; font-weight:600; text-decoration:none; }
+.campus-contact a:last-child { background:#2c6b8e; }
+.campus-whatsapp { position:absolute; right:16px; bottom:120px; z-index:3; height:56px; width:56px; border-radius:50%; background:#16c965; color:white; display:grid; place-items:center; }
