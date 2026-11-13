@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#cad8da"/>
+  <path fill="#fff" d="M33 0h34v19c0 4-1 7-3 10v8c0 5 4 8 11 11l25 11v41H0V59l25-11c7-3 11-6 11-11v-8c-2-3-3-6-3-10z"/>
+  <text x="50" y="30" text-anchor="middle" fill="#333" font-family="Arial, sans-serif" font-size="12">Sem foto</text>
+  <text x="50" y="42" text-anchor="middle" fill="#333" font-family="Arial, sans-serif" font-size="12">cadastrada</text>
+</svg>

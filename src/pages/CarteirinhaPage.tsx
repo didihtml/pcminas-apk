@@ -142,7 +142,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                   background: "#01365C",
                 }}
               >
-                <img src="/cartao-sem-foto.png" alt="Sem foto cadastrada" className="h-full w-full object-cover" />
+                <img src="/cartao-sem-foto.svg" alt="Sem foto cadastrada" className="block h-full w-full" />
               </div>
 
               <div className="min-w-0 flex flex-col gap-1 pt-1">
