@@ -123,7 +123,7 @@ const ValidacaoPage: React.FC<ValidacaoPageProps> = ({ cardId }) => {
               {!imageError && card.fotoUrl ? (
                 <img src={card.fotoUrl} alt={card.nome} className="w-full h-full object-cover" onError={() => setImageError(true)} />
               ) : (
-                <span className="text-center text-xs px-2" style={{ color: "#C9E9F5" }}>Foto indisponível</span>
+                <img src="/cartao-sem-foto.svg" alt="Sem foto cadastrada" className="w-full h-full object-cover" />
               )}
             </div>
             <div className="flex flex-col gap-1.5 pt-0.5">
