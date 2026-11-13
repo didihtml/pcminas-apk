@@ -12,6 +12,8 @@ import segundaGraduacao from '../assets/ingressar/segunda-graduacao.png'
 import GraduacaoPage from './GraduacaoPage'
 import PosGraduacaoPage from './PosGraduacaoPage'
 import AcompanheInscricaoPage from './AcompanheInscricaoPage'
+import InstitucionalIngressoPage from './InstitucionalIngressoPage'
+import TransferenciaPage from './TransferenciaPage'
 
 interface IngressoCard { id: string; title: string; image: string }
 const PROCESSOS: IngressoCard[] = [
@@ -33,12 +35,28 @@ const IngressarPage: React.FC<IngressarPageProps> = ({ onBack }) => {
   const [showGraduacao, setShowGraduacao] = useState(false)
   const [showPosGraduacao, setShowPosGraduacao] = useState(false)
   const [showAcompanhe, setShowAcompanhe] = useState(false)
+  const [institucional, setInstitucional] = useState<'disciplinas-isoladas' | 'complementacao' | null>(null)
+  const [transferenciaTipo, setTransferenciaTipo] = useState<'transferencia' | 'segunda-graduacao' | null>(null)
   if (showGraduacao) return createPortal(<GraduacaoPage onBack={() => setShowGraduacao(false)} />, document.body)
   if (showPosGraduacao) return createPortal(<PosGraduacaoPage onBack={() => setShowPosGraduacao(false)} />, document.body)
   if (showAcompanhe) return createPortal(<AcompanheInscricaoPage onBack={() => setShowAcompanhe(false)} />, document.body)
+  if (institucional) return createPortal(<InstitucionalIngressoPage tipo={institucional} onBack={() => setInstitucional(null)} />, document.body)
+  if (transferenciaTipo) return createPortal(<TransferenciaPage segundaGraduacao={transferenciaTipo === 'segunda-graduacao'} onBack={() => setTransferenciaTipo(null)} />, document.body)
+  const openCard = (card: IngressoCard) => {
+    switch (card.id) {
+      case 'graduacao': setShowGraduacao(true); break
+      case 'pos-graduacao': setShowPosGraduacao(true); break
+      case 'acompanhe': setShowAcompanhe(true); break
+      case 'matriculas': setInstitucional('disciplinas-isoladas'); break
+      case 'complementacao': setInstitucional('complementacao'); break
+      case 'transferencia': setTransferenciaTipo('transferencia'); break
+      case 'segunda-graduacao': setTransferenciaTipo('segunda-graduacao'); break
+      default: setNotice(card.title)
+    }
+  }
   const renderCards = (cards: IngressoCard[]) => (
     <div className="grid grid-cols-2 gap-[15px]">
-      {cards.map(card => <button key={card.id} type="button" onClick={() => card.id === 'graduacao' ? setShowGraduacao(true) : card.id === 'pos-graduacao' ? setShowPosGraduacao(true) : card.id === 'acompanhe' ? setShowAcompanhe(true) : setNotice(card.title)} aria-label={`${card.title}: ver mais`} className="block w-full overflow-hidden rounded-[8px] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+      {cards.map(card => <button key={card.id} type="button" onClick={() => openCard(card)} aria-label={`${card.title}: ver mais`} className="block w-full overflow-hidden rounded-[8px] text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
         <img src={card.image} alt="" className="block h-auto w-full" />
       </button>)}
     </div>
