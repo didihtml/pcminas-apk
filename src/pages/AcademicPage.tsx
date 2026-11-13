@@ -12,6 +12,7 @@ import {
 import type { AccessCard } from "../types";
 import SchedulePage from "./SchedulePage";
 import TeachingPlanPage from "./TeachingPlanPage";
+import GuiaAlunoPage from "./GuiaAlunoPage";
 
 const academicItems = [
   { label: "Grade de horários", icon: AlarmClock },
@@ -29,6 +30,9 @@ const AcademicPage: React.FC<{ card: AccessCard; openSchedule: boolean; onCloseS
   }
   if (selectedItem === "Plano de ensino") {
     return <TeachingPlanPage card={card} onBack={() => setSelectedItem(null)} />;
+  }
+  if (selectedItem === "Guia do aluno") {
+    return <GuiaAlunoPage onBack={() => setSelectedItem(null)} />;
   }
 
   return (

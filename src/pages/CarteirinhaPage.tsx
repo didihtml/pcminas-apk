@@ -23,7 +23,6 @@ function formatDate(value: string | null | undefined) {
 }
 
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
-  const [imageError, setImageError] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [dragOffset, setDragOffset] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
@@ -143,16 +142,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                   background: "#01365C",
                 }}
               >
-                {!imageError && card.fotoUrl ? (
-                  <img
-                    src={card.fotoUrl}
-                    alt={card.nome}
-                    className="w-full h-full object-cover"
-                    onError={() => setImageError(true)}
-                  />
-                ) : (
-                  <img src="/cartao-sem-foto.png" alt="Sem foto cadastrada" className="h-full w-full object-cover" />
-                )}
+                <img src="/cartao-sem-foto.png" alt="Sem foto cadastrada" className="h-full w-full object-cover" />
               </div>
 
               <div className="min-w-0 flex flex-col gap-1 pt-1">
@@ -168,7 +158,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                   <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
                     Código
                   </p>
-                  <p className="text-white text-sm font-semibold">
+                  <p className="text-white text-sm font-bold">
                     {card.codigo ?? card.id}
                   </p>
                 </div>
