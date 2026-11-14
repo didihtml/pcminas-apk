@@ -57,7 +57,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
 
   const handleAcessar = async () => {
     if (!usuario.trim()) {
-      setError("Informe seu usuário.");
+      setError(isAluno ? "Informe o CPF ou código cadastrado." : "Informe seu usuário.");
       return;
     }
 
@@ -255,7 +255,7 @@ const LoginPage: React.FC<LoginPageProps> = ({
             type="text"
             value={usuario}
             onChange={(e) => setUsuario(e.target.value)}
-            placeholder="Insira seu usuário"
+            placeholder={isAluno ? "Insira seu CPF ou código" : "Insira seu usuário"}
             className="w-full px-4 py-4 text-sm placeholder-gray-500 outline-none"
             style={{ ...inputStyle, color: "var(--text-input)" }}
           />

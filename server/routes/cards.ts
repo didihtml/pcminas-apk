@@ -44,18 +44,18 @@ router.get('/cards/:id', async (request, response, next) => {
 
 router.post('/auth/login', async (request, response, next) => {
   try {
-    const { usuario }: LoginRequestBody = request.body ?? {}
+    const { usuario, profile }: LoginRequestBody = request.body ?? {}
 
     if (!usuario?.trim()) {
-      response.status(400).json({ message: 'Informe o CPF cadastrado.' })
+      response.status(400).json({ message: 'Informe o CPF ou código cadastrado.' })
       return
     }
 
-    const card = await findCardByIdentifier(usuario)
+    const card = await findCardByIdentifier(usuario, profile === 'aluno')
 
     if (!card) {
       response.status(401).json({
-        message: 'Carteirinha não encontrada para o CPF informado.',
+        message: 'Carteirinha não encontrada para o CPF ou código informado.',
       })
       return
     }

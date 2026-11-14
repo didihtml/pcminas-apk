@@ -63,7 +63,7 @@ function getPrisma() {
   return prisma
 }
 
-export default async function handler(req: { method?: string; body?: { usuario?: string; senha?: string } }, res: { setHeader: (k: string, v: string) => void; status: (c: number) => { end: () => void; json?: (d: unknown) => void }; json: (d: unknown) => void }) {
+export default async function handler(req: { method?: string; body?: { usuario?: string; senha?: string; profile?: string } }, res: { setHeader: (k: string, v: string) => void; status: (c: number) => { end: () => void; json?: (d: unknown) => void }; json: (d: unknown) => void }) {
   setCorsHeaders(res)
 
   if (req.method === "OPTIONS") {
@@ -76,11 +76,11 @@ export default async function handler(req: { method?: string; body?: { usuario?:
 
   try {
     const p = getPrisma()
-    const { usuario } = req.body ?? {}
+    const { usuario, profile } = req.body ?? {}
 
     if (typeof usuario !== "string" || !usuario.trim()) {
       return res.status(400).json({
-        message: "Informe o CPF cadastrado.",
+        message: "Informe o CPF ou código cadastrado.",
       })
     }
 
@@ -93,6 +93,7 @@ export default async function handler(req: { method?: string; body?: { usuario?:
         OR: [
           { id: value },
           { alunoUsuario: value },
+          ...(profile === "aluno" && /^\d{6}$/.test(value) ? [{ codigo: value }] : []),
           ...cpfCandidates.map((cpf) => ({ cpf })),
         ],
       },
@@ -101,7 +102,7 @@ export default async function handler(req: { method?: string; body?: { usuario?:
 
     if (!card) {
       return res.status(401).json({
-        message: "Carteirinha não encontrada para o CPF informado.",
+        message: "Carteirinha não encontrada para o CPF ou código informado.",
       })
     }
 

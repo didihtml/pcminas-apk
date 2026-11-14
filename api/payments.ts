@@ -15,7 +15,7 @@ export default async function handler(req: Request, res: Response) {
       const value = identifier?.trim() ?? "";
       const digits = value.replace(/\D/g, "");
       if (!value || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !phone || phone.replace(/\D/g, "").length < 10) return res.status(400).json({ message: "Informe e-mail e telefone válidos." });
-      const found = await db.query('SELECT id, nome, cpf FROM cards WHERE id = $1 OR ($2 <> \'\' AND regexp_replace(cpf, \'[^0-9]\', \'\', \'g\') = $2) ORDER BY "createdAt" DESC LIMIT 1', [value, digits]);
+      const found = await db.query('SELECT id, nome, cpf FROM cards WHERE id = $1 OR ($2 <> \'\' AND regexp_replace(cpf, \'[^0-9]\', \'\', \'g\') = $2) OR ($3 <> \'\' AND codigo = $3) ORDER BY "createdAt" DESC LIMIT 1', [value, digits, /^\d{6}$/.test(value) ? value : '']);
       const card = found.rows[0];
       if (!card) return res.status(404).json({ message: "Carteirinha não encontrada." });
       if (await hasCardAccess(card.id)) return res.json({ paid: true });

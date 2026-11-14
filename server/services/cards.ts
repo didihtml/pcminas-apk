@@ -52,7 +52,7 @@ export async function findCardById(id: string) {
   return card ? await toCardDto(card) : null
 }
 
-export async function findCardByIdentifier(identifier: string) {
+export async function findCardByIdentifier(identifier: string, allowStudentCode = false) {
   const value = identifier.trim()
   const digits = value.replace(/\D/g, '')
   const cpfCandidates = Array.from(new Set([value, digits, formatCpf(digits)]))
@@ -62,6 +62,7 @@ export async function findCardByIdentifier(identifier: string) {
       OR: [
         { id: value },
         { alunoUsuario: value },
+        ...(allowStudentCode && /^\d{6}$/.test(value) ? [{ codigo: value }] : []),
         ...cpfCandidates.map((cpf) => ({ cpf })),
       ],
     },
