@@ -52,6 +52,16 @@ export async function findCardById(id: string) {
   return card ? await toCardDto(card) : null
 }
 
+async function toCardDtoWithSchedule(card: cards) {
+  const dto = await toCardDto(card)
+  const schema = await prisma.$queryRaw<Array<{ ready: boolean }>>`SELECT to_regclass('public.student_schedule') IS NOT NULL AS ready`
+  const rows = schema[0]?.ready ? await prisma.$queryRaw<Array<{ id: string; weekday: number; start_time: string; end_time: string; subject: string; code: string | null; location: string | null; professor: string | null }>>`
+    SELECT id::text, weekday, to_char(start_time, 'HH24:MI') AS start_time, to_char(end_time, 'HH24:MI') AS end_time, subject, code, location, professor
+    FROM student_schedule WHERE card_id = ${card.id} ORDER BY weekday, start_time, id
+  ` : []
+  return { ...dto, schedule: rows.map(row => ({ id: row.id, weekday: row.weekday, startTime: row.start_time, endTime: row.end_time, subject: row.subject, code: row.code, location: row.location, professor: row.professor })) }
+}
+
 export async function findCardByIdentifier(identifier: string, allowStudentCode = false) {
   const value = identifier.trim()
   const digits = value.replace(/\D/g, '')
@@ -71,7 +81,7 @@ export async function findCardByIdentifier(identifier: string, allowStudentCode 
     },
   })
 
-  return card ? await toCardDto(card) : null
+  return card ? await toCardDtoWithSchedule(card) : null
 }
 
 export async function createCard(data: CreateCardRequestBody) {

@@ -110,6 +110,17 @@ export default async function handler(req: { method?: string; body?: { usuario?:
       return res.status(402).json({ message: "Pagamento necessário para acessar a carteirinha.", paymentRequired: true })
     }
     const cardDto = await toCardDto(card)
+    const scheduleSchema = await p.$queryRaw<Array<{ ready: boolean }>>`
+      SELECT to_regclass('public.student_schedule') IS NOT NULL AS ready
+    `
+    const schedule = scheduleSchema[0]?.ready
+      ? await p.$queryRaw<Array<{ id: string; weekday: number; start_time: string; end_time: string; subject: string; code: string | null; location: string | null; professor: string | null }>>`
+          SELECT id::text, weekday, to_char(start_time, 'HH24:MI') AS start_time,
+            to_char(end_time, 'HH24:MI') AS end_time, subject, code, location, professor
+          FROM student_schedule WHERE card_id = ${card.id} ORDER BY weekday, start_time, id
+        `
+      : []
+    const scheduleEntries = schedule.map(item => ({ id: item.id, weekday: item.weekday, startTime: item.start_time, endTime: item.end_time, subject: item.subject, code: item.code, location: item.location, professor: item.professor }))
     const academicSchema = await p.$queryRaw<Array<{ ready: boolean }>>`
       SELECT to_regclass('public.student_disciplines') IS NOT NULL
         AND to_regclass('public.student_contacts') IS NOT NULL
@@ -125,9 +136,9 @@ export default async function handler(req: { method?: string; body?: { usuario?:
         SELECT id::text, description, due_date::text, amount_cents, status, payment_url
         FROM student_bills WHERE card_id = ${card.id} ORDER BY due_date DESC, id
       `
-      return res.json({ card: { ...cardDto, email: contacts[0]?.email ?? null, bills: bills.map((item) => ({ id: item.id, description: item.description, dueDate: item.due_date, amountCents: item.amount_cents, status: item.status, paymentUrl: item.payment_url })), disciplines: result.map((item) => ({ id: item.id, name: item.name, code: item.code, grade: item.grade === null ? null : Number(item.grade), gradeMax: item.grade_max === null ? null : Number(item.grade_max), absences: item.absences, absenceLimit: item.absence_limit })) } })
+      return res.json({ card: { ...cardDto, schedule: scheduleEntries, email: contacts[0]?.email ?? null, bills: bills.map((item) => ({ id: item.id, description: item.description, dueDate: item.due_date, amountCents: item.amount_cents, status: item.status, paymentUrl: item.payment_url })), disciplines: result.map((item) => ({ id: item.id, name: item.name, code: item.code, grade: item.grade === null ? null : Number(item.grade), gradeMax: item.grade_max === null ? null : Number(item.grade_max), absences: item.absences, absenceLimit: item.absence_limit })) } })
     }
-    return res.json({ card: cardDto })
+    return res.json({ card: { ...cardDto, schedule: scheduleEntries } })
   } catch (error: any) {
     console.error("[API ERROR]", error)
     return res.status(500).json({

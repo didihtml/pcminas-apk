@@ -14,6 +14,7 @@ export interface CardDto {
   atribuicao: string | null
   codigoAcesso: string | null
   createdAt: string
+  schedule?: Array<{ id: string; weekday: number; startTime: string; endTime: string; subject: string; code: string | null; location: string | null; professor: string | null }>
 }
 
 export interface LoginRequestBody {

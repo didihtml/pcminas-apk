@@ -59,8 +59,20 @@ export interface AccessCard {
   codigoAcesso: string | null;
   createdAt: string;
   disciplines?: StudentDiscipline[];
+  schedule?: ScheduleEntry[];
   email?: string | null;
   bills?: StudentBill[];
+}
+
+export interface ScheduleEntry {
+  id: string;
+  weekday: number;
+  startTime: string;
+  endTime: string;
+  subject: string;
+  code: string | null;
+  location: string | null;
+  professor: string | null;
 }
 
 export interface StudentBill {
