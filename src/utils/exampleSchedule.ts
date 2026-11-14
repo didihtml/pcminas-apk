@@ -23,11 +23,11 @@ export function exampleSchedule(card: AccessCard): ScheduleEntry[] {
   if (!pool.length) return [];
   let seed = 2166136261;
   for (const character of card.id) seed = Math.imul(seed ^ character.charCodeAt(0), 16777619);
-  const slots = [['07:50', '08:40'], ['08:50', '10:30'], ['11:30', '12:20']];
-  return Array.from({ length: 15 }, (_, index) => ({
-    id: `example-${index}`, weekday: Math.floor(index / 3) + 1,
-    startTime: slots[index % 3][0], endTime: slots[index % 3][1],
-    subject: pool[((seed >>> 0) + index * 5 + Math.floor(index / 3)) % pool.length],
-    code: null, location: card.campus || null, professor: null,
+  const slots = [['08:50', '10:30'], ['10:40', '12:20']];
+  return Array.from({ length: 10 }, (_, index) => ({
+    id: `example-${index}`, weekday: Math.floor(index / 2) + 1,
+    startTime: slots[index % 2][0], endTime: slots[index % 2][1],
+    subject: pool[((seed >>> 0) + index * 5 + Math.floor(index / 2)) % pool.length],
+    code: null, location: 'PUC Minas Poços de Caldas | Prédio 01', professor: null,
   }));
 }
