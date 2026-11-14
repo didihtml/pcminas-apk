@@ -33,6 +33,5 @@ export default function ValidacaoPage({ cardId }: { cardId: string }) {
     <p className="mt-[20px] text-[16px] italic leading-[1.3]">{[card.curso, card.campus].filter(Boolean).join(" - ") || "Curso não informado"}</p>
     <p className="mt-[14px] text-[16px]">Situação: <strong className="underline">{card.status || "Não informada"}</strong></p>
     <p className="mt-1 text-[16px]">Matrícula: <strong>{card.codigo || "Não informada"}</strong></p>
-    <p className="mx-auto mt-12 max-w-[320px] text-[12px] leading-4 text-[#686868]">Consulta ao cadastro deste aplicativo. Não comprova vínculo institucional.</p>
   </main>;
 }
