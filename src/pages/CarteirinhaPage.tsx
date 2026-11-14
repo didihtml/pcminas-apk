@@ -23,7 +23,7 @@ function formatDate(value: string | null | undefined) {
 }
 
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1);
   const [dragOffset, setDragOffset] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const touchStartX = useRef(0);
@@ -50,8 +50,8 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
         </svg>
       ),
       qrValue: qrCredencialValue,
-      qrSize: 126,
-      qrPadding: "p-0",
+      qrSize: 116,
+      qrPadding: "p-1.5",
       label: "Código",
       value: telefone,
     },
@@ -220,7 +220,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
           {/* Baixo: credencial de acesso - carrossel */}
           <div
-            className="flex min-h-[204px] flex-col px-6 pt-6 pb-5"
+            className="flex min-h-[188px] flex-col px-5 pt-5 pb-4"
             style={{
               background: "#033862",
             }}
