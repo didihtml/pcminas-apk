@@ -1,16 +1,31 @@
-import React from "react";
-import { Bell } from "lucide-react";
-import type { AccessCard } from "../types";
+import React, { useState } from 'react'
+import { createPortal } from 'react-dom'
+import { ArrowLeft, ArrowRight, Bell, CloudDownload, Info, LoaderCircle, X } from 'lucide-react'
+import type { AccessCard, StudentDiscipline } from '../types'
+import { subjectsForCourse } from '../utils/exampleSchedule'
 
-const DisciplinesPage: React.FC<{ card: AccessCard }> = ({ card }) => (
-  <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
-    <header className="relative flex h-[118px] items-end justify-center bg-[#182037] pb-6 pt-[env(safe-area-inset-top)]"><h1 className="text-[16px] font-semibold">PROGRESSO</h1><Bell size={21} strokeWidth={1.8} className="absolute bottom-6 right-6" aria-label="Notificações" /></header>
-    <main className="px-[18px] pt-7"><h2 className="mb-4 text-[18px] font-bold">NOTAS E FALTAS</h2>
-      {card.disciplines?.length ? <div className="space-y-4">{card.disciplines.map(item => <article key={item.id} className="rounded-[13px] border border-white/[0.05] bg-[#141720] p-[18px]">
-        <h3 className="text-[17px] font-bold leading-tight">{item.code ? `${item.code} - ` : ""}{item.name}</h3><p className="mt-2 text-sm text-[#9295a0]">{card.curso}{card.campus ? ` - ${card.campus}` : ""}</p><div className="my-4 h-px bg-white/[0.06]" />
-        <div className="flex gap-6 text-sm"><p><strong>Notas:</strong> {item.grade === null ? "Não cadastrada" : `${item.grade} / ${item.gradeMax}`}</p><p><strong>Faltas:</strong> {item.absences === null ? "Não cadastradas" : `${item.absences} / ${item.absenceLimit}`}</p></div>
-      </article>)}</div> : <p className="text-sm text-[#a4aab5]">Ainda não há disciplinas cadastradas.</p>}
-    </main>
-  </div>
-);
-export default DisciplinesPage;
+const ProgressBar = ({ value, max }: { value: number | null; max: number | null }) => <div className="mt-1 h-2 overflow-hidden rounded-full bg-[#273143]"><div className="h-full rounded-full bg-[#005782]" style={{ width: value !== null && max && max > 0 ? `${Math.min(100, Math.max(0, value / max * 100))}%` : '0%' }} /></div>
+const format = (value: number | null, max: number | null) => value === null ? '— / —' : `${value} / ${max ?? '—'}`
+
+const DisciplinesPage: React.FC<{ card: AccessCard }> = ({ card }) => {
+  const [selected, setSelected] = useState<StudentDiscipline | null>(null)
+  const [planOpen, setPlanOpen] = useState(false)
+  const demo = !card.disciplines?.length
+  const disciplines: StudentDiscipline[] = demo ? subjectsForCourse(card.curso || '').map((name, index) => ({ id: `example-${index}`, name, code: null, grade: null, gradeMax: null, absences: null, absenceLimit: null })) : card.disciplines ?? []
+  const campus = card.campus || card.instituicao || 'Campus não informado'
+  const title = (item: StudentDiscipline) => `${item.code ? `${item.code} - ` : ''}${item.name}`.toLocaleUpperCase('pt-BR')
+
+  if (selected) return createPortal(<div className="fixed inset-y-0 left-1/2 z-[60] flex w-full max-w-[430px] -translate-x-1/2 flex-col overflow-y-auto bg-[#0d111d] text-white">
+    <header className="sticky top-0 z-10 flex h-[101px] shrink-0 items-end justify-center bg-[#182037] px-12 pb-5 pt-[env(safe-area-inset-top)]"><button type="button" onClick={() => setSelected(null)} className="absolute bottom-4 left-5 p-1" aria-label="Voltar para disciplinas"><ArrowLeft size={22}/></button><h1 className="text-[15px] font-semibold">NOTAS E FALTAS</h1><Bell size={21} className="absolute bottom-5 right-5" aria-label="Notificações"/></header>
+    <section className="flex items-center gap-3 bg-[#151923] px-5 py-5"><div className="min-w-0 flex-1"><h2 className="text-[17px] font-bold leading-5">{title(selected)}</h2><p className="mt-1 text-[12px]">{selected.absenceLimit === null ? 'Limite de faltas não informado' : `Limite de faltas: ${selected.absenceLimit}`}</p></div><button type="button" onClick={() => setPlanOpen(true)} className="p-1" aria-label="Abrir plano de ensino"><Info size={21}/></button></section>
+    <section className="border-b border-white/[0.08] px-4 py-4"><h2 className="border-b border-white/[0.1] pb-4 text-[17px] font-semibold">Faltas</h2><div className="mt-3 flex justify-between text-[16px]"><span>{format(selected.absences, selected.absenceLimit)}</span><span>{selected.absences !== null && selected.absenceLimit ? `${(selected.absences / selected.absenceLimit * 100).toFixed(1)}%` : '—'}</span></div><ProgressBar value={selected.absences} max={selected.absenceLimit}/></section>
+    <main className="flex-1 px-5 py-6"><p className="text-sm text-[#a4aab5]">Nenhuma avaliação individual cadastrada.</p></main><section className="border-t border-white/[0.08] px-4 py-5"><h2 className="text-[15px] font-bold">Somatório total das avaliações</h2><p className="mt-3 text-sm text-[#a4aab5]">{selected.grade === null ? 'Nota não informada' : format(selected.grade, selected.gradeMax)}</p></section>
+    {planOpen && <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/75 px-4"><div role="dialog" aria-modal="true" aria-labelledby="discipline-plan-title" className="flex h-[min(80dvh,680px)] w-full flex-col rounded-2xl bg-[#151923] p-4"><div className="flex items-center justify-between"><h2 id="discipline-plan-title" className="text-[15px]">Plano de Ensino</h2><button type="button" onClick={() => setPlanOpen(false)} aria-label="Fechar plano de ensino"><X size={23}/></button></div><p className="mt-4 text-[15px] font-bold leading-[18px]">{title(selected)}</p><div className="mt-4 flex flex-1 flex-col items-center justify-center gap-4 rounded-lg border border-white/[0.05] text-center text-[#93949e]" role="status"><LoaderCircle size={34} className="animate-spin"/><p className="text-sm">Carregando plano de ensino...</p><p className="px-3 text-xs">Visualização de carregamento; plano não integrado.</p></div><button type="button" disabled className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#3c3f49] py-3 text-sm text-white/40"><CloudDownload size={17}/> Download PDF</button></div></div>}
+  </div>, document.body)
+
+  return <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white"><header className="sticky top-0 z-10 flex h-[101px] items-end justify-center bg-[#182037] pb-5 pt-[env(safe-area-inset-top)]"><h1 className="text-[15px] font-semibold">PROGRESSO</h1><Bell size={21} strokeWidth={1.8} className="absolute bottom-5 right-5" aria-label="Notificações"/></header>
+    <main className="px-[17px] pt-6"><h2 className="mb-4 text-[15px] font-bold">NOTAS E FALTAS</h2>{demo && disciplines.length > 0 && <p className="mb-3 text-xs text-[#a4aab5]">Exemplos de disciplinas do curso; matrícula, notas e faltas não verificadas.</p>}
+      {disciplines.length ? <div className="space-y-4">{disciplines.map(item => <article key={item.id} className="rounded-xl border border-white/[0.06] bg-[#151923] p-4"><button type="button" onClick={() => setSelected(item)} className="flex w-full items-start gap-3 text-left"><span className="min-w-0 flex-1"><span className="block text-[15px] font-bold leading-[18px]">{title(item)}</span><span className="mt-1 block text-[15px] leading-[18px] text-[#92929e]">{card.curso} - {campus}</span></span><ArrowRight size={22} className="shrink-0"/></button><div className="my-3 h-px bg-white/[0.06]"/><p className="text-[15px] leading-[21px] text-[#92929e]"><strong>Local</strong> {campus}</p><p className="text-[15px] leading-[21px] text-[#92929e]"><strong>Turno</strong> Não informado</p><div className="mt-4 grid grid-cols-2 gap-5"><div><div className="flex justify-between gap-1 text-[15px]"><strong>Faltas</strong><span className="text-[#92929e]">{format(item.absences, item.absenceLimit)}</span></div><ProgressBar value={item.absences} max={item.absenceLimit}/></div><div><div className="flex justify-between gap-1 text-[15px]"><strong>Notas</strong><span className="text-[#92929e]">{format(item.grade, item.gradeMax)}</span></div><ProgressBar value={item.grade} max={item.gradeMax}/></div></div></article>)}</div> : <p className="text-sm text-[#a4aab5]">Ainda não há disciplinas cadastradas.</p>}
+    </main></div>
+}
+export default DisciplinesPage
