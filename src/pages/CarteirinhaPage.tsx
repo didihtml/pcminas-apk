@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import type { AccessCard } from "../types";
+import fotoSemCadastro from "../assets/cartao-sem-foto-referencia.png";
 
 interface CarteirinhaPageProps {
   card: AccessCard;
@@ -138,11 +139,9 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                   width: "96px",
                   height: "96px",
                   borderRadius: "10px",
-                  border: "3px solid #7ECCEF",
-                  background: "#01365C",
                 }}
               >
-                <img src="/cartao-sem-foto.svg" alt="Sem foto cadastrada" className="block h-full w-full" />
+                <img src={fotoSemCadastro} alt="Sem foto cadastrada" className="block h-full w-full" />
               </div>
 
               <div className="min-w-0 flex flex-col gap-1 pt-1">
