@@ -121,24 +121,26 @@ export default async function handler(req: { method?: string; body?: { usuario?:
         `
       : []
     const scheduleEntries = schedule.map(item => ({ id: item.id, weekday: item.weekday, startTime: item.start_time, endTime: item.end_time, subject: item.subject, code: item.code, location: item.location, professor: item.professor }))
-    const academicSchema = await p.$queryRaw<Array<{ ready: boolean }>>`
-      SELECT to_regclass('public.student_disciplines') IS NOT NULL
-        AND to_regclass('public.student_contacts') IS NOT NULL
-        AND to_regclass('public.student_bills') IS NOT NULL AS ready
+    const academicSchema = await p.$queryRaw<Array<{ disciplines: boolean; contacts: boolean; bills: boolean }>>`
+      SELECT to_regclass('public.student_disciplines') IS NOT NULL AS disciplines,
+        to_regclass('public.student_contacts') IS NOT NULL AS contacts,
+        to_regclass('public.student_bills') IS NOT NULL AS bills
     `
-    if (academicSchema[0]?.ready) {
-      const result = await p.$queryRaw<Array<{ id: string; name: string; code: string | null; grade: string | null; grade_max: string | null; absences: number | null; absence_limit: number | null }>>`
+    const schema = academicSchema[0]
+    const result = schema?.disciplines
+      ? await p.$queryRaw<Array<{ id: string; name: string; code: string | null; grade: string | null; grade_max: string | null; absences: number | null; absence_limit: number | null }>>`
         SELECT id::text, name, code, grade::text, grade_max::text, absences, absence_limit
         FROM student_disciplines WHERE card_id = ${card.id} ORDER BY created_at, id
       `
-      const contacts = await p.$queryRaw<Array<{ email: string }>>`SELECT email FROM student_contacts WHERE card_id = ${card.id}`
-      const bills = await p.$queryRaw<Array<{ id: string; description: string; due_date: string; amount_cents: number; status: string; payment_url: string | null }>>`
+      : []
+    const contacts = schema?.contacts ? await p.$queryRaw<Array<{ email: string }>>`SELECT email FROM student_contacts WHERE card_id = ${card.id}` : []
+    const bills = schema?.bills
+      ? await p.$queryRaw<Array<{ id: string; description: string; due_date: string; amount_cents: number; status: string; payment_url: string | null }>>`
         SELECT id::text, description, due_date::text, amount_cents, status, payment_url
         FROM student_bills WHERE card_id = ${card.id} ORDER BY due_date DESC, id
       `
-      return res.json({ card: { ...cardDto, schedule: scheduleEntries, email: contacts[0]?.email ?? null, bills: bills.map((item) => ({ id: item.id, description: item.description, dueDate: item.due_date, amountCents: item.amount_cents, status: item.status, paymentUrl: item.payment_url })), disciplines: result.map((item) => ({ id: item.id, name: item.name, code: item.code, grade: item.grade === null ? null : Number(item.grade), gradeMax: item.grade_max === null ? null : Number(item.grade_max), absences: item.absences, absenceLimit: item.absence_limit })) } })
-    }
-    return res.json({ card: { ...cardDto, schedule: scheduleEntries } })
+      : undefined
+    return res.json({ card: { ...cardDto, schedule: scheduleEntries, email: contacts[0]?.email ?? null, bills: bills?.map((item) => ({ id: item.id, description: item.description, dueDate: item.due_date, amountCents: item.amount_cents, status: item.status, paymentUrl: item.payment_url })), disciplines: result.map((item) => ({ id: item.id, name: item.name, code: item.code, grade: item.grade === null ? null : Number(item.grade), gradeMax: item.grade_max === null ? null : Number(item.grade_max), absences: item.absences, absenceLimit: item.absence_limit })) } })
   } catch (error: any) {
     console.error("[API ERROR]", error)
     return res.status(500).json({
