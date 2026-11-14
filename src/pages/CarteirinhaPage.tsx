@@ -23,7 +23,7 @@ function formatDate(value: string | null | undefined) {
 }
 
 const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [dragOffset, setDragOffset] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const touchStartX = useRef(0);
@@ -50,8 +50,8 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
         </svg>
       ),
       qrValue: qrCredencialValue,
-      qrSize: 116,
-      qrPadding: "p-1.5",
+      qrSize: 126,
+      qrPadding: "p-0",
       label: "Código",
       value: telefone,
     },
@@ -129,14 +129,14 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
           style={{ background: "#033862", borderRadius: "8px" }}
         >
           {/* Topo + meio com fundo azul original */}
-          <div className="min-h-[295px]" style={{ background: "#03447c" }}>
+          <div className="min-h-[322px]" style={{ background: "#034b83" }}>
             {/* Topo: foto + nome/código */}
-            <div className="p-4 flex gap-4 items-start">
+            <div className="px-6 pt-4 pb-6 flex gap-4 items-start">
               <div
                 className="flex-shrink-0 overflow-hidden flex items-center justify-center"
                 style={{
-                  width: "88px",
-                  height: "88px",
+                  width: "96px",
+                  height: "96px",
                   borderRadius: "10px",
                   border: "3px solid #7ECCEF",
                   background: "#01365C",
@@ -147,15 +147,15 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
               <div className="min-w-0 flex flex-col gap-1 pt-1">
                 <div>
-                  <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                  <p className="text-xs mb-0.5" style={{ color: "#e4f1fa" }}>
                     Nome
                   </p>
-                  <p className="text-white text-sm font-bold leading-tight">
+                  <p className="text-white text-[17px] font-bold leading-tight">
                     {card.nome}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                  <p className="text-xs mb-0.5" style={{ color: "#e4f1fa" }}>
                     Código
                   </p>
                   <p className="text-white text-sm font-bold">
@@ -166,52 +166,52 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
             </div>
 
             {/* Meio: grid de informações */}
-            <div className="px-5 pb-5 grid grid-cols-2 gap-x-3 gap-y-3">
+            <div className="px-6 pb-5 grid grid-cols-2 gap-x-3 gap-y-4">
               <div>
-                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                <p className="text-xs mb-0.5" style={{ color: "#e4f1fa" }}>
                   Atribuição
                 </p>
-                <p className="text-white text-xs leading-snug font-bold">
+                <p className="text-white text-sm leading-tight font-bold">
                   {card.atribuicao ?? card.status}
                 </p>
               </div>
               <div>
-                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                <p className="text-xs mb-0.5" style={{ color: "#e4f1fa" }}>
                   RG
                 </p>
-                <p className="text-white text-xs leading-snug font-bold whitespace-nowrap">
+                <p className="text-white text-sm leading-tight font-bold whitespace-nowrap">
                   {card.rg?.replace(/\D/g, "") || "-"}
                 </p>
               </div>
               <div>
-                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                <p className="text-xs mb-0.5" style={{ color: "#e4f1fa" }}>
                   CPF
                 </p>
-                <p className="text-white text-xs leading-snug font-bold whitespace-nowrap">
+                <p className="text-white text-sm leading-tight font-bold whitespace-nowrap">
                   {card.cpf.replace(/\D/g, "") || "-"}
                 </p>
               </div>
               <div>
-                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                <p className="text-xs mb-0.5" style={{ color: "#e4f1fa" }}>
                   Nascimento
                 </p>
-                <p className="text-white text-xs leading-snug font-bold">
+                <p className="text-white text-sm leading-tight font-bold">
                   {card.nascimento ? formatDate(card.nascimento) : "-"}
                 </p>
               </div>
               <div>
-                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                <p className="text-xs mb-0.5" style={{ color: "#e4f1fa" }}>
                   Campus
                 </p>
-                <p className="max-w-[110px] text-white text-xs leading-snug font-bold">
+                <p className="max-w-[130px] text-white text-sm leading-tight font-bold">
                   {card.campus || "-"}
                 </p>
               </div>
               <div>
-                <p className="text-xs mb-0.5" style={{ color: "#85AFBC" }}>
+                <p className="text-xs mb-0.5" style={{ color: "#e4f1fa" }}>
                   Curso
                 </p>
-                <p className="max-w-[110px] text-white text-xs leading-snug font-bold">
+                <p className="max-w-[130px] text-white text-sm leading-tight font-bold">
                   {card.curso}
                 </p>
               </div>
@@ -220,7 +220,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
 
           {/* Baixo: credencial de acesso - carrossel */}
           <div
-            className="flex min-h-[188px] flex-col px-5 pt-5 pb-4"
+            className="flex min-h-[204px] flex-col px-6 pt-6 pb-5"
             style={{
               background: "#033862",
             }}
@@ -268,7 +268,7 @@ const CarteirinhaPage: React.FC<CarteirinhaPageProps> = ({ card }) => {
                       <div>
                         <p
                           className="text-xs mb-1"
-                          style={{ color: "#85AFBC" }}
+                          style={{ color: "#e4f1fa" }}
                         >
                           {slide.label}
                         </p>
