@@ -20,14 +20,13 @@ export function demoDisciplines(card: AccessCard): StudentDiscipline[] {
   }));
 }
 
-export function demoBills(card: AccessCard): StudentBill[] {
-  const seed = seedFor(card.id);
-  const year = new Date().getFullYear();
-  return Array.from({ length: 5 }, (_, index) => ({
-    id: `demo-bill-${index}`,
-    description: `Parcela ${5 - index} - ${year}`,
-    dueDate: `${year}-${String(5 - index).padStart(2, "0")}-10`,
-    amountCents: 50000 + ((seed >>> (index * 3)) % 1001) * 100,
+export function demoBills(): StudentBill[] {
+  const dates = ["2026-12-01", "2026-11-01", "2026-10-01", "2026-09-15", "2026-09-01", "2026-08-05"];
+  return dates.map((dueDate, index) => ({
+    id: `demo-bill-${index + 1}`,
+    description: `Parcela ${6 - index} - 2/2026`,
+    dueDate,
+    amountCents: 0,
     status: "PAGO" as const,
     paymentUrl: null,
   }));

@@ -13,6 +13,7 @@ import OmbudsmanPage from "./OmbudsmanPage";
 import CareerPage from "./CareerPage";
 import APucPage from "./APucPage";
 import MissaoValoresPage from "./MissaoValoresPage";
+import { demoBills } from "../utils/demoStudentData";
 
 interface MenuPageProps { card: AccessCard; onOpenAccessCredentials: () => void; onLogout: () => void; }
 const menuItems = [
@@ -90,12 +91,12 @@ const MenuPage: React.FC<MenuPageProps> = ({ card, onOpenAccessCredentials, onLo
   </div>;
   if (showBoletos) return <div className="min-h-[100dvh] bg-[#0d111d] pb-32 text-white">
     <header className="relative flex h-[101px] items-end justify-center bg-[#182037] px-12 pb-5 pt-[env(safe-area-inset-top)]"><button type="button" onClick={() => setShowBoletos(false)} className="absolute bottom-4 left-5 p-1" aria-label="Voltar para Financeiro"><ArrowLeft size={22}/></button><h1 className="text-center text-[15px] font-semibold">EMISSÃO DE BOLETO</h1><Bell size={21} className="absolute bottom-5 right-5" aria-label="Notificações" /></header>
-    <main className="space-y-[10px] px-[15px] pt-[15px]">{card.bills?.length ? [...card.bills].sort((a, b) => b.dueDate.localeCompare(a.dueDate)).map(bill => {
+    <main className="space-y-[10px] px-[15px] pt-[15px]">{!card.bills?.length && <p role="status" className="text-xs text-[#a4aab5]">Demonstração: pagamentos não verificados.</p>}{(card.bills?.length ? [...card.bills] : demoBills()).sort((a, b) => b.dueDate.localeCompare(a.dueDate)).map(bill => {
       const dateMatch = /^(\d{4})-(\d{2})-(\d{2})/.exec(bill.dueDate);
       const date = dateMatch ? `${dateMatch[3]}/${dateMatch[2]}/${dateMatch[1].slice(-2)}` : bill.dueDate;
       const statusClass = bill.status === 'PAGO' ? 'bg-[#29b66c] text-[#064e2a]' : bill.status === 'PENDENTE' ? 'bg-[#e6b744] text-[#392800]' : 'bg-[#626874] text-white';
       return <section key={bill.id} className="rounded-lg border border-white/[0.06] bg-[#151923] px-3 py-3"><div className="flex min-h-[35px] items-center justify-between gap-3 border-b border-white/[0.06] pb-[11px]"><h2 className="text-[15px] font-bold">{bill.description}</h2><span className={`rounded px-3 py-1 text-[11px] font-semibold ${statusClass}`}>{bill.status}</span></div><p className="pt-3 text-[13px]"><strong>Vencimento:</strong> {date}</p>{bill.status === 'PENDENTE' && <p className="pt-1 text-[13px]"><strong>Valor:</strong> {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(bill.amountCents / 100)}</p>}{bill.paymentUrl && bill.status === 'PENDENTE' && <a href={bill.paymentUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block rounded bg-[#00537d] px-4 py-2 text-sm font-semibold">Abrir boleto</a>}</section>
-    }) : <p className="text-sm text-[#a4aab5]">{card.bills ? "Ainda não há boletos cadastrados." : "A consulta de boletos não está disponível."}</p>}</main>
+    })}</main>
   </div>;
   if (selectedItem === "Solicitação de Serviços") return createPortal(<div className="fixed inset-y-0 left-1/2 z-[60] flex w-full max-w-[430px] -translate-x-1/2 flex-col bg-[#0d111d] text-white">
     <header className="relative flex h-[100px] shrink-0 items-end justify-center bg-[#182037] px-12 pb-5 pt-[env(safe-area-inset-top)]"><button type="button" onClick={() => { if (showServiceRequest) setShowServiceRequest(false); else setSelectedItem(null); setNotice(""); }} className="absolute bottom-4 left-3 p-1" aria-label="Voltar"><ArrowLeft size={21}/></button><h1 className="text-center text-[14px] font-semibold uppercase">Solicitação de Serviços</h1></header>
