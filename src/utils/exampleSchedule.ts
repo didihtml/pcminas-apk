@@ -63,10 +63,15 @@ export function exampleSchedule(card: AccessCard): ScheduleEntry[] {
   let seed = 2166136261;
   for (const character of card.id) seed = Math.imul(seed ^ character.charCodeAt(0), 16777619);
   const slots = [['08:50', '10:30'], ['10:40', '12:20']];
-  return Array.from({ length: 10 }, (_, index) => ({
-    id: `example-${index}`, weekday: Math.floor(index / 2) + 1,
-    startTime: slots[index % 2][0], endTime: slots[index % 2][1],
-    subject: pool[((seed >>> 0) + index + Math.floor(index / 2)) % pool.length],
-    code: null, location: 'PUC Minas Poços de Caldas | Prédio 01', professor: null,
-  }));
+  const professors = ['Ana Ribeiro', 'Bruno Campos', 'Camila Duarte', 'Daniel Martins', 'Fernanda Lopes', 'Lucas Teixeira'];
+  return Array.from({ length: 10 }, (_, index) => {
+    const subjectIndex = ((seed >>> 0) + index + Math.floor(index / 2)) % pool.length;
+    return {
+      id: `example-${index}`, weekday: Math.floor(index / 2) + 1,
+      startTime: slots[index % 2][0], endTime: slots[index % 2][1],
+      subject: pool[subjectIndex], code: null,
+      location: 'PUC Minas Poços de Caldas | Prédio 02 | Andar 03 | Sala de aula 33',
+      professor: professors[((seed >>> 0) + subjectIndex) % professors.length],
+    };
+  });
 }

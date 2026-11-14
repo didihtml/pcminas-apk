@@ -33,7 +33,7 @@ const SchedulePage: React.FC<{ card: AccessCard; onBack: () => void }> = ({ card
       <Bell size={21} strokeWidth={1.8} className="absolute bottom-6 right-6" aria-label="Notificações" />
     </header>
     <main className="space-y-3 px-4 pt-[10px]">
-      {illustrative && schedule.length > 0 && <p className="text-xs leading-4 text-[#c3cad7]">Horários gerados automaticamente para {card.curso}.</p>}
+      {illustrative && schedule.length > 0 && <p className="text-xs leading-4 text-[#c3cad7]">Horários e professores gerados automaticamente para {card.curso}.</p>}
       {entries.length ? days.map((_, index) => {
         const weekday = index + 1;
         const lessons = entries.filter(item => item.weekday === weekday);
